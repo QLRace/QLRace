@@ -34,7 +34,7 @@ class Score < ActiveRecord::Base
     scores = []
     ranks = []
     p.scores.where(mode: mode).order(:map).pluck(:map).each do |map|
-      map_scores = Score.where(map: map, mode: mode).order(:time, :updated_at).each.with_index(1) do |score, rank|
+      Score.where(map: map, mode: mode).order(:time, :updated_at).each.with_index(1) do |score, rank|
         if score.player_id == player_id
           ranks << rank
           scores << { map: map, mode: mode, rank: rank, time: score.time,

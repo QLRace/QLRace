@@ -6,7 +6,7 @@ class Api::ApiController < ActionController::Base
 
       unless @user
         head status: :unauthorized
-        return false
+        false
       end
     end
 end

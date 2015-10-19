@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     get 'map/:map', to: 'scores_api#map'
     post 'new', to: 'scores_new#new'
     root to: redirect('/apidoc'), via: :all
-    match "*path", to: redirect('/apidoc'), via: :all
+    match '*path', to: redirect('/apidoc'), via: :all
   end
 end
