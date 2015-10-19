@@ -1,0 +1,19 @@
+h2 = @name
+p Average rank: #{@average}
+- if @scores.length != 0
+  table.table.table-striped.table-hover.sortable
+    thead
+      tr
+        th Map
+        th Rank
+        th Time
+        th Date
+    tbody
+      - @scores.each do |score|
+        tr
+          td  = link_to score[:map], map_path(score[:map], @PARAMS[score[:mode]])
+          td  = score[:rank]
+          td  = time_string(score[:time])
+          td  = score[:date]
+- else
+  p has no records on this mode.

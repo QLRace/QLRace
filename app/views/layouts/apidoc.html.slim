@@ -1,0 +1,10 @@
+= render 'layouts/head'
+= render 'layouts/navbar'
+.container
+  .row
+    .container
+      = render 'layouts/loader'
+      = yield
+      = render 'disqus' if Apipie.configuration.use_disqus?
+    .footer
+      = yield :apipie_footer

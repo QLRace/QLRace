@@ -1,0 +1,20 @@
+body
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        button.navbar-toggle.collapsed data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button' 
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to 'QLRace', root_path, class: 'navbar-brand'
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li
+            = link_to 'Records', root_path
+          li
+            = link_to 'Players', players_path
+        ul.nav.navbar-nav.navbar-right
+          = form_tag(players_path, method: 'get', id: 'search-form', class: 'navbar-form navbar-right') do
+            = text_field_tag :search, params[:search], placeholder: 'Find Player', class: 'form-control', 'data-autocomplete': players_autocomplete_path
+            = submit_tag 'Search', name: nil, class: 'btn btn-default'
