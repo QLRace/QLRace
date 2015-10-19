@@ -17,7 +17,7 @@ class ScoresController < ApplicationController
   private
 
   def set_params
-    @PARAMS = [{}, { weapons: 'false' }, { ruleset: 'vql', weapons: 'true' },
-               { ruleset: 'vql', weapons: 'false' }]
+    @PARAMS = [{}, { weapons: 'false' }, { factory: 'classic', weapons: 'true' },
+               { factory: 'classic', weapons: 'false' }]
   end
 end

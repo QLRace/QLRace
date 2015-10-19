@@ -62,10 +62,10 @@ class Score < ActiveRecord::Base
   private
 
   def self.mode_from_params(params)
-    ruleset = params.fetch(:ruleset, 'pql')
+    factory = params.fetch(:factory, 'turbo')
     w = params.fetch(:weapons, 'on')
     weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
-    if ruleset == 'vql'
+    if factory == 'classic'
       if !weapons
         mode = 3
       else
