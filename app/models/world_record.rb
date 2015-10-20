@@ -1,7 +1,7 @@
 class WorldRecord < ActiveRecord::Base
   belongs_to :player
   validates :map, :mode, :player_id, :time, presence: true
-  validates_inclusion_of :mode, in: 0..2
+  validates_inclusion_of :mode, in: 0..3
   validates :player, presence: true
   validates :mode, uniqueness: { scope: :map,
                                  message: 'One record per mode for each map.' }

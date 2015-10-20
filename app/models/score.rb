@@ -1,7 +1,7 @@
 class Score < ActiveRecord::Base
   belongs_to :player
   validates :map, :mode, :player_id, :time, presence: true
-  validates_inclusion_of :mode, in: 0..2
+  validates_inclusion_of :mode, in: 0..3
   validates :player, presence: true
   validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record per map for each mode.' }
