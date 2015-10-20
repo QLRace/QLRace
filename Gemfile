@@ -5,6 +5,7 @@ gem 'pg', '~> 0.18.3'
 gem 'slim', '~> 3.0.6'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootswatch-rails', '~> 3.3.5'
+gem 'bootstrap-switch-rails', '~> 3.3.3'
 gem 'kaminari', '~> 0.16.3'
 # to fix some apipie bugs before 0.3.5 is released
 gem 'apipie-rails', github: 'Apipie/apipie-rails', ref: '928bd858fd14ec67eeb9483ba0d43b3be8339608'
