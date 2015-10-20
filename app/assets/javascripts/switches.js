@@ -12,25 +12,23 @@ $(document).ready(function() {
     }
 
     $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (this.name === 'factory') {
+      var value
+      if (this.name === 'factory') {
             if (state) {
-                var value = 'turbo';
+                value = 'turbo';
             } else {
-                var value = 'classic';
+                value = 'classic';
             }
         } else {
-            var value = state;
+            value = state;
         }
-        insertParam(this.name, value)
-        // console.log(event); // jQuery event
-        console.log(this); // DOM element
-        console.log(state); // true | false
+        insertParam(this.name, value);
     });
 });
 
 $.urlParam = function(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results == null) {
+    if (results === null) {
         return null;
     } else {
         return results[1] || 0;
