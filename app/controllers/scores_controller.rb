@@ -7,7 +7,9 @@ class ScoresController < ApplicationController
 
   def map
     @map = params[:map]
-    @scores = Kaminari.paginate_array(Score.map_scores(params)).page(params[:page]).per(20)
+    scores = Score.map_scores(params)
+    @length = scores.length
+    @scores = Kaminari.paginate_array(scores).page(params[:page]).per(20)
   end
 
   def player

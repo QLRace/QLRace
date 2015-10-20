@@ -1,7 +1,9 @@
 - provide(:title, @map)
-= render 'layouts/switches'
-h2 = @map
-- if @scores.length != 0
+.container
+  = render 'layouts/switches'
+  h2 = @map
+  p Total Records: #{@length}
+- if @length != 0
   table.table.table-striped.table-hover
     thead
       tr
@@ -17,5 +19,3 @@ h2 = @map
           td = time_string(score[:time])
           td = score[:date]
   = paginate @scores
-- else
-  p has no records on this mode.
