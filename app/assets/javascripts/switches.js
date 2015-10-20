@@ -1,37 +1,67 @@
 $(document).ready(function() {
     if ($.urlParam('factory') === 'classic') {
         $('input[name="factory"]').bootstrapSwitch('state', false, false);
-    }
-    else {
+    } else {
         $('input[name="factory"]').bootstrapSwitch('state', true, true);
     }
 
-    weps = $.urlParam('weapons')
-    // if there is no weapons param set it to true
-    if (weps == null) {
-        weps = true
-    }
-
-    if (!weps) {
+    if ($.urlParam('weapons') === 'false') {
         $('input[name="weapons"]').bootstrapSwitch('state', false, false);
-    }
-    else {
+    } else {
         $('input[name="weapons"]').bootstrapSwitch('state', true, true);
     }
 
-    $('input[name="factory"]', 'input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        if (this.name === 'factory') {
+            if (state) {
+                var value = 'turbo';
+            } else {
+                var value = 'classic';
+            }
+        } else {
+            var value = state;
+        }
+        insertParam(this.name, value)
+        // console.log(event); // jQuery event
         console.log(this); // DOM element
-        console.log(event); // jQuery event
         console.log(state); // true | false
     });
 });
 
-$.urlParam = function(name){
+$.urlParam = function(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
+    if (results == null) {
+        return null;
+    } else {
+        return results[1] || 0;
     }
-    else{
-       return results[1] || 0;
+}
+
+function insertParam(key, value) {
+    key = escape(key);
+    value = escape(value);
+
+    var kvp = document.location.search.substr(1).split('&');
+    if (kvp == '') {
+        document.location.search = '?' + key + '=' + value;
+    } else {
+        var i = kvp.length;
+        var x;
+        while (i--) {
+            x = kvp[i].split('=');
+
+            if (x[0] == key) {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if (i < 0) {
+            kvp[kvp.length] = [key, value].join('=');
+        }
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&');
     }
 }

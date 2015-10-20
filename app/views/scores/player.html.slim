@@ -1,10 +1,11 @@
 - provide(:title, @name)
-.container
+.row
   = render 'layouts/switches'
-  h2 = @name
-  ul.list-inline
-    li Average rank: #{@average}
-    li Total Records: #{@scores.length}
+  .col-md-4
+    h2 = @name
+    ul.list-inline
+      li Average rank: #{@average}
+      li Total Records: #{@scores.length}
 - if @scores.length != 0
   table.table.table-striped.table-hover.sortable
     thead

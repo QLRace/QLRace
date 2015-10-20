@@ -1,8 +1,9 @@
 - provide(:title, @map)
-.container
+.row
   = render 'layouts/switches'
-  h2 = @map
-  p Total Records: #{@length}
+  .col-md-4
+    h2 = @map
+    p Total Records: #{@length}
 - if @length != 0
   table.table.table-striped.table-hover
     thead

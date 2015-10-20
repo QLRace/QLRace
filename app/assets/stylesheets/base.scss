@@ -3,6 +3,11 @@
     width: 970px;
   }
 }
+@media (min-width: 520px) {
+  .pull-right-mode {
+    float: right;
+  }
+}
 
 // Remove underlines from links in tables
 .table {
@@ -10,7 +15,6 @@
     text-decoration: none;
   }
 }
-
 .ui-autocomplete {
   position: absolute;
   top: 100%;
