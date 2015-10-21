@@ -15,12 +15,12 @@ class Api::ScoresNewController < Api::ApiController
       return false
     end
 
-    if map.blank? || mode.blank? || player_id.blank? || time.blank? || name.blank?
+    if map.blank? || mode.blank? || player_id.blank? || time.blank? || name.blank? || match_guid.blank?
       render nothing: true, status: :bad_request
       return false
     end
 
-    if Score.new_score(map, mode, player_id, time, name)
+    if Score.new_score(map, mode, player_id, time, match_guid, name)
       render nothing: true, status: :ok
     else
       render nothing: true, status: :not_modified

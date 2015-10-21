@@ -1,12 +1,12 @@
 class Score < ActiveRecord::Base
   belongs_to :player
-  validates :map, :mode, :player_id, :time, presence: true
+  validates :map, :mode, :player_id, :time, :match_guid, presence: true
   validates_inclusion_of :mode, in: 0..3
   validates :player, presence: true
   validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record per map for each mode.' }
 
-  def self.new_score(map, mode, player_id, time, name)
+  def self.new_score(map, mode, player_id, time, match_guid, name)
     player = Player.where(id: player_id).first_or_initialize
     player.name = name
     player.save
@@ -14,8 +14,9 @@ class Score < ActiveRecord::Base
     score = Score.where(map: map, mode: mode, player_id: player_id).first_or_initialize
     if score.time.nil? || time < score.time
       score.time = time
+      score.match_guid = match_guid
       score.save
-      WorldRecord.check(map, mode, player_id, time)
+      WorldRecord.check(map, mode, player_id, time, match_guid)
       return true
     else
       return false
@@ -37,13 +38,13 @@ class Score < ActiveRecord::Base
       Score.where(map: map, mode: mode).order(:time, :updated_at).each.with_index(1) do |score, rank|
         if score.player_id == player_id
           ranks << rank
-          scores << { map: map, mode: mode, rank: rank, time: score.time,
+          scores << { map: map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
                       date: score.updated_at }
           break
         end
       end
     end
-    avg = ranks.inject{ |sum, el| sum + el }.to_f / ranks.size
+    avg = ranks.inject { |sum, el| sum + el }.to_f / ranks.size
     [p.name, avg.round(2), scores]
   end
 
@@ -53,7 +54,7 @@ class Score < ActiveRecord::Base
     limit = Integer(params.fetch(:limit, 0))
     Score.where(map: params[:map], mode: mode).order(:time, :updated_at).includes(:player).each.with_index(1) do |score, rank|
       scores << { mode: mode, rank: rank, player_id: score.player_id, name: score.player.name,
-                  time: score.time, date: score.updated_at }
+                  time: score.time, match_guid: score.match_guid, date: score.updated_at }
       break if rank >= limit && limit != 0
     end
     scores
@@ -63,25 +64,16 @@ class Score < ActiveRecord::Base
 
   def self.mode_from_params(params)
     factory = params.fetch(:factory, 'turbo')
-    w = params.fetch(:weapons, 'on')
+    w = params.fetch(:weapons, 'true')
     if params[:weapons].nil?
       weapons = true
     else
       weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
     end
     if factory == 'classic'
-      if !weapons
-        mode = 3
-      else
-        mode = 2
-      end
+      return weapons ? 2 : 3
     else
-      if !weapons
-        mode = 1
-      else
-        mode = 0
-      end
+      return weapons ? 0 : 1
     end
-    mode
   end
 end
