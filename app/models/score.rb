@@ -25,6 +25,7 @@ class Score < ActiveRecord::Base
 
   def self.player_scores(params)
     mode = mode_from_params(params)
+    scores = []
     begin
       player_id = Integer(params[:player_id])
       p = Player.find(player_id)
@@ -32,19 +33,16 @@ class Score < ActiveRecord::Base
       # player id is not an int or doesn't exist
       return
     end
-    scores = []
-    ranks = []
     p.scores.where(mode: mode).order(:map).pluck(:map).each do |map|
       Score.where(map: map, mode: mode).order(:time, :updated_at).each.with_index(1) do |score, rank|
         if score.player_id == player_id
-          ranks << rank
           scores << { map: map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
                       date: score.updated_at }
           break
         end
       end
     end
-    avg = ranks.inject { |sum, el| sum + el }.to_f / ranks.size
+    avg = scores.map {|s| s[:rank]}.reduce(0, :+) / scores.size.to_f
     [p.name, avg.round(2), scores]
   end
 
