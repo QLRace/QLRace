@@ -33,14 +33,11 @@ class Score < ActiveRecord::Base
       # player id is not an int or doesn't exist
       return
     end
-    p.scores.where(mode: mode).order(:map).pluck(:map).each do |map|
-      Score.where(map: map, mode: mode).order(:time, :updated_at).each.with_index(1) do |score, rank|
-        if score.player_id == player_id
-          scores << { map: map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
-                      date: score.updated_at }
-          break
-        end
-      end
+
+    p.scores.where(mode: mode).order(:map).each do |score|
+      rank = Score.where(map: score.map, mode: mode).where('time < ?', score.time).count + 1
+      scores << { map: score.map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
+                  date: score.updated_at }
     end
     avg = scores.map {|s| s[:rank]}.reduce(0, :+) / scores.size.to_f
     [p.name, avg.round(2), scores]
@@ -50,10 +47,20 @@ class Score < ActiveRecord::Base
     mode = mode_from_params(params)
     scores = []
     limit = Integer(params.fetch(:limit, 0))
-    Score.where(map: params[:map], mode: mode).order(:time, :updated_at).includes(:player).each.with_index(1) do |score, rank|
+    last_time = -1
+    last_rank = 1
+    Score.where(map: params[:map], mode: mode).order(:time, :updated_at).includes(:player).each.with_index(1) do |score, r|
+      if last_time == score.time
+        rank = last_rank
+      else
+        rank = r
+      end
+
       scores << { mode: mode, rank: rank, player_id: score.player_id, name: score.player.name,
                   time: score.time, match_guid: score.match_guid, date: score.updated_at }
-      break if rank >= limit && limit != 0
+      last_rank = rank
+      last_time = score.time
+      break if r >= limit && limit != 0
     end
     scores
   end

@@ -10,6 +10,7 @@ class Api::ScoresNewController < Api::ApiController
       player_id = Integer(params[:player_id])
       time = Integer(params[:time])
       name = params[:name]
+      match_guid = params[:match_guid]
     rescue NoMethodError, TypeError
       render nothing: true, status: :bad_request
       return false
