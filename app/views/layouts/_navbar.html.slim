@@ -14,6 +14,8 @@ body
             = link_to 'Records', root_path
           li
             = link_to 'Players', players_path
+          li
+            = link_to 'Servers', servers_path
         ul.nav.navbar-nav.navbar-right
           = form_tag(players_path, method: 'get', id: 'search-form', class: 'navbar-form navbar-right') do
             = text_field_tag :search, params[:search], placeholder: 'Find Player', class: 'form-control', 'data-autocomplete': players_autocomplete_path
