@@ -16,4 +16,8 @@ class ScoresControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get recent_wrs" do
+    get :recent_wrs
+    assert_response :success
+  end
 end

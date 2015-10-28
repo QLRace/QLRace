@@ -16,6 +16,10 @@ class ScoresController < ApplicationController
     @name, @average, @scores = Score.player_scores(params)
   end
 
+  def recent_wrs
+    @wrs = WorldRecord.order(updated_at: :desc).includes(:player).page(params[:page]).per(20)
+  end
+
   private
 
   def set_params
