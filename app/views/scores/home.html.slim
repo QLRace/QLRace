@@ -1,3 +1,22 @@
+h2 Recent World Records
+table.table.table-striped.table-hover.sortable
+  thead
+    tr
+      th Map
+      th Mode
+      th Player
+      th Time
+      th Date
+  tbody
+    - @wrs.each do |wr|
+      tr
+        td = link_to wr.map, map_path(wr.map)
+        td = mode_string(wr.mode)
+        td = link_to wr.player.name, player_path(wr.player_id)
+        td = time_string(wr.time)
+        td = wr.updated_at
+
+h2 World Records
 table.table.table-striped.table-hover.sortable
   thead
     tr

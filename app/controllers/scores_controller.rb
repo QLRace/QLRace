@@ -2,6 +2,7 @@ class ScoresController < ApplicationController
   before_filter :set_params
 
   def home
+    @wrs = WorldRecord.order(updated_at: :desc).includes(:player).limit(5)
     @map_scores = WorldRecord.map_scores
   end
 
