@@ -1,17 +1,13 @@
 class ServersController < ApplicationController
   def show
-    if Rails.env.production?
-      ip = 'localhost'
-    else
-      ip = 'de.qlrace.com'
-    end
+    ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
     ips = [ip, 'tx.qlrace.com']
     ports = [27960, 27961]
     @servers = []
     ips.each do |ip|
       ports.each do |port|
         server = SourceServer.new(ip, port)
-        logger.debug(server)
+        logger.debug "#{ip}:#{port}"
         begin
           ping = server.ping
           logger.debug "ping: #{ping}"
@@ -20,9 +16,7 @@ class ServersController < ApplicationController
         end
         info = server.server_info
         name = info[:server_name]
-        ip = 'de.qlrace.com' if ip == 'localhost'
-        address = "#{ip}:#{port}"
-        logger.debug "ip: #{address}"
+        address = ip == 'localhost' ? "de.qlrace.com:#{port}" : "#{ip}:#{port}"
         map = info[:map_name].downcase
         num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
         players = []
