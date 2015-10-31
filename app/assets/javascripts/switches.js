@@ -12,8 +12,8 @@ $(document).ready(function() {
     }
 
     $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
-      var value
-      if (this.name === 'factory') {
+        var value
+        if (this.name === 'factory') {
             if (state) {
                 value = 'turbo';
             } else {

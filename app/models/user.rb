@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   validates :api_key, presence: true
 
   def set_api_key
-   self.api_key = SecureRandom.base64.tr('+/=', 'Qrt')
+    self.api_key = SecureRandom.base64.tr('+/=', 'Qrt')
   end
 end

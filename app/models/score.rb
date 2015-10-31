@@ -40,7 +40,7 @@ class Score < ActiveRecord::Base
       scores << { map: score.map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
                   date: score.updated_at }
     end
-    avg = scores.map {|s| s[:rank]}.reduce(0, :+) / scores.size.to_f
+    avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
     [p.name, avg.round(2), scores]
   end
 

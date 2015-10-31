@@ -1,6 +1,6 @@
 $(document).on('page:fetch', function() {
-  $('.loader').attr('style', 'display');
+    $('.loader').attr('style', 'display');
 });
 $(document).on('page:change', function() {
-  $('.loader').attr('style', 'display:none');
+    $('.loader').attr('style', 'display:none');
 });

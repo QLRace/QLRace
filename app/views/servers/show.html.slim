@@ -1,7 +1,21 @@
 - provide(:title, 'Servers')
 
 p I will make this look better sometime.
-p DE - Turbo #{link_to 'de.qlrace.com:27960', 'steam://connect/de.qlrace.com:27960'}
-p DE - Classic #{link_to 'de.qlrace.com:27961', 'steam://connect/de.qlrace.com:27961'}
-p TX - Turbo #{link_to 'tx.qlrace.com:27960', 'steam://connect/tx.qlrace.com:27960'}
-p TX - Classic #{link_to 'tx.qlrace.com:27961', 'steam://connect/tx.qlrace.com:27961'}
+
+h2 Servers
+- @servers.each do |server|
+  p = server[:name]
+  p IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
+  p Map:  #{link_to server[:map], map_path(server[:map])}
+  p = server[:num_players]
+  - if server[:players].present?
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Name
+          th Time
+      tbody
+        - server[:players].each do |player|
+          tr
+            td = player[:name]
+            td = time_string(player[:time])

@@ -18,20 +18,20 @@ class WorldRecord < ActiveRecord::Base
 
   def self.map_scores
     wrs = []
-    (0..3).each { |mode|
+    (0..3).each do |mode|
       wrs << WorldRecord.where(mode: mode).order(:map).includes(:player)
-    }
+    end
     map_scores = {}
     WorldRecord.distinct(:map).order(:map).pluck(:map).each do |map|
       scores = []
-      (0..3).each { |mode|
+      (0..3).each do |mode|
         wr = wrs[mode].where(map: map).first
         if wr
           scores.insert(mode, player_id: wr.player_id, name: wr.player.name, time: wr.time)
         else
           scores.insert(mode, player_id: '', name: '', time: '')
         end
-      }
+      end
       map_scores[map] = scores
     end
     map_scores
