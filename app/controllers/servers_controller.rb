@@ -11,6 +11,7 @@ class ServersController < ApplicationController
     ips.each do |ip|
       ports.each do |port|
         server = SourceServer.new(ip, port)
+        logger.debug(server)
         begin
           ping = server.ping
           logger.debug "ping: #{ping}"
