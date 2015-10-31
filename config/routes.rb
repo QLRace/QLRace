@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'map/:map', to: 'scores#map', as: 'map'
   get 'players', to: 'players#index', as: 'players'
   get 'players/autocomplete_player_name', as: 'players_autocomplete'
-  get 'servers', to: 'static_pages#servers', as: 'servers'
+  get 'servers', to: 'servers#show', as: 'servers'
 
   apipie
   namespace :api, defaults: { format: 'json' } do
