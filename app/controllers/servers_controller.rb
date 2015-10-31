@@ -21,8 +21,8 @@ class ServersController < ApplicationController
         num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
         players = []
         server.players.each do |name, player|
-          name.gsub! /\^[0-9]/, ''
-          players << { name: name, time: player.score }
+          name_clean.gsub /\^[0-9]/, ''
+          players << { name: name_clean, time: player.score }
           players.sort_by! { |k| k[:time] }
         end
         @servers << { name: name, address: address, map: map,
