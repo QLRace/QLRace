@@ -1,6 +1,11 @@
 class ServersController < ApplicationController
   def show
-    ips = %w(de.qlrace.com tx.qlrace.com)
+    if Rails.env.production?
+      ip = 'localhost'
+    else
+      ip = 'de.qlrace.com'
+    end
+    ips = [ip, 'tx.qlrace.com']
     ports = [27960, 27961]
     @servers = []
     ips.each do |ip|
@@ -13,6 +18,7 @@ class ServersController < ApplicationController
         end
         info = server.server_info
         name = info[:server_name]
+        ip = 'de.qlrace.com' if ip == 'localhost'
         address = "#{ip}:#{port}"
         map = info[:map_name].downcase
         num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
