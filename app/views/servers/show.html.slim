@@ -8,8 +8,7 @@ h2 Servers
     p = server[:name]
     p IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
     p Map:  #{link_to server[:map], map_path(server[:map])}
-    p Players: 
-      = server[:num_players]
+    p Players: #{server[:num_players]}
     - if server[:players].present?
       table.table.table-striped.table-hover
         thead
