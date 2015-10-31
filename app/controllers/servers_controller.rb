@@ -13,13 +13,15 @@ class ServersController < ApplicationController
         server = SourceServer.new(ip, port)
         begin
           ping = server.ping
-        rescue Errno::ECONNREFUSED
-          servers << ''
+          logger.debug "ping: #{ping}"
+        rescue Errno::ECONNREFUSED, SteamCondenser::TimeoutError
+          @servers << {}
         end
         info = server.server_info
         name = info[:server_name]
         ip = 'de.qlrace.com' if ip == 'localhost'
         address = "#{ip}:#{port}"
+        logger.debug "ip: #{address}"
         map = info[:map_name].downcase
         num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
         players = []

@@ -4,18 +4,19 @@ p I will make this look better sometime.
 
 h2 Servers
 - @servers.each do |server|
-  p = server[:name]
-  p IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
-  p Map:  #{link_to server[:map], map_path(server[:map])}
-  p = server[:num_players]
-  - if server[:players].present?
-    table.table.table-striped.table-hover
-      thead
-        tr
-          th Name
-          th Time
-      tbody
-        - server[:players].each do |player|
+  - if server.present?
+    p = server[:name]
+    p IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
+    p Map:  #{link_to server[:map], map_path(server[:map])}
+    p = server[:num_players]
+    - if server[:players].present?
+      table.table.table-striped.table-hover
+        thead
           tr
-            td = player[:name]
-            td = time_string(player[:time])
+            th Name
+            th Time
+        tbody
+          - server[:players].each do |player|
+            tr
+              td = player[:name]
+              td = time_string(player[:time])
