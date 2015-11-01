@@ -22,6 +22,7 @@ class ServersController < ApplicationController
         players = []
         server.players.each do |name, player|
           name_clean = name.gsub /\^[0-9]/, ''
+          time = player.score == 2147483647 ? 0 : player.score
           players << { name: name_clean, time: player.score }
           players.sort_by! { |k| k[:time] }
         end
