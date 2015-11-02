@@ -1,6 +1,4 @@
 class ScoresController < ApplicationController
-  before_filter :set_params
-
   def home
     @wrs = WorldRecord.order(updated_at: :desc).includes(:player).limit(5)
     @map_scores = WorldRecord.map_scores
@@ -19,12 +17,5 @@ class ScoresController < ApplicationController
 
   def recent_wrs
     @wrs = WorldRecord.order(updated_at: :desc).includes(:player).page(params[:page]).per(20)
-  end
-
-  private
-
-  def set_params
-    @PARAMS = [{}, { weapons: 'false' }, { factory: 'classic', weapons: 'true' },
-               { factory: 'classic', weapons: 'false' }]
   end
 end
