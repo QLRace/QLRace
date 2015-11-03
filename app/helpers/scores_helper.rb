@@ -1,7 +1,7 @@
 module ScoresHelper
   def mode_string(mode)
     mode_strings = ['Turbo Weapons', 'Turbo Strafe', 'Classic Weapons',
-                      'Classic Strafe']
+                    'Classic Strafe']
     mode_strings[mode]
   end
 
