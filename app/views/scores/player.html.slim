@@ -2,7 +2,7 @@
 .row
   = render 'layouts/switches'
   .col-md-4
-    h2 = @name
+    h2 = link_to @name, "http://steamcommunity.com/profiles/#{params[:player_id]}"
     ul.list-inline
       li Average rank: #{@average}
       li Total Records: #{@scores.length}
