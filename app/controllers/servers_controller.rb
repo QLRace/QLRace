@@ -11,10 +11,10 @@ class ServersController < ApplicationController
         begin
           ping = server.ping
           logger.debug "ping: #{ping}"
+          info = server.server_info
         rescue Errno::ECONNREFUSED, SteamCondenser::TimeoutError
-          @servers << {}
+          return
         end
-        info = server.server_info
         name = info[:server_name]
         address = ip == 'localhost' ? "de.qlrace.com:#{port}" : "#{ip}:#{port}"
         map = info[:map_name].downcase
