@@ -3,6 +3,9 @@
   = render 'layouts/switches'
   .col-md-4
     h2 = link_to @name, "http://steamcommunity.com/profiles/#{params[:player_id]}"
+    p #{image_tag 'gold.png', size: '16', alt: 'gold medal'} #{@medals[0]}
+      #{image_tag 'silver.png', size: '16', alt: 'silver medal'} #{@medals[1]}
+      #{image_tag 'bronze.png', size: '16', alt: 'bronze medal'} #{@medals[2]}
     ul.list-inline
       li Average rank: #{@average}
       li Total Records: #{@scores.length}
