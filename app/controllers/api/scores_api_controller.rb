@@ -14,8 +14,8 @@ class Api::ScoresApiController < Api::ApiController
   param :id, Integer, desc: 'Player Steam ID', required: true
   param_group :mode
   def player
-    name, average, scores = Score.player_scores(params)
-    respond_with({ name: name, average: average, records: scores }.to_json)
+    name, average, medals, scores = Score.player_scores(params)
+    respond_with({ name: name, average: average, medals: medals, records: scores }.to_json)
   end
 
   api :GET, '/map/:map', 'Map records'

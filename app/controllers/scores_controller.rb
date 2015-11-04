@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
   end
 
   def player
-    @name, @average, @scores = Score.player_scores(params)
+    @name, @average, @medals, @scores = Score.player_scores(params)
   end
 
   def recent_wrs
