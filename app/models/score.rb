@@ -31,8 +31,8 @@ class Score < ActiveRecord::Base
       p = Player.find(player_id)
     rescue ArgumentError, ActiveRecord::RecordNotFound
       # player id is not an int or doesn't exist
-      # return name and avg as nil and empty scores array
-      return nil, nil, nil, []
+      # return name and avg as nil and empty medals and scores arrays
+      return nil, nil, [], []
     end
     medals = [0, 0, 0]
     p.scores.where(mode: mode).order(:map).each do |score|
