@@ -6,14 +6,12 @@ class ServersController < ApplicationController
     @servers = []
     ips.each do |ip|
       ports.each do |port|
-        server = SourceServer.new(ip, port)
-        logger.debug "#{ip}:#{port}"
         begin
+          server = SourceServer.new(ip, port)
           ping = server.ping
-          logger.debug "ping: #{ping}"
           info = server.server_info
-        rescue Errno::ECONNREFUSED, SteamCondenser::TimeoutError
-          return
+        rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError
+          next
         end
         name = info[:server_name]
         address = ip == 'localhost' ? "de.qlrace.com:#{port}" : "#{ip}:#{port}"
