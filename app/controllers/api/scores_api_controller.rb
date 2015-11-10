@@ -10,6 +10,7 @@ class Api::ScoresApiController < Api::ApiController
     param :factory, %w(turbo classic), desc: 'Default is turbo'
   end
 
+  api :GET, '/maps', 'List of all maps'
   def maps
     maps = WorldRecord.distinct(:map).order(:map).pluck(:map)
     respond_with({ maps: maps })
