@@ -1,7 +1,7 @@
 class ServersController < ApplicationController
   def show
-    ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
-    ips = [ip, 'tx.qlrace.com']
+    de_ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
+    ips = [de_ip, 'tx.qlrace.com', 'au.qlrace.com']
     ports = [27960, 27961]
     @servers = []
     ips.each do |ip|
