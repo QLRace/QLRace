@@ -39,9 +39,7 @@ class Score < ActiveRecord::Base
       rank = Score.where(map: score.map, mode: mode).where('time < ?', score.time).count + 1
       scores << { map: score.map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
                   date: score.updated_at }
-      if rank.between?(1, 3)
-        medals[rank - 1] += 1
-      end
+      medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
     [p.name, avg.round(2), medals, scores]

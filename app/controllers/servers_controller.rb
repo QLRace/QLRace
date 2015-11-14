@@ -2,7 +2,7 @@ class ServersController < ApplicationController
   def show
     de_ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
     ips = [de_ip, 'tx.qlrace.com', 'au.qlrace.com']
-    ports = [27960, 27961]
+    ports = [27_960, 27_961]
     @servers = []
     ips.each do |ip|
       ports.each do |port|
@@ -20,7 +20,7 @@ class ServersController < ApplicationController
         players = []
         server.players.each do |name, player|
           name_clean = name.gsub /\^[0-9]/, ''
-          time = player.score == 2147483647 ? 0 : player.score
+          time = player.score == 2_147_483_647 ? 0 : player.score
           players << { name: name_clean, time: player.score }
           players.sort_by! { |k| k[:time] }
         end

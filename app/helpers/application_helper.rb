@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def time_string(ms)
-    return '-' if ms == 2147483647 || ms.blank? || ms == 0
+    return '-' if ms == 2_147_483_647 || ms.blank? || ms == 0
     time = Integer(ms)
     s, ms = time.divmod(1000)
     ms = String(ms).rjust(3, '0')
