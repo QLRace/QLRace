@@ -1,15 +1,16 @@
 - provide(:title, 'Players')
-h3 = "Found #{@players.length} Players"
-table.table.table-striped.table-hover
-  thead
-    tr
-      th Name
-      th Steam ID
-      th Created
-  tbody
-    - @players.each do |player|
+h3 = "Found #{@total_players} Players"
+- if @total_players != 0
+  table.table.table-striped.table-hover
+    thead
       tr
-        td = link_to player[:name], player_path(player[:id])
-        td = player[:id]
-        td = player[:created_at]
-= paginate @players
+        th Name
+        th Steam ID
+        th Created
+    tbody
+      - @players.each do |player|
+        tr
+          td = link_to player[:name], player_path(player[:id])
+          td = player[:id]
+          td = player[:created_at]
+  = paginate @players
