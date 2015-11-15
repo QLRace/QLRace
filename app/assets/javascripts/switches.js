@@ -12,7 +12,7 @@ $(document).ready(function() {
     }
 
     $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        var value
+        var value;
         if (this.name === 'factory') {
             if (state) {
                 value = 'turbo';
@@ -33,7 +33,7 @@ $.urlParam = function(name) {
     } else {
         return results[1] || 0;
     }
-}
+};
 
 function insertParam(key, value) {
     key = escape(key);
