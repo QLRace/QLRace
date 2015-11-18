@@ -11,6 +11,7 @@ class Api::ScoresNewController < Api::ApiController
       time = Integer(params[:time])
       name = params[:name]
       match_guid = params[:match_guid]
+      date = params[:date]
     rescue NoMethodError, TypeError
       render nothing: true, status: :bad_request
       return false
@@ -21,7 +22,7 @@ class Api::ScoresNewController < Api::ApiController
       return false
     end
 
-    if Score.new_score(map, mode, player_id, time, match_guid, name)
+    if Score.new_score(map, mode, player_id, time, match_guid, name, date)
       render nothing: true, status: :ok
     else
       render nothing: true, status: :not_modified

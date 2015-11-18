@@ -6,7 +6,7 @@ class Score < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record per map for each mode.' }
 
-  def self.new_score(map, mode, player_id, time, match_guid, name)
+  def self.new_score(map, mode, player_id, time, match_guid, name, date)
     player = Player.where(id: player_id).first_or_initialize
     player.name = name
     player.save
@@ -15,8 +15,11 @@ class Score < ActiveRecord::Base
     if score.time.nil? || time < score.time
       score.time = time
       score.match_guid = match_guid
+      if date
+        score.updated_at = date
+      end
       score.save
-      WorldRecord.check(map, mode, player_id, time, match_guid)
+      WorldRecord.check(map, mode, player_id, time, match_guid, date)
       return true
     else
       return false
@@ -72,11 +75,7 @@ class Score < ActiveRecord::Base
   def self.mode_from_params(params)
     factory = params.fetch(:factory, 'turbo')
     w = params.fetch(:weapons, 'true')
-    if params[:weapons].nil?
-      weapons = true
-    else
-      weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
-    end
+    weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
     if factory == 'classic'
       return weapons ? 2 : 3
     else
