@@ -1,15 +1,15 @@
 class ServersController < ApplicationController
   def show
     @servers = []
-    de_ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
-    ips = [de_ip, 'tx.qlrace.com', 'au.qlrace.com']
-    ports = [27_960, 27_961]
-    ips.each do |ip|
-      ports.each do |port|
-        @servers << get_server_info(ip, port)
-      end
-    end
-    # Korean Servers
+    @servers << get_server_info('de.qlrace.com', 27_960)
+    @servers << get_server_info('de.qlrace.com', 27_961)
+    
+    @servers << get_server_info('il.qlrace.com', 27_960)
+    @servers << get_server_info('il.qlrace.com', 27_961)
+    
+    @servers << get_server_info('au.qlrace.com', 27_960)
+    @servers << get_server_info('au.qlrace.com', 27_961)
+    
     @servers << get_server_info('kr.qlrace.com', 27_007)
     @servers << get_server_info('kr.qlrace.com', 27_008)
     # Remove any nil elements
