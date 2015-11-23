@@ -23,8 +23,8 @@ class Api::ScoresNewController < Api::ApiController
     end
 
     # Don't add new score for disabled maps.
-    disabled_maps = %w(q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17
-                       q3wcp18 q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs2)
+    disabled_maps = %w(q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
+                       q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2)
     if disabled_maps.include? map
       render nothing: true, status: :not_modified
       return false
