@@ -1,10 +1,10 @@
-- provide(:title, @map)
+- provide(:title, @map[:name])
 .row
   = render 'layouts/switches'
   .col-md-4
-    h2 = @map
-    p Total Records: #{@length}
-- if @length != 0
+    h2 = @map[:name]
+    p Total Records: #{@map[:total_scores]}
+- if @map[:total_scores] != 0
   table.table.table-striped.table-hover
     thead
       tr
@@ -13,10 +13,10 @@
         th Time
         th Date
     tbody
-      - @scores.each do |score|
+      - @map[:scores].each do |score|
         tr
           td = score[:rank]
           td = link_to score[:name], player_path(score[:player_id], mode_params(score[:mode]))
           td = time_string(score[:time])
           td = score[:date]
-  = paginate @scores
+  = paginate @map[:scores]

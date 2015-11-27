@@ -1,3 +1,4 @@
+p #{@total_scores} total records on #{@map_scores.length} maps
 h2 Recent World Records
 table.table.table-striped.table-hover
   thead
@@ -8,7 +9,7 @@ table.table.table-striped.table-hover
       th Time
       th Date
   tbody
-    - @wrs.each do |wr|
+    - @recent_wrs.each do |wr|
       tr
         td = link_to wr.map, map_path(wr.map)
         td = mode_string(wr.mode)
