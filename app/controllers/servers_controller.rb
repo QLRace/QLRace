@@ -27,14 +27,14 @@ class ServersController < ApplicationController
       return
     end
     name = info[:server_name]
-    address = ip == 'localhost' ? "de.qlrace.com:#{port}" : "#{ip}:#{port}"
+    address = "#{ip}:#{port}"
     map = info[:map_name].downcase
     num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
     players = []
     server.players.each do |name, player|
       # remove colour codes from names
       name_clean = name.gsub /\^[0-9]/, ''
-      if player.score == -1 or player.score == 0
+      if player.score == -1 || player.score == 0
         time = 2_147_483_647
       else
         time = player.score
