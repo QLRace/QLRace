@@ -35,7 +35,7 @@ class ServersController < ApplicationController
       # remove colour codes from names
       name_clean = name.gsub /\^[0-9]/, ''
       if player.score == -1 or player.score == 0
-          time = 2_147_483_647
+        time = 2_147_483_647
       else
         time = player.score
       end
