@@ -3,13 +3,13 @@ class ServersController < ApplicationController
     @servers = []
     @servers << get_server_info('de.qlrace.com', 27_960)
     @servers << get_server_info('de.qlrace.com', 27_961)
-    
+
     @servers << get_server_info('il.qlrace.com', 27_960)
     @servers << get_server_info('il.qlrace.com', 27_961)
-    
+
     @servers << get_server_info('au.qlrace.com', 27_960)
     @servers << get_server_info('au.qlrace.com', 27_961)
-    
+
     @servers << get_server_info('kr.qlrace.com', 27_007)
     @servers << get_server_info('kr.qlrace.com', 27_008)
     # Remove any nil elements
@@ -32,11 +32,16 @@ class ServersController < ApplicationController
     num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
     players = []
     server.players.each do |name, player|
+      # remove colour codes from names
       name_clean = name.gsub /\^[0-9]/, ''
-      time = player.score == -1 or player.score == 0 ? 2_147_483_647 : player.score
+      if player.score == -1 or player.score == 0
+          time = 2_147_483_647
+      else
+        time = player.score
+      end
       players << { name: name_clean, time: time }
-      players.sort_by! { |k| k[:time] }
     end
+    players.sort_by! { |k| k[:time] }
     { name: name, address: address, map: map,
       num_players: num_players, players: players }
   end
