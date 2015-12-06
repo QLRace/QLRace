@@ -2,27 +2,27 @@
 
 p I will make this look better sometime.
 
-h2 Servers
+h3 Server statuses as of #{@time} UTC
 - @servers.each do |server|
   - if server.present?
   .col-md-6
     .panel.panel-default
       .panel-heading
-        = server[:name]
+        = server['name']
       .panel-body
         ul.list-unstyled
-          li IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
-          li Map:  #{link_to server[:map], map_path(server[:map])}
-          li Players: #{server[:num_players]}
+          li IP: #{link_to server['address'], "steam://connect/#{server[:address]}"}
+          li Map:  #{link_to server['map'], map_path(server['map'])}
+          li Players: #{server['num_players']}
           li
-            - if server[:players].present?
+            - if server['players'].present?
               table.table.table-striped.table-hover
                 thead
                   tr
                     th Name
                     th Time
                 tbody
-                  - server[:players].each do |player|
+                  - server['players'].each do |player|
                     tr
-                      td = player[:name]
-                      td = time_string(player[:time])
+                      td = player['name']
+                      td = time_string(player['time'])

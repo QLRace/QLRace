@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
+gem 'whenever', '~> 0.9.4'
 gem 'steam-condenser', '~> 1.3.11'
 gem 'pg', '~> 0.18.3'
 gem 'slim', '~> 3.0.6'
