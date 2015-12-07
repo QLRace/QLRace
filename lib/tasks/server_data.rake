@@ -10,6 +10,8 @@ namespace :server_data do
 
     servers << get_server_info('au.qlrace.com', 27_960)
     servers << get_server_info('au.qlrace.com', 27_961)
+    servers << get_server_info('au.qlrace.com', 27_970)
+    servers << get_server_info('au.qlrace.com', 27_971)
 
     servers << get_server_info('kr.qlrace.com', 27_007)
     servers << get_server_info('kr.qlrace.com', 27_008)
