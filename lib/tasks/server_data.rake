@@ -14,9 +14,8 @@ namespace :server_data do
     servers << get_server_info('kr.qlrace.com', 27_007)
     servers << get_server_info('kr.qlrace.com', 27_008)
 
-    $stdout = File.open('tmp/servers.json', 'w')
     data = { time: Time.now.strftime("%H:%M:%S"), servers: servers }
-    puts data.to_json
+    Rails.cache.write('servers', data)
   end
 end
 
