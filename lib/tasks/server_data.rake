@@ -1,22 +1,19 @@
 namespace :server_data do
-  desc "TODO"
+  desc 'TODO'
   task get: :environment do
     servers = []
-    servers << get_server_info('de.qlrace.com', 27_960)
-    servers << get_server_info('de.qlrace.com', 27_961)
-
-    servers << get_server_info('il.qlrace.com', 27_960)
-    servers << get_server_info('il.qlrace.com', 27_961)
-
-    servers << get_server_info('au.qlrace.com', 27_960)
-    servers << get_server_info('au.qlrace.com', 27_961)
-    servers << get_server_info('au.qlrace.com', 27_970)
-    servers << get_server_info('au.qlrace.com', 27_971)
+    ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
+    ports = [27_960, 27_961, 27_970, 27_971]
+    ips.each do |ip|
+      ports.each do |port|
+        servers << get_server_info(ip, port)
+      end
+    end
 
     servers << get_server_info('kr.qlrace.com', 27_007)
     servers << get_server_info('kr.qlrace.com', 27_008)
 
-    data = { time: Time.now.strftime("%H:%M:%S"), servers: servers.compact }
+    data = { time: Time.now.strftime('%H:%M:%S'), servers: servers.compact }
     Rails.cache.write('servers', data)
   end
 end

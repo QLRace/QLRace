@@ -1,4 +1,4 @@
 # Get server data
-every 1.minute do
+every 2.minutes do
   rake "server_data:get"
 end
