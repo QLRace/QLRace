@@ -6,7 +6,7 @@ class Score < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record per map for each mode.' }
 
-  def self.new_score(map, mode, player_id, time, match_guid, name, date)
+  def self.new_score(map, mode, player_id, time, match_guid, name, date, api_id)
     player = Player.where(id: player_id).first_or_initialize
     player.name = name
     player.save
@@ -15,11 +15,12 @@ class Score < ActiveRecord::Base
     if score.time.nil? || time < score.time
       score.time = time
       score.match_guid = match_guid
+      score.api_id = api_id
       if date
         score.updated_at = date
       end
       score.save
-      WorldRecord.check(map, mode, player_id, time, match_guid, date)
+      WorldRecord.check(map, mode, player_id, time, match_guid, date, api_id)
       return true
     else
       return false

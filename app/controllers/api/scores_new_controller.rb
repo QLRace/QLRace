@@ -30,9 +30,11 @@ class Api::ScoresNewController < Api::ApiController
       return false
     end
 
-    if Score.new_score(map, mode, player_id, time, match_guid, name, date)
+    if Score.new_score(map, mode, player_id, time, match_guid, name, date, @user.id)
+      # PB
       render nothing: true, status: :ok
     else
+      # Not a PB
       render nothing: true, status: :not_modified
     end
   end

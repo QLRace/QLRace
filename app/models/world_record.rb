@@ -6,12 +6,13 @@ class WorldRecord < ActiveRecord::Base
   validates :mode, uniqueness: { scope: :map,
                                  message: 'One record per mode for each map.' }
 
-  def self.check(map, mode, player_id, time, match_guid, date)
+  def self.check(map, mode, player_id, time, match_guid, date, api_id)
     wr = WorldRecord.where(map: map, mode: mode).first_or_initialize
     if wr.time.nil? || time < wr.time
       wr.time = time
       wr.player_id = player_id
       wr.match_guid = match_guid
+      wr.api_id = api_id
       if date
         wr.updated_at = date
       end
