@@ -1,7 +1,7 @@
 class Api::ScoresNewController < Api::ApiController
   skip_before_action :verify_authenticity_token
   respond_to :json
-  before_action :authenticate, :get_score
+  before_action :authenticate, :check_score
 
   def new
     head_status :bad_request and return if @score.values.any? &:blank?
@@ -12,7 +12,7 @@ class Api::ScoresNewController < Api::ApiController
 
   private
 
-  def get_score
+  def check_score
     begin
       map = params[:map].downcase
       mode = Integer(params[:mode])
@@ -26,7 +26,7 @@ class Api::ScoresNewController < Api::ApiController
     end
 
     @score = { map: map, mode: mode, player_id: player_id, time: time, name: name,
-               match_guid: match_guid }
+               match_guid: match_guid, api_id: @user.id }
     @score[:date] = date if date.present?
   end
 
