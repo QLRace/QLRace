@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: world_records
+#
+#  id         :integer          not null, primary key
+#  map        :string           not null
+#  mode       :integer          not null
+#  player_id  :bigint           not null
+#  time       :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  match_guid :uuid             not null
+#  api_id     :integer
+#
+
 class WorldRecord < ActiveRecord::Base
   belongs_to :player
   validates :map, :mode, :player_id, :time, presence: true
