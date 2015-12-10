@@ -4,10 +4,10 @@ class Api::ApiController < ActionController::Base
   def authenticate
     api_key = request.headers['X-Api-Key']
     @user = User.where(api_key: api_key).first if api_key
+    head_status :unauthorized unless @user
+  end
 
-    unless @user
-      head status: :unauthorized
-      false
-    end
+  def head_status(status)
+    head status: status
   end
 end

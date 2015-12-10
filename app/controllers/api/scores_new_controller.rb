@@ -1,9 +1,18 @@
 class Api::ScoresNewController < Api::ApiController
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   respond_to :json
-  before_action :authenticate
+  before_action :authenticate, :get_score
 
   def new
+    head_status :bad_request and return if @score.values.any? &:blank?
+    head_status :not_modified and return if map_disabled?
+
+    Score.new_score(@score) ? head_status(:ok) : head_status(:not_modified)
+  end
+
+  private
+
+  def get_score
     begin
       map = params[:map].downcase
       mode = Integer(params[:mode])
@@ -13,29 +22,17 @@ class Api::ScoresNewController < Api::ApiController
       match_guid = params[:match_guid]
       date = params[:date]
     rescue NoMethodError, TypeError
-      render nothing: true, status: :bad_request
-      return false
+      head_status :bad_request and return
     end
 
-    if map.blank? || mode.blank? || player_id.blank? || time.blank? || name.blank? || match_guid.blank?
-      render nothing: true, status: :bad_request
-      return false
-    end
+    @score = { map: map, mode: mode, player_id: player_id, time: time, name: name,
+               match_guid: match_guid }
+    @score[:date] = date if date.present?
+  end
 
-    # Don't add new score for disabled maps.
+  def map_disabled?
     disabled_maps = %w(q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
                        q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2)
-    if disabled_maps.include? map
-      render nothing: true, status: :not_modified
-      return false
-    end
-
-    if Score.new_score(map, mode, player_id, time, match_guid, name, date, @user.id)
-      # PB
-      render nothing: true, status: :ok
-    else
-      # Not a PB
-      render nothing: true, status: :not_modified
-    end
+    disabled_maps.include? @score[:map]
   end
 end
