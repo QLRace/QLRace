@@ -4,7 +4,7 @@ class Api::ScoresNewController < Api::ApiController
   before_action :authenticate, :check_score
 
   def new
-    head_status :bad_request and return if @score.values.any? &:blank?
+    head_status :bad_request and return if @score.values.any?(&:blank?)
     head_status :not_modified and return if map_disabled?
 
     Score.new_score(@score) ? head_status(:ok) : head_status(:not_modified)
