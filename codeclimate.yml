@@ -1,5 +1,4 @@
 languages:
   Ruby: true
   JavaScript: true
-exclude_paths:
-- "app/assets/javascripts/sorttable.js"
+exclude_paths: "app/assets/javascripts/sorttable.js"
