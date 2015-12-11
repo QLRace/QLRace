@@ -82,7 +82,7 @@ class Score < ActiveRecord::Base
     score.match_guid = new_score[:match_guid]
     score.api_id = new_score[:api_id]
     score.updated_at = new_score[:date] if new_score[:date]
-    score.save
+    score.save!
   end
 
   def self.player_score(map, mode, player_id)

@@ -61,6 +61,6 @@ class WorldRecord < ActiveRecord::Base
     world_record.match_guid = score[:match_guid]
     world_record.api_id = score[:api_id]
     world_record.updated_at = score[:date] if score[:date]
-    world_record.save
+    world_record.save!
   end
 end

@@ -21,7 +21,7 @@ class Player < ActiveRecord::Base
     player = Player.where(id: id).first_or_initialize
     if player.name != name
       player.name = name
-      player.save
+      player.save!
     end
   end
 end
