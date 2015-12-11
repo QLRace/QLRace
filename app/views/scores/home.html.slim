@@ -31,6 +31,10 @@ table.table.table-striped.table-hover
       tr
         td = link_to map, map_path(map)
         - scores.each.with_index do |score, mode|
-          td
-            = link_to score[:name], player_path(score[:player_id], mode_params(mode))
-            span.pull-right = time_string(score[:time])
+          - if score.present?
+            td
+              = link_to score[:name], player_path(score[:player_id], mode_params(mode))
+              span.pull-right = time_string(score[:time])
+          - else
+            td
+              span.pull-right -

@@ -40,14 +40,11 @@ class WorldRecord < ActiveRecord::Base
     end
     map_scores = {}
     WorldRecord.distinct(:map).order(:map).pluck(:map).each do |map|
-      scores = []
+      scores = Array.new(3, {})
       (0..3).each do |mode|
         wr = wrs[mode].find_by(map: map)
-        if wr
-          scores.insert(mode, player_id: wr.player_id, name: wr.player.name, time: wr.time)
-        else
-          scores.insert(mode, player_id: '', name: '', time: '')
-        end
+        scores[mode] = { player_id: wr.player_id, name: wr.player.name,
+                        time: wr.time } if wr
       end
       map_scores[map] = scores
     end
