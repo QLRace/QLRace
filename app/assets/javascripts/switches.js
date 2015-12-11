@@ -1,11 +1,11 @@
 $(document).ready(function() {
-    if ($.urlParam('factory') === 'classic') {
+    if (urlParam('factory') === 'classic') {
         $('input[name="factory"]').bootstrapSwitch('state', false, false);
     } else {
         $('input[name="factory"]').bootstrapSwitch('state', true, true);
     }
 
-    if ($.urlParam('weapons') === 'false') {
+    if (urlParam('weapons') === 'false') {
         $('input[name="weapons"]').bootstrapSwitch('state', false, false);
     } else {
         $('input[name="weapons"]').bootstrapSwitch('state', true, true);
@@ -22,11 +22,11 @@ $(document).ready(function() {
         } else {
             value = state;
         }
-        insertParam(this.name, value);
+        Turbolinks.visit(updateUrlParameter(window.location.href, this.name, value));
     });
 });
 
-$.urlParam = function(name) {
+function urlParam(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results === null) {
         return null;
@@ -35,31 +35,18 @@ $.urlParam = function(name) {
     }
 };
 
-function insertParam(key, value) {
-    key = escape(key);
-    value = escape(value);
+function updateUrlParameter(uri, key, value) {
+    // remove the hash part before operating on the uri
+    var i = uri.indexOf('#');
+    var hash = i === -1 ? '' : uri.substr(i);
+    uri = i === -1 ? uri : uri.substr(0, i);
 
-    var kvp = document.location.search.substr(1).split('&');
-    if (kvp == '') {
-        document.location.search = '?' + key + '=' + value;
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+        uri = uri.replace(re, '$1' + key + "=" + value + '$2');
     } else {
-        var i = kvp.length;
-        var x;
-        while (i--) {
-            x = kvp[i].split('=');
-
-            if (x[0] == key) {
-                x[1] = value;
-                kvp[i] = x.join('=');
-                break;
-            }
-        }
-
-        if (i < 0) {
-            kvp[kvp.length] = [key, value].join('=');
-        }
-
-        //this will reload the page, it's likely better to store this until finished
-        document.location.search = kvp.join('&');
+        uri = uri + separator + key + "=" + value;
     }
+    return uri + hash; // finally append the hash as well
 }

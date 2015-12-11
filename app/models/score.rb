@@ -22,17 +22,11 @@ class Score < ActiveRecord::Base
                                       message: 'Players may only have one record per map for each mode.' }
 
   def self.new_score(score)
-    player = Player.where(id: score[:player_id]).first_or_initialize
-    player.name = score[:name]
-    player.save
+    Player.update_player_name(score[:player_id], score[:name])
 
-    s = Score.where(map: score[:map], mode: score[:mode], player_id: score[:player_id]).first_or_initialize
+    s = player_score(score[:map], score[:mode], score[:player_id])
     if s.time.nil? || score[:time] < s.time
-      s.time = score[:time]
-      s.match_guid = score[:match_guid]
-      s.api_id = score[:api_id]
-      s.updated_at = score[:date] if score[:date]
-      s.save
+      update_score(s, score)
       WorldRecord.check(score)
       return true
     else
@@ -68,10 +62,12 @@ class Score < ActiveRecord::Base
     limit = Integer(params.fetch(:limit, 0))
     last_time = -1
     last_rank = 1
-    Score.where(map: params[:map], mode: mode).order(:time, :updated_at).includes(:player).each.with_index(1) do |score, r|
+    Score.where(map: params[:map], mode: mode).order(:time, :updated_at)
+        .includes(:player).each.with_index(1) do |score, r|
       rank = last_time == score.time ? last_rank : r
-      scores << { mode: mode, rank: rank, player_id: score.player_id, name: score.player.name,
-                  time: score.time, match_guid: score.match_guid, date: score.updated_at }
+      scores << { mode: mode, rank: rank, player_id: score.player_id,
+                  name: score.player.name, time: score.time,
+                  match_guid: score.match_guid, date: score.updated_at }
       last_rank = rank
       last_time = score.time
       break if r >= limit && limit != 0
@@ -80,6 +76,18 @@ class Score < ActiveRecord::Base
   end
 
   private
+
+  def self.update_score(score, new_score)
+    score.time = new_score[:time]
+    score.match_guid = new_score[:match_guid]
+    score.api_id = new_score[:api_id]
+    score.updated_at = new_score[:date] if new_score[:date]
+    score.save
+  end
+
+  def self.player_score(map, mode, player_id)
+    Score.where(map: map, mode: mode, player_id: player_id).first_or_initialize
+  end
 
   def self.mode_from_params(params)
     factory = params.fetch(:factory, 'turbo')

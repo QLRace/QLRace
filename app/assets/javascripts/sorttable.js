@@ -1,20 +1,20 @@
 $(document).ready(function() {
     /*
-      SortTable
-      version 2
-      7th April 2007
-      Stuart Langridge, http://www.kryogenix.org/code/browser/sorttable/
+     SortTable
+     version 2
+     7th April 2007
+     Stuart Langridge, http://www.kryogenix.org/code/browser/sorttable/
 
-      Instructions:
-      Download this file
-      Add <script src="sorttable.js"></script> to your HTML
-      Add class="sortable" to any table you'd like to make sortable
-      Click on the headers to sort
+     Instructions:
+     Download this file
+     Add <script src="sorttable.js"></script> to your HTML
+     Add class="sortable" to any table you'd like to make sortable
+     Click on the headers to sort
 
-      Thanks to many, many people for contributions and suggestions.
-      Licenced as X11: http://www.kryogenix.org/code/browser/licence.html
-      This basically means: do what you want with it.
-    */
+     Thanks to many, many people for contributions and suggestions.
+     Licenced as X11: http://www.kryogenix.org/code/browser/licence.html
+     This basically means: do what you want with it.
+     */
 
 
     var stIsIE = /*@cc_on!@*/ false;
@@ -209,7 +209,6 @@ $(document).ready(function() {
             // this is *not* a generic getInnerText function; it's special to sorttable.
             // for example, you can override the cell text with a customkey attribute.
             // it also gets .value for <input> fields.
-
             if (!node) return "";
 
             hasInputs = (typeof node.getElementsByTagName == 'function') &&
@@ -259,8 +258,8 @@ $(document).ready(function() {
         },
 
         /* sort functions
-           each sort function takes two parameters, a and b
-           you are comparing a[0] and b[0] */
+         each sort function takes two parameters, a and b
+         you are comparing a[0] and b[0] */
         sort_numeric: function(a, b) {
             aa = parseFloat(a[0].replace(/[^0-9.-]/g, ''));
             if (isNaN(aa)) aa = 0;
@@ -329,7 +328,7 @@ $(document).ready(function() {
                         list[i + 1] = q;
                         swap = true;
                     }
-                } // for
+                }
                 t--;
 
                 if (!swap) break;
@@ -341,18 +340,12 @@ $(document).ready(function() {
                         list[i - 1] = q;
                         swap = true;
                     }
-                } // for
+                }
                 b++;
 
-            } // while(swap)
+            }
         }
     }
-
-    /* ******************************************************************
-       Supporting functions: bundled here to avoid depending on a library
-       ****************************************************************** */
-
-    // Dean Edwards/Matthias Miller/John Resig
 
     /* for Mozilla/Opera9 */
     if (document.addEventListener) {
@@ -362,14 +355,14 @@ $(document).ready(function() {
     /* for Internet Explorer */
     /*@cc_on @*/
     /*@if (@_win32)
-        document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
-        var script = document.getElementById("__ie_onload");
-        script.onreadystatechange = function() {
-            if (this.readyState == "complete") {
-                sorttable.init(); // call the onload handler
-            }
-        };
-    /*@end @*/
+     document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+     var script = document.getElementById("__ie_onload");
+     script.onreadystatechange = function() {
+     if (this.readyState == "complete") {
+     sorttable.init(); // call the onload handler
+     }
+     };
+     /*@end @*/
 
     /* for Safari */
     if (/WebKit/i.test(navigator.userAgent)) { // sniff
@@ -456,10 +449,10 @@ $(document).ready(function() {
 
     // Dean's forEach: http://dean.edwards.name/base/forEach.js
     /*
-    	forEach, version 1.0
-    	Copyright 2006, Dean Edwards
-    	License: http://www.opensource.org/licenses/mit-license.php
-    */
+     forEach, version 1.0
+     Copyright 2006, Dean Edwards
+     License: http://www.opensource.org/licenses/mit-license.php
+     */
 
     // array-like enumeration
     if (!Array.forEach) { // mozilla already supports this
@@ -498,10 +491,8 @@ $(document).ready(function() {
                 object.forEach(block, context);
                 return;
             } else if (typeof object == "string") {
-                // the object is a string
                 resolve = String;
             } else if (typeof object.length == "number") {
-                // the object is array-like
                 resolve = Array;
             }
             resolve.forEach(object, block, context);

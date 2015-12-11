@@ -22,32 +22,45 @@ class WorldRecord < ActiveRecord::Base
                                  message: 'One record per mode for each map.' }
 
   def self.check(score)
-    wr = WorldRecord.where(map: score[:map], mode: score[:mode]).first_or_initialize
-    if wr.time.nil? || score[:time] < wr.time
-      wr.time = score[:time]
-      wr.player_id = score[:player_id]
-      wr.match_guid = score[:match_guid]
-      wr.api_id = score[:api_id]
-      wr.updated_at = score[:date] if score[:date]
-      wr.save
-    end
+    wr = world_record(score[:map], score[:mode])
+    update_world_record(wr, score) if wr.time.nil? || score[:time] < wr.time
   end
 
   def self.map_scores
-    wrs = []
-    (0..3).each do |mode|
-      wrs << WorldRecord.where(mode: mode).order(:map).includes(:player)
-    end
     map_scores = {}
+    wrs = world_records
     WorldRecord.distinct(:map).order(:map).pluck(:map).each do |map|
       scores = Array.new(3, {})
       (0..3).each do |mode|
         wr = wrs[mode].find_by(map: map)
         scores[mode] = { player_id: wr.player_id, name: wr.player.name,
-                        time: wr.time } if wr
+                         time: wr.time } if wr
       end
       map_scores[map] = scores
     end
     map_scores
+  end
+
+  private
+
+  def self.world_record(map, mode)
+    WorldRecord.where(map: map, mode: mode).first_or_initialize
+  end
+
+  def self.world_records
+    world_records = []
+    (0..3).each do |mode|
+      world_records << WorldRecord.where(mode: mode).order(:map).includes(:player)
+    end
+    world_records
+  end
+
+  def self.update_world_record(world_record, score)
+    world_record.time = score[:time]
+    world_record.player_id = score[:player_id]
+    world_record.match_guid = score[:match_guid]
+    world_record.api_id = score[:api_id]
+    world_record.updated_at = score[:date] if score[:date]
+    world_record.save
   end
 end

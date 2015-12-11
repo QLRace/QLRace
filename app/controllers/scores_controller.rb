@@ -15,10 +15,11 @@ class ScoresController < ApplicationController
 
   def player
     name, average, medals, scores = Score.player_scores(params)
-    @player = { name: name, average: average, medals: medals, scores: scores}
+    @player = { name: name, average: average, medals: medals, scores: scores }
   end
 
   def recent_wrs
-    @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player).page(params[:page]).per(20)
+    @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
+                      .page(params[:page]).per(20)
   end
 end

@@ -16,4 +16,12 @@ class Player < ActiveRecord::Base
   def self.search(search)
     where('name ILIKE ?', "#{search}%")
   end
+
+  def self.update_player_name(id, name)
+    player = Player.where(id: id).first_or_initialize
+    if player.name != name
+      player.name = name
+      player.save
+    end
+  end
 end

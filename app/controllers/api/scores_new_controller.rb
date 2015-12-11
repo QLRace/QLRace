@@ -25,8 +25,8 @@ class Api::ScoresNewController < Api::ApiController
       head_status :bad_request and return
     end
 
-    @score = { map: map, mode: mode, player_id: player_id, time: time, name: name,
-               match_guid: match_guid, api_id: @user.id }
+    @score = { map: map, mode: mode, player_id: player_id, time: time,
+               name: name, match_guid: match_guid, api_id: @user.id }
     @score[:date] = date if date.present?
   end
 

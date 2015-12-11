@@ -15,7 +15,8 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   def player
     name, average, medals, scores = Score.player_scores(params)
-    respond_with({ name: name, average: average, medals: medals, records: scores }.to_json)
+    respond_with({ name: name, average: average, medals: medals,
+                   records: scores }.to_json)
   end
 
   api :GET, '/map/:map', 'Map records'
