@@ -43,7 +43,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'dotenv-rails'
   gem 'faker'
+  gem 'guard-rspec'
   gem 'pry-rails'
+  gem 'spring-commands-rspec'
   gem 'spring'
 end
 
