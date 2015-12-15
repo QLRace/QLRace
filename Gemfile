@@ -25,6 +25,11 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever'
 
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl'
