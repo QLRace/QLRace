@@ -33,8 +33,11 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl'
+  gem 'faker'
+  gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -42,10 +45,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'dotenv-rails'
-  gem 'faker'
-  gem 'guard-rspec'
   gem 'pry-rails'
-  gem 'spring-commands-rspec'
   gem 'spring'
 end
 
