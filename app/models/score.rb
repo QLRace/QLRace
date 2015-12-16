@@ -57,22 +57,17 @@ class Score < ActiveRecord::Base
   end
 
   def self.map_scores(params)
-    mode = mode_from_params(params)
-    scores = []
-    limit = Integer(params.fetch(:limit, 0))
-    last_time = -1
-    last_rank = 1
-    Score.where(map: params[:map], mode: mode).order(:time, :updated_at)
-        .includes(:player).each.with_index(1) do |score, r|
-      rank = last_time == score.time ? last_rank : r
-      scores << { mode: mode, rank: rank, player_id: score.player_id,
-                  name: score.player.name, time: score.time,
-                  match_guid: score.match_guid, date: score.updated_at }
-      last_rank = rank
-      last_time = score.time
-      break if r >= limit && limit != 0
-    end
-    scores
+    mode = mode_from_params params
+    map = sanitize params[:map]
+    query = <<-SQL
+    SELECT rank() OVER (ORDER BY time), mode, player_id, name, time, match_guid, scores.updated_at as date
+    FROM scores
+    INNER JOIN players
+    ON scores.player_id = players.id
+    WHERE mode = #{mode} AND map = #{map}
+    ORDER BY rank, date
+    SQL
+    scores = Score.find_by_sql query
   end
 
   private
