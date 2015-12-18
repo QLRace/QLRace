@@ -21,7 +21,7 @@ class Api::ScoresNewController < Api::ApiController
       name = params[:name]
       match_guid = params[:match_guid]
       date = params[:date]
-    rescue NoMethodError, TypeError
+    rescue NoMethodError, TypeError, ArgumentError
       head_status :bad_request and return
     end
 
