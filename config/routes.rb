@@ -17,12 +17,4 @@ Rails.application.routes.draw do
     root to: redirect('/apidoc'), via: :all
     match '*path', to: redirect('/apidoc'), via: :all
   end
-
-  namespace :admin do
-    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
-      resources dashboard_resource
-    end
-
-    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
-  end
 end

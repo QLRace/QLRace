@@ -2,10 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5'
 
-gem 'administrate', '~> 0.1.2'
 gem 'apipie-rails', '~> 0.3.5'
 gem 'bootstrap-sass', '~> 3.3'
-gem 'bootstrap-select-rails'
 gem 'bootstrap-switch-rails'
 gem 'bootswatch-rails', '~> 3.3'
 gem 'coffee-rails', '~> 4.1.0'
@@ -44,7 +42,6 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'spring'
 end
