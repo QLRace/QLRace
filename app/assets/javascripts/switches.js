@@ -14,11 +14,7 @@ $(document).ready(function() {
     $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
         var value;
         if (this.name === 'factory') {
-            if (state) {
-                value = 'turbo';
-            } else {
-                value = 'classic';
-            }
+            value = state ? 'turbo' : 'classic'
         } else {
             value = state;
         }
@@ -28,11 +24,7 @@ $(document).ready(function() {
 
 function urlParam(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results === null) {
-        return null;
-    } else {
-        return results[1] || 0;
-    }
+    return results === null ? null: results[1] || 0
 };
 
 function updateUrlParameter(uri, key, value) {
