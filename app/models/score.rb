@@ -57,10 +57,10 @@ class Score < ActiveRecord::Base
   end
 
   def self.map_scores(params)
-    mode = mode_from_params params
+    mode = sanitize(mode_from_params params)
     map = sanitize params[:map]
     query = <<-SQL
-    SELECT rank() OVER (ORDER BY time), mode, player_id, name, time, match_guid, scores.updated_at as date
+    SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time, match_guid, scores.updated_at as date
     FROM scores
     INNER JOIN players
     ON scores.player_id = players.id
