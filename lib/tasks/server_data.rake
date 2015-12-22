@@ -5,13 +5,11 @@ namespace :server_data do
     ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
     ports = [27_960, 27_961, 27_970, 27_971]
     ips.each do |ip|
-      ports.each do |port|
-        servers << get_server_info(ip, port)
-      end
+      ports.each {|port| servers << get_server_info(ip, port) }
     end
 
-    servers << get_server_info('kr.qlrace.com', 27_007)
-    servers << get_server_info('kr.qlrace.com', 27_008)
+    ports = [27_960, 27_961, 27_962, 27_963, 27_964, 27_970, 27_971]
+    ports.each {|port| servers << get_server_info("kr.qlrace.com", port) }
 
     data = { time: Time.now.strftime('%H:%M:%S'), servers: servers.compact }
     Rails.cache.write('servers', data)
