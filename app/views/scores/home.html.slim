@@ -27,14 +27,15 @@ table.table.table-striped.table-hover
       th Classic Weapons
       th Classic Strafe
   tbody
-    - @map_scores.each do |map, scores|
+    - @map_scores.each do |map|
       tr
-        td = link_to map, map_path(map)
-        - scores.each.with_index do |score, mode|
+        td = link_to map[0].map, map_path(map[0].map)
+        - (0..3).each do |mode|
+          - score = map.where(mode: mode).first
           - if score.present?
             td
-              = link_to score[:name], player_path(score[:player_id], mode_params(mode))
-              span.pull-right = time_string(score[:time])
+              = link_to score.player.name, player_path(score.player_id, mode_params(score.mode))
+              span.pull-right = time_string(score.time)
           - else
             td
               span.pull-right -

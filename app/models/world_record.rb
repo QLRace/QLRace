@@ -27,16 +27,9 @@ class WorldRecord < ActiveRecord::Base
   end
 
   def self.map_scores
-    map_scores = {}
-    wrs = world_records
-    WorldRecord.distinct(:map).order(:map).pluck(:map).each do |map|
-      scores = Array.new(3, {})
-      (0..3).each do |mode|
-        wr = wrs[mode].find_by(map: map)
-        scores[mode] = { player_id: wr.player_id, name: wr.player.name,
-                         time: wr.time } if wr
-      end
-      map_scores[map] = scores
+    map_scores = []
+    WorldRecord.order(:map).distinct(:map).pluck(:map).each do |map|
+      map_scores << WorldRecord.where(map: map).order(:mode).includes(:player)
     end
     map_scores
   end
@@ -45,14 +38,6 @@ class WorldRecord < ActiveRecord::Base
 
   def self.world_record(map, mode)
     WorldRecord.where(map: map, mode: mode).first_or_initialize
-  end
-
-  def self.world_records
-    world_records = []
-    (0..3).each do |mode|
-      world_records << WorldRecord.where(mode: mode).order(:map).includes(:player)
-    end
-    world_records
   end
 
   def self.update_world_record(world_record, score)
