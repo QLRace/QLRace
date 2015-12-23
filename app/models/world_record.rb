@@ -28,8 +28,9 @@ class WorldRecord < ActiveRecord::Base
 
   def self.map_scores
     map_scores = []
+    wrs = WorldRecord.order(:mode).includes(:player)
     WorldRecord.order(:map).distinct(:map).pluck(:map).each do |map|
-      map_scores << WorldRecord.where(map: map).order(:mode).includes(:player)
+      map_scores << wrs.where(map: map)
     end
     map_scores
   end
