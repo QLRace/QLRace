@@ -27,10 +27,11 @@ class WorldRecord < ActiveRecord::Base
   end
 
   def self.map_scores
-    map_scores = []
-    wrs = WorldRecord.order(:mode).includes(:player)
-    WorldRecord.order(:map).distinct(:map).pluck(:map).each do |map|
-      map_scores << wrs.where(map: map)
+    map_scores = Hash.new{ |hash, key| hash[key] = Array.new(4) }
+    WorldRecord.order(:map).eager_load(:player).each do |world_record|
+      wr = world_record.as_json
+      wr['name'] = world_record.player.name
+      map_scores[wr['map']][wr['mode']] = wr
     end
     map_scores
   end
