@@ -48,5 +48,6 @@ group :development do
 end
 
 group :production do
+  gem 'dumper'
   gem 'passenger', '~> 5.0.20'
 end
