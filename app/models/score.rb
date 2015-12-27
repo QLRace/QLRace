@@ -48,8 +48,8 @@ class Score < ActiveRecord::Base
     medals = [0, 0, 0]
     p.scores.where(mode: mode).order(:map).each do |score|
       rank = Score.where(map: score.map, mode: mode).where('time < ?', score.time).count + 1
-      scores << { map: score.map, mode: mode, rank: rank, time: score.time, match_guid: score.match_guid,
-                  date: score.updated_at }
+      scores << { map: score.map, mode: mode, rank: rank, time: score.time,
+                  match_guid: score.match_guid, id: score.id, date: score.updated_at }
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
@@ -60,14 +60,15 @@ class Score < ActiveRecord::Base
     mode = sanitize(mode_from_params params)
     map = sanitize params[:map]
     query = <<-SQL
-    SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time, match_guid, scores.updated_at as date
+    SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
+           match_guid, scores.updated_at as date
     FROM scores
     INNER JOIN players
     ON scores.player_id = players.id
     WHERE mode = #{mode} AND map = #{map}
     ORDER BY rank, date
     SQL
-    scores = Score.find_by_sql query
+    Score.find_by_sql query
   end
 
   private

@@ -1,6 +1,4 @@
 class Api::ScoresApiController < Api::ApiController
-  respond_to :json
-
   resource_description do
     resource_id 'records'
   end
@@ -15,7 +13,8 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   def player
     name, average, medals, scores = Score.player_scores(params)
-    respond_with name: name, average: average, medals: medals, records: scores
+    render json: { name: name, average: average, medals: medals,
+                   records: scores }
   end
 
   api :GET, '/map/:map', 'Map records'
@@ -23,13 +22,12 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   param :limit, Integer, desc: 'Number of records which will be returned'
   def map
-    scores = Score.map_scores(params)
-    respond_with records: scores
+    render json: { records: Score.map_scores(params) }
   end
 
   api :GET, '/maps', 'List of all maps'
   def maps
     maps = WorldRecord.distinct(:map).order(:map).pluck(:map)
-    respond_with maps: maps
+    render json: { maps: maps }
   end
 end

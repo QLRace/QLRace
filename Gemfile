@@ -14,7 +14,6 @@ gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'pg', '~> 0.18.3'
 gem 'rails-jquery-autocomplete', '~> 1.0.2'
-gem 'responders', '~> 2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim', '~> 3.0'
