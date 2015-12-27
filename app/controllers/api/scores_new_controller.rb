@@ -3,10 +3,10 @@ class Api::ScoresNewController < Api::ApiController
   before_action :authenticate, :check_score
 
   def new
-    head_status :bad_request and return if @score.values.any?(&:blank?)
-    head_status :not_modified and return if map_disabled?
+    return head :bad_request if @score.values.any?(&:blank?)
+    return head :not_modified if map_disabled?
 
-    Score.new_score(@score) ? head_status(:ok) : head_status(:not_modified)
+    Score.new_score(@score) ? head(:ok) : head(:not_modified)
   end
 
   private
@@ -21,7 +21,7 @@ class Api::ScoresNewController < Api::ApiController
       match_guid = params[:match_guid]
       date = params[:date]
     rescue NoMethodError, TypeError, ArgumentError
-      head_status :bad_request and return
+      return head :bad_request
     end
 
     @score = { map: map, mode: mode, player_id: player_id, time: time,
