@@ -1,6 +1,7 @@
 namespace :server_data do
   desc 'Get status of QLRace servers and save to cache'
   task get: :environment do
+    require 'steam-condenser'
     servers = []
     ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
     ports = [27_960, 27_961, 27_970, 27_971]

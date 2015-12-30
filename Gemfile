@@ -17,10 +17,10 @@ gem 'rails-jquery-autocomplete', '~> 1.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim', '~> 3.0'
-gem 'steam-condenser'
+gem 'steam-condenser', :require => false
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'whenever'
+gem 'whenever', :require => false
 
 group :test do
   gem 'capybara'
