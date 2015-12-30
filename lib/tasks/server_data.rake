@@ -2,6 +2,7 @@ namespace :server_data do
   desc 'Get status of QLRace servers and save to cache'
   task get: :environment do
     require 'steam-condenser'
+
     servers = []
     ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
     ports = [27_960, 27_961, 27_970, 27_971]
@@ -24,6 +25,7 @@ def get_server_info(ip, port)
   rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError
     return
   end
+
   players = []
   server.players.each do |n, player|
     # remove colour codes from names
@@ -35,6 +37,7 @@ def get_server_info(ip, port)
     end
     players << { name: name, time: time }
   end
+
   players.sort_by! { |k| k[:time] }
   num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
   { name: info[:server_name], address: "#{ip}:#{port}",
