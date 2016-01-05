@@ -46,7 +46,3 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'spring'
 end
-
-group :production do
-  gem 'passenger', '~> 5.0.20'
-end
