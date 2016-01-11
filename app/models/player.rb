@@ -14,7 +14,7 @@ class Player < ActiveRecord::Base
   validates :name, presence: true
 
   def self.search(search)
-    where('name ILIKE ?', "#{search}%")
+    where('name ILIKE ?', "%#{search}%")
   end
 
   def self.update_player_name(id, name)
