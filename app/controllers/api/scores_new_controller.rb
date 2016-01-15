@@ -6,7 +6,14 @@ class Api::ScoresNewController < Api::ApiController
     return head :bad_request if @score.values.any?(&:blank?)
     return head :not_modified if map_disabled?
 
-    Score.new_score(@score) ? head(:ok) : head(:not_modified)
+    if Score.new_score(@score)
+      rank = Score.where(map: @score[:map], mode: @score[:mode])
+             .where('time < ?', @score[:time]).count + 1
+      @score[:rank] = rank
+      render json: @score
+    else
+      head(:not_modified)
+    end
   end
 
   private
