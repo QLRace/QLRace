@@ -6,13 +6,21 @@ class Api::ScoresNewController < Api::ApiController
     return head :bad_request if @score.values.any?(&:blank?)
     return head :not_modified if map_disabled?
 
+    wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
     if Score.new_score(@score)
       rank = Score.where(map: @score[:map], mode: @score[:mode])
              .where('time < ?', @score[:time]).count + 1
       @score[:rank] = rank
+
+      if wr_time
+        @score[:time_diff] = @score[:time] - wr_time
+      else
+        @score[:time_diff] = 0
+      end
+
       render json: @score
     else
-      head(:not_modified)
+      return head :not_modified
     end
   end
 
