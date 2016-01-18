@@ -22,4 +22,9 @@ class ScoresController < ApplicationController
     @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
                   .page(params[:page]).per(20)
   end
+
+  def recent_scores
+    @recent_scores = Score.order(updated_at: :desc).includes(:player)
+                     .page(params[:page]).per(20)
+  end
 end

@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'scores#home'
+  get 'recent', to: 'scores#recent_scores', as: 'recent_scores'
   get 'recentwrs', to: 'scores#recent_wrs', as: 'recent_wrs'
-  get 'player/:player_id', to: 'scores#player', as: 'player'
-  get 'player', to: redirect('/')
   get 'map/:map', to: 'scores#map', as: 'map'
+  get 'player/:player_id', to: 'scores#player', as: 'player'
+  get 'player', to: redirect('players')
   get 'players', to: 'players#index', as: 'players'
   get 'players/autocomplete_player_name', as: 'players_autocomplete'
   get 'servers', to: 'servers#show', as: 'servers'
