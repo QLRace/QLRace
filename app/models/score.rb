@@ -21,6 +21,10 @@ class Score < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record per map for each mode.' }
 
+  def rank
+    Score.where(map: map, mode: mode).where('time < ?', time).count + 1
+  end
+
   def self.new_score(score)
     Player.update_player_name(score[:player_id], score[:name])
 
@@ -47,7 +51,7 @@ class Score < ActiveRecord::Base
     end
     medals = [0, 0, 0]
     p.scores.where(mode: mode).order(:map).each do |score|
-      rank = Score.where(map: score.map, mode: mode).where('time < ?', score.time).count + 1
+      rank = score.rank
       scores << { map: score.map, mode: mode, rank: rank, time: score.time,
                   match_guid: score.match_guid, id: score.id, date: score.updated_at }
       medals[rank - 1] += 1 if rank.between?(1, 3)
