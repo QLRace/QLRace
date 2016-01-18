@@ -20,6 +20,6 @@ class ScoresController < ApplicationController
 
   def recent_wrs
     @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
-                      .page(params[:page]).per(20)
+                  .page(params[:page]).per(20)
   end
 end

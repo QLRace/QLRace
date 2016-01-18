@@ -8,15 +8,9 @@ class Api::ScoresNewController < Api::ApiController
 
     wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
     if Score.new_score(@score)
-      rank = Score.where(map: @score[:map], mode: @score[:mode])
-             .where('time < ?', @score[:time]).count + 1
-      @score[:rank] = rank
-
-      if wr_time
-        @score[:time_diff] = @score[:time] - wr_time
-      else
-        @score[:time_diff] = 0
-      end
+      @score[:rank] = Score.where(map: @score[:map], mode: @score[:mode])
+                      .where('time < ?', @score[:time]).count + 1
+      @score['time_diff'] = wr_time ? @score[:time] - wr_time : 0
 
       render json: @score
     else

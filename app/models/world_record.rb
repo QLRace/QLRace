@@ -27,7 +27,7 @@ class WorldRecord < ActiveRecord::Base
   end
 
   def self.map_scores
-    map_scores = Hash.new{ |hash, key| hash[key] = Array.new(4) }
+    map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
     WorldRecord.order(:map).eager_load(:player).each do |world_record|
       wr = world_record.as_json
       wr['name'] = world_record.player.name
