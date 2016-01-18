@@ -15,7 +15,7 @@
     tbody
       - @map[:scores].each do |score|
         tr
-          td = score[:rank_]
+          td = score[:rank]
           td = link_to score[:name], player_path(score[:player_id], mode_params(score[:mode]))
           td = time_string(score[:time])
           td = score[:date]
