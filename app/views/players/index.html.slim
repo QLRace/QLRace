@@ -6,11 +6,13 @@ h3 = "Found #{@total_players} Players"
       tr
         th Name
         th Steam ID
-        th Created
+        th Records
+        th World Records
     tbody
       - @players.each do |player|
         tr
-          td = link_to player[:name], player_path(player[:id])
-          td = player[:id]
-          td = player[:created_at]
+          td = link_to player.name, player_path(player.id)
+          td = player.id
+          td = player.scores.count
+          td = player.world_records.count
   = paginate @players
