@@ -16,6 +16,7 @@ table.table.table-striped.table-hover
         td = link_to wr.player.name, player_path(wr.player_id)
         td = time_string(wr.time)
         td = wr.updated_at
+= link_to 'More', recent_wrs_path
 
 h2 World Records
 table.table.table-striped.table-hover
