@@ -86,7 +86,7 @@ class Score < ActiveRecord::Base
   end
 
   def self.player_score(map, mode, player_id)
-    Score.where(map: map, mode: mode, player_id: player_id).first_or_initialize
+    Score.find_or_initialize_by(map: map, mode: mode, player_id: player_id)
   end
 
   def self.mode_from_params(params)

@@ -39,7 +39,7 @@ class WorldRecord < ActiveRecord::Base
   private
 
   def self.world_record(map, mode)
-    WorldRecord.where(map: map, mode: mode).first_or_initialize
+    WorldRecord.find_or_initialize_by(map: map, mode: mode)
   end
 
   def self.update_world_record(world_record, score)
