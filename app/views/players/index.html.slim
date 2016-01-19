@@ -1,8 +1,8 @@
 - provide(:title, 'Players')
 
-h3 = "Found #{@total_players} Players"
 - if @total_players != 0
-  table.table.table-striped.table-hover
+  table.table.table-striped.table-hover.table-condensed
+    caption Found #{@total_players} Players
     thead
       tr
         th Name

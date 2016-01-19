@@ -1,6 +1,7 @@
 p #{@total_scores} total records on #{@map_scores.length} maps
-h2 Recent World Records
-table.table.table-striped.table-hover
+
+table.table.table-striped.table-hover.table-condensed
+  caption Recent World Records
   thead
     tr
       th Map
@@ -18,8 +19,8 @@ table.table.table-striped.table-hover
         td = wr.updated_at
 = link_to 'More', recent_wrs_path
 
-h2 World Records
-table.table.table-striped.table-hover
+table.table.table-striped.table-hover.table-condensed
+  caption World Records
   thead
     tr
       th Map

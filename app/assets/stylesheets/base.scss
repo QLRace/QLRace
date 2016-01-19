@@ -10,6 +10,14 @@
   }
 }
 
+caption {
+  font-size: 28px;
+  font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+  color: inherit;
+}
+
 // Remove underlines from links in tables
 .table {
   a:not(.btn) {
