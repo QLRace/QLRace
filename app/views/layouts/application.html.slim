@@ -1,5 +1,8 @@
-= render 'layouts/head'
-= render 'layouts/navbar'
-.container
-  = yield
-  = render 'layouts/footer'
+doctype html
+html lang='en'
+  = render 'layouts/head'
+  body
+    = render 'layouts/navbar'
+    .container
+      = yield
+      = render 'layouts/footer'
