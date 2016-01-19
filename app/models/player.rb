@@ -18,7 +18,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.update_player_name(id, name)
-    player = Player.where(id: id).first_or_initialize
+    player = Player.find_or_initialize_by(id: id)
     if player.name != name
       player.name = name
       player.save!
