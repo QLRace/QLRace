@@ -41,6 +41,8 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'flamegraph', :require => false
+  gem 'stackprof', :require => false
   gem 'mina', :require => false
   gem 'pry-rails'
   gem 'rack-mini-profiler'

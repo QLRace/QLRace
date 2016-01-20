@@ -17,7 +17,7 @@
           td = link_to score.map, map_path(score.map)
           td = mode_string(score.mode)
           td = link_to score.player.name, player_path(score.player_id)
-          td = score.rank_
+          td = score.rank
           td = time_string(score.time)
           td = score.updated_at
   = paginate @recent_scores

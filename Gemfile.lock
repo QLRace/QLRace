@@ -87,7 +87,12 @@ GEM
     faker (1.6.1)
       i18n (~> 0.5)
     fast_blank (1.0.0)
+    fast_stack (0.1.0)
+      rake
+      rake-compiler
     ffi (1.9.10)
+    flamegraph (0.1.0)
+      fast_stack
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -185,6 +190,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
+    rake-compiler (0.9.5)
+      rake
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -237,6 +244,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stackprof (0.2.8)
     steam-condenser (1.3.11)
       multi_json (~> 1.6)
       multi_xml (~> 0.5)
@@ -273,6 +281,7 @@ DEPENDENCIES
   factory_girl
   faker
   fast_blank
+  flamegraph
   guard-rspec
   jbuilder (~> 2.0)
   jquery-rails
@@ -292,6 +301,7 @@ DEPENDENCIES
   slim (~> 3.0)
   spring
   spring-commands-rspec
+  stackprof
   steam-condenser
   turbolinks
   uglifier (>= 1.3.0)
