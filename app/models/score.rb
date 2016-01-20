@@ -72,7 +72,6 @@ class Score < ActiveRecord::Base
     WHERE mode = #{mode} AND map = #{map}
     ORDER BY rank, date
     SQL
-    # byebug
     ActiveRecord::Base.connection.execute(query).as_json
   end
 
