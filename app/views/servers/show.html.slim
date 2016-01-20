@@ -11,7 +11,7 @@ p I will make this look better sometime.
         .panel-body
           ul.list-unstyled
             li IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
-            li Map:  #{link_to server[:map], map_path(server[:map])}
+            li Map: #{link_to server[:map], map_path(server[:map])}
             li Players: #{server[:num_players]}
             li
               - if server[:players].present?
