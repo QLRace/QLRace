@@ -1,5 +1,4 @@
 class Api::ScoresNewController < Api::ApiController
-  skip_before_action :verify_authenticity_token
   before_action :authenticate, :check_score
 
   def new
