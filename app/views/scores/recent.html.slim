@@ -1,23 +1,28 @@
 - provide(:title, 'Recent World Records')
 
-- if @recent_scores.length != 0
+- if @recent.length != 0
   table.table.table-striped.table-hover.table-condensed
-    caption Recent Records
+    - if @wrs
+      caption Recent World Records
+    - else
+      caption Recent Records
     thead
       tr
         th Map
         th Mode
         th Player
-        th Rank
+        - unless @wrs
+          th Rank
         th Time
         th Date
     tbody
-      - @recent_scores.each do |score|
+      - @recent.each do |score|
         tr
           td = link_to score.map, map_path(score.map)
           td = mode_string(score.mode)
           td = link_to score.player.name, player_path(score.player_id)
-          td = score.rank_
+          - unless @wrs
+            td = score.rank_
           td = time_string(score.time)
           td = score.updated_at
-  = paginate @recent_scores
+  = paginate @recent
