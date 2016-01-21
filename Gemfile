@@ -22,7 +22,6 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
-
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
@@ -42,10 +41,8 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'flamegraph', require: false
   gem 'mina', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'spring'
-  gem 'stackprof', require: false
 end
