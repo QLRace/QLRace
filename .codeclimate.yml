@@ -1,4 +1,31 @@
-languages:
-  Ruby: true
-  JavaScript: true
-exclude_paths: "app/assets/javascripts/sorttable.js"
+engines:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+  - Gemfile.lock
+  - "**.erb"
+  - "**.haml"
+  - "**.rb"
+  - "**.rhtml"
+  - "**.slim"
+  - "**.inc"
+  - "**.js"
+  - "**.jsx"
+exclude_paths:
+- app/assets/javascripts/sorttable.js
+- .rubocop.yml
