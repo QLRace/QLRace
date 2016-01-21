@@ -30,6 +30,7 @@ class Api::ScoresNewController < Api::ApiController
       @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
                                     time: @score[:time]).rank_
       @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
+      return true
     end
   end
 
