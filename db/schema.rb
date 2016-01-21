@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208155209) do
+ActiveRecord::Schema.define(version: 20160121120817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,5 +53,6 @@ ActiveRecord::Schema.define(version: 20151208155209) do
   end
 
   add_index "world_records", ["map", "mode"], name: "index_world_records_on_map_and_mode", unique: true, using: :btree
+  add_index "world_records", ["player_id"], name: "index_world_records_on_player_id", using: :btree
 
 end
