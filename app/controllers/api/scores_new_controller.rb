@@ -17,7 +17,7 @@ class Api::ScoresNewController < Api::ApiController
     end
   end
 
-  private
+private
 
   def check_score
     begin

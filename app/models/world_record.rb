@@ -36,11 +36,11 @@ class WorldRecord < ActiveRecord::Base
     map_scores
   end
 
-  private
-
   def self.world_record(map, mode)
     WorldRecord.find_or_initialize_by(map: map, mode: mode)
   end
+
+private
 
   def self.update_world_record(world_record, score)
     world_record.time = score[:time]

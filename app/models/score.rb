@@ -75,7 +75,11 @@ class Score < ActiveRecord::Base
     Score.find_by_sql query
   end
 
-  private
+  def self.player_score(map, mode, player_id)
+    Score.find_or_initialize_by(map: map, mode: mode, player_id: player_id)
+  end
+
+private
 
   def self.update_score(score, new_score)
     score.time = new_score[:time]
@@ -83,10 +87,6 @@ class Score < ActiveRecord::Base
     score.api_id = new_score[:api_id]
     score.updated_at = new_score[:date] if new_score[:date]
     score.save!
-  end
-
-  def self.player_score(map, mode, player_id)
-    Score.find_or_initialize_by(map: map, mode: mode, player_id: player_id)
   end
 
   def self.mode_from_params(params)

@@ -1,7 +1,7 @@
 class Api::ApiController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :json_request?
 
-  private
+private
 
   def authenticate
     api_key = request.headers['X-Api-Key']
