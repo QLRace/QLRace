@@ -29,13 +29,11 @@ class Score < ActiveRecord::Base
     Player.update_player_name(score[:player_id], score[:name])
 
     s = player_score(score[:map], score[:mode], score[:player_id])
-    if s.time.nil? || score[:time] < s.time
-      update_score(s, score)
-      WorldRecord.check(score)
-      return true
-    else
-      return false
-    end
+    return false unless s.time.nil? || score[:time] < s.time
+
+    update_score(s, score)
+    WorldRecord.check(score)
+    true
   end
 
   def self.player_scores(params)
@@ -53,7 +51,8 @@ class Score < ActiveRecord::Base
     p.scores.where(mode: mode).order(:map).each do |score|
       rank = score.rank_
       scores << { map: score.map, mode: mode, rank: rank, time: score.time,
-                  match_guid: score.match_guid, id: score.id, date: score.updated_at }
+                  match_guid: score.match_guid, id: score.id,
+                  date: score.updated_at }
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
@@ -79,8 +78,6 @@ class Score < ActiveRecord::Base
     Score.find_or_initialize_by(map: map, mode: mode, player_id: player_id)
   end
 
-private
-
   def self.update_score(score, new_score)
     score.time = new_score[:time]
     score.match_guid = new_score[:match_guid]
@@ -99,4 +96,6 @@ private
       return weapons ? 0 : 1
     end
   end
+
+  private_class_method :mode_from_params, :update_score
 end

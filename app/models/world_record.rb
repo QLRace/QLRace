@@ -40,8 +40,6 @@ class WorldRecord < ActiveRecord::Base
     WorldRecord.find_or_initialize_by(map: map, mode: mode)
   end
 
-private
-
   def self.update_world_record(world_record, score)
     world_record.time = score[:time]
     world_record.player_id = score[:player_id]
@@ -50,4 +48,6 @@ private
     world_record.updated_at = score[:date] if score[:date]
     world_record.save!
   end
+
+  private_class_method :update_world_record
 end
