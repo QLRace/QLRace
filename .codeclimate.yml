@@ -27,5 +27,6 @@ ratings:
   - "**.js"
   - "**.jsx"
 exclude_paths:
+- bin/
 - app/assets/javascripts/sorttable.js
 - .rubocop.yml
