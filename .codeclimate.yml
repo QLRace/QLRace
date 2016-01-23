@@ -15,18 +15,21 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+  scss-lint:
+    enabled: true
 ratings:
   paths:
   - Gemfile.lock
-  - "**.erb"
-  - "**.haml"
   - "**.rb"
-  - "**.rhtml"
+  - "**.rake"
   - "**.slim"
-  - "**.inc"
+  - "**.scss"
   - "**.js"
-  - "**.jsx"
 exclude_paths:
-- bin/
+- bin/*
+- config/**/*
+- db/**/*
+- log/*
+- vendor/**/*
 - app/assets/javascripts/sorttable.js
 - .rubocop.yml
