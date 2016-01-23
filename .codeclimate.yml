@@ -26,10 +26,17 @@ ratings:
   - "**.scss"
   - "**.js"
 exclude_paths:
+- app/assets/images/*
 - bin/*
 - config/**/*
 - db/**/*
 - log/*
+- public/*
 - vendor/**/*
 - app/assets/javascripts/sorttable.js
 - .rubocop.yml
+- config.ru
+- Gemfile
+- Guardfile
+- LICENSE
+- Rakefile
