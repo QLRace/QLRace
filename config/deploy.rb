@@ -19,7 +19,6 @@ set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log']
 
 # Optional settings:
 set :user, 'qlrace'    # Username in the server to SSH to.
-set :port, '23712'     # SSH port number.
 # set :forward_agent, true     # SSH forward_agent.
 
 # This task is the environment that is loaded for most commands, such as
