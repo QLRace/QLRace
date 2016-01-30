@@ -10,8 +10,7 @@ module ApplicationHelper
     s, ms = time.divmod(1000)
     ms = ms.to_s.rjust(3, '0')
     return "#{s}.#{ms}" if s < 60
-    time /= 1000
-    m, s = time.divmod(60)
+    m, s = s.divmod(60)
     s = s.to_s.rjust(2, '0')
     "#{m}:#{s}.#{ms}"
   end
