@@ -7,11 +7,11 @@ namespace :server_data do
     ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
     ports = [27_960, 27_961, 27_970, 27_971]
     ips.each do |ip|
-      ports.each {|port| servers << get_server_info(ip, port) }
+      ports.each { |port| servers << get_server_info(ip, port) }
     end
 
     ports = [27_960, 27_961, 27_962, 27_963, 27_964, 27_970, 27_971]
-    ports.each {|port| servers << get_server_info("kr.qlrace.com", port) }
+    ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
 
     data = { time: Time.now.strftime('%H:%M:%S'), servers: servers.compact }
     Rails.cache.write('servers', data)
@@ -30,11 +30,11 @@ def get_server_info(ip, port)
   server.players.each do |n, player|
     # remove colour codes from names
     name = n.gsub(/\^[0-9]/, '')
-    if player.score == -1 || player.score == 0
-      time = 2_147_483_647
-    else
-      time = player.score
-    end
+    time = if player.score == -1 || player.score == 0
+             2_147_483_647
+           else
+             player.score
+           end
     players << { name: name, time: time }
   end
 
