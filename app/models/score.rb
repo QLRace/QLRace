@@ -19,7 +19,8 @@ class Score < ActiveRecord::Base
   validates_inclusion_of :mode, in: 0..3
   validates :player, presence: true
   validates :player_id, uniqueness: { scope: [:map, :mode],
-                                      message: 'Players may only have one record per map for each mode.' }
+                                      message: 'Players may only have one record
+                                                per map for each mode.' }
 
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
@@ -90,11 +91,8 @@ class Score < ActiveRecord::Base
     factory = params.fetch(:factory, 'turbo')
     w = params.fetch(:weapons, 'true')
     weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
-    if factory == 'classic'
-      return weapons ? 2 : 3
-    else
-      return weapons ? 0 : 1
-    end
+    return weapons ? 2 : 3 if factory == 'classic'
+    weapons ? 0 : 1
   end
 
   private_class_method :mode_from_params, :update_score
