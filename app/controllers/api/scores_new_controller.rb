@@ -20,6 +20,7 @@ class Api::ScoresNewController < Api::ApiController
       @score[:name] = params[:name]
       @score[:match_guid] = params[:match_guid]
       @score[:date] = params[:date] if params[:date].present?
+      @score[:api_id] = @user.id
     rescue NoMethodError, TypeError, ArgumentError
       return head :bad_request
     end
