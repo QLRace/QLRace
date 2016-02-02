@@ -12,18 +12,16 @@ class Api::ScoresNewController < Api::ApiController
 
   private def check_score
     @score = {}
-    begin
-      @score[:map] = params[:map].downcase
-      @score[:mode] = Integer(params[:mode])
-      @score[:player_id] = Integer(params[:player_id])
-      @score[:time] = Integer(params[:time])
-      @score[:name] = params[:name]
-      @score[:match_guid] = params[:match_guid]
-      @score[:date] = params[:date] if params[:date].present?
-      @score[:api_id] = @user.id
-    rescue NoMethodError, TypeError, ArgumentError
-      return head :bad_request
-    end
+    @score[:map] = params[:map].downcase
+    @score[:mode] = Integer(params[:mode])
+    @score[:player_id] = Integer(params[:player_id])
+    @score[:time] = Integer(params[:time])
+    @score[:name] = params[:name]
+    @score[:match_guid] = params[:match_guid]
+    @score[:date] = params[:date] if params[:date].present?
+    @score[:api_id] = @user.id
+  rescue NoMethodError, TypeError, ArgumentError
+    return head :bad_request
   end
 
   private def update_score?(wr_time)
