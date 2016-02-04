@@ -1,5 +1,15 @@
 - provide(:title, 'Recent World Records')
 
+
+form.col-md-3.col-sm-4.col-xs-7
+    label for='mode' Mode
+    select#mode.form-control onchange='getMode(this)'
+      option value='All' All
+      option value='0' Turbo Weapons 
+      option value='1' Turbo Strafe
+      option value='2' Classic Weapons
+      option value='3' Classic Strafe 
+
 - if @recent.length != 0
   table.table.table-striped.table-hover.table-condensed
     - if @wrs
