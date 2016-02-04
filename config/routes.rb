@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'scores#home'
   get 'recent', to: 'scores#recent', as: 'recent_scores'
-  get 'recentwrs', to: 'scores#recent', as: 'recent_wrs'
+  get 'recentwrs', to: 'scores#recent_wrs', as: 'recent_wrs'
   get 'map/:map', to: 'scores#map', as: 'map'
   get 'player/:player_id', to: 'scores#player', as: 'player'
   get 'player', to: redirect('players')

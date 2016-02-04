@@ -20,9 +20,16 @@ class ScoresController < ApplicationController
   end
 
   def recent
-    @wrs = request.original_fullpath.start_with?('/recentwrs')
-    model = @wrs ? WorldRecord : Score
-    @recent = model.order(updated_at: :desc).includes(:player)
+    # @wrs = request.original_fullpath.start_with?('/recentwrs')
+    # model = @wrs ? WorldRecord : Score
+    @recent = Score.order(updated_at: :desc).includes(:player)
                    .page(params[:page]).per(20)
+  end
+
+  def recent_wrs
+    @wrs = true
+    @recent = WorldRecord.order(updated_at: :desc).includes(:player)
+                         .page(params[:page]).per(20)
+    render 'recent'
   end
 end
