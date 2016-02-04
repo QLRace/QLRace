@@ -20,14 +20,19 @@ class ScoresController < ApplicationController
   end
 
   def recent
-    @recent = Score.order(updated_at: :desc).includes(:player)
-                   .page(params[:page]).per(20)
+    get_recent_records Score
   end
 
   def recent_wrs
     @wrs = true
-    @recent = WorldRecord.order(updated_at: :desc).includes(:player)
-                         .page(params[:page]).per(20)
+    get_recent_records WorldRecord
     render 'recent'
+  end
+
+  private def get_recent_records(model)
+    mode = params.fetch(:mode, -1).to_i
+    records = mode.between?(0, 3) ? model.where(mode: mode) : model
+    @recent = records.order(updated_at: :desc).includes(:player)
+              .page(params[:page]).per(20)
   end
 end
