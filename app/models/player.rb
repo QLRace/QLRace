@@ -11,6 +11,7 @@
 class Player < ActiveRecord::Base
   has_many :scores
   has_many :world_records
+  validates_presence_of :name
 
   def self.search(search)
     where('name ILIKE ?', "%#{search}%")
@@ -19,7 +20,7 @@ class Player < ActiveRecord::Base
   def self.update_player_name(id, name)
     player = Player.find_or_initialize_by(id: id)
     if player.name != name
-      player.name = name
+      player.name = name.present? ? name : id
       player.save!
     end
   end
