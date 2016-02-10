@@ -1,28 +1,31 @@
 - provide(:title, @player[:name])
 
-.row
-  = render 'layouts/switches'
-  .col-md-4
-    h2 = link_to @player[:name], "http://steamcommunity.com/profiles/#{params[:player_id]}"
-    p
-      | #{image_tag 'gold.png', size: '16', alt: 'gold medal'} #{@player[:medals][0]}
-      | #{image_tag 'silver.png', size: '16', alt: 'silver medal'} #{@player[:medals][1]}
-      | #{image_tag 'bronze.png', size: '16', alt: 'bronze medal'} #{@player[:medals][2]}
-    ul.list-inline
-      li Average rank: #{@player[:average]}
-      li Total Records: #{@player[:scores].length}
-- if @player[:scores].length != 0
-  table.table.table-striped.table-hover.table-condensed.sortable
-    thead
-      tr
-        th Map
-        th Rank
-        th Time
-        th Date
-    tbody
-      - @player[:scores].each do |score|
+- if @player[:name]
+  .row
+    = render 'layouts/switches'
+    .col-md-4
+      h2 = link_to @player[:name], "http://steamcommunity.com/profiles/#{params[:player_id]}"
+      p
+        | #{image_tag 'gold.png', size: '16', alt: 'gold medal'} #{@player[:medals][0]}
+        | #{image_tag 'silver.png', size: '16', alt: 'silver medal'} #{@player[:medals][1]}
+        | #{image_tag 'bronze.png', size: '16', alt: 'bronze medal'} #{@player[:medals][2]}
+      ul.list-inline
+        li Average rank: #{@player[:average]}
+        li Total Records: #{@player[:scores].length}
+  - if @player[:scores].length != 0
+    table.table.table-striped.table-hover.table-condensed.sortable
+      thead
         tr
-          td = link_to score[:map], map_path(score[:map], mode_params(score[:mode]))
-          td = score[:rank]
-          td = time_string(score[:time])
-          td = score[:date]
+          th Map
+          th Rank
+          th Time
+          th Date
+      tbody
+        - @player[:scores].each do |score|
+          tr
+            td = link_to score[:map], map_path(score[:map], mode_params(score[:mode]))
+            td = score[:rank]
+            td = time_string(score[:time])
+            td = score[:date]
+- else
+  p That player doesn't exist.
