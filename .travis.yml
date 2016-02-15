@@ -6,7 +6,7 @@ addons:
 services: postgresql
 
 rvm: 2.3.0
-bundler_args: --without production
+bundler_args: --without development
 cache: bundler
 
 before_script: bundle exec rake db:create db:migrate
