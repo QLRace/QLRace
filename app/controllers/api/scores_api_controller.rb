@@ -25,9 +25,9 @@ class Api::ScoresApiController < Api::ApiController
     render json: { records: Score.map_scores(params) }
   end
 
-  api :GET, '/maps', 'List of all maps'
+  api :GET, '/maps', 'List of all maps, sorted by first record date.'
   def maps
-    maps = WorldRecord.distinct(:map).order(:map).pluck(:map)
+    maps = Score.order(:created_at).pluck(:map).uniq
     render json: { maps: maps }
   end
 end
