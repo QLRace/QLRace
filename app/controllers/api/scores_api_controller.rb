@@ -9,7 +9,7 @@ class Api::ScoresApiController < Api::ApiController
   end
 
   api :GET, '/player/:id', 'Player records'
-  param :id, Integer, desc: 'Player Steam ID', required: true
+  param :id, Integer, desc: 'SteamID64', required: true
   param_group :mode
   def player
     name, average, medals, scores = Score.player_scores(params)
@@ -23,11 +23,5 @@ class Api::ScoresApiController < Api::ApiController
   param :limit, Integer, desc: 'Number of records which will be returned'
   def map
     render json: { records: Score.map_scores(params) }
-  end
-
-  api :GET, '/maps', 'List of all maps, sorted by first record date.'
-  def maps
-    maps = Score.order(:created_at).pluck(:map).uniq
-    render json: { maps: maps }
   end
 end
