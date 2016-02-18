@@ -1,5 +1,6 @@
 class Api::ScoresApiController < Api::ApiController
   resource_description do
+    formats ['json']
     resource_id 'records'
   end
 
@@ -25,9 +26,14 @@ class Api::ScoresApiController < Api::ApiController
     render json: { records: Score.map_scores(params) }
   end
 
-  api :GET, '/maps', 'List of all maps, sorted by first record date.'
+  api :GET, '/maps', 'List of all maps'
+  param :sort, %w(alphabetical recent), desc: 'Default is alphabetical'
   def maps
-    maps = Score.order(:created_at).pluck(:map).uniq
+    maps = if params[:sort] == 'recent'
+             Score.order(:created_at).pluck(:map).uniq.reverse
+           else
+             WorldRecord.order(:map).pluck(:map).uniq
+           end
     render json: { maps: maps }
   end
 end
