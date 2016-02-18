@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   apipie
   namespace :api, defaults: { format: 'json' } do
-    get 'maps', to: 'scores_api#maps'
+    get 'maps', to: 'maps_api#maps'
     get 'map/:map', to: 'scores_api#map'
     get 'player/:player_id', to: 'scores_api#player'
     post 'new', to: 'scores_new#new'

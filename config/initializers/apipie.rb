@@ -4,6 +4,7 @@ Apipie.configure do |config|
   config.app_name = 'QLRace'
   config.doc_base_url = '/apidoc'
   config.layout = 'apidoc.html.slim'
+  config.reload_controllers = Rails.env.development?
   config.use_cache = Rails.env.production?
   config.validate = false
   # where is your API defined?

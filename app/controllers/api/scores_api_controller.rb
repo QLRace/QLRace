@@ -1,6 +1,5 @@
 class Api::ScoresApiController < Api::ApiController
   resource_description do
-    formats ['json']
     resource_id 'records'
   end
 
@@ -10,7 +9,7 @@ class Api::ScoresApiController < Api::ApiController
   end
 
   api :GET, '/player/:id', 'Player records'
-  param :id, Integer, desc: 'Player Steam ID', required: true
+  param :id, Integer, desc: 'SteamID64', required: true
   param_group :mode
   def player
     name, average, medals, scores = Score.player_scores(params)
@@ -24,16 +23,5 @@ class Api::ScoresApiController < Api::ApiController
   param :limit, Integer, desc: 'Number of records which will be returned'
   def map
     render json: { records: Score.map_scores(params) }
-  end
-
-  api :GET, '/maps', 'List of all maps'
-  param :sort, %w(alphabetical recent), desc: 'Default is alphabetical'
-  def maps
-    maps = if params[:sort] == 'recent'
-             Score.order(:created_at).pluck(:map).uniq.reverse
-           else
-             WorldRecord.order(:map).pluck(:map).uniq
-           end
-    render json: { maps: maps }
   end
 end
