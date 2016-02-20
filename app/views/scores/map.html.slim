@@ -1,23 +1,26 @@
-- provide(:title, @map[:name])
+- provide(:title, params[:map])
 
-.row
-  = render 'layouts/switches'
-  .col-md-4
-    h2 = @map[:name]
-    p Total Records: #{@map[:total_scores]}
-- if @map[:total_scores] != 0
-  table.table.table-striped.table-hover.table-condensed
-    thead
-      tr
-        th Rank
-        th Name
-        th Time
-        th Date
-    tbody
-      - @map[:scores].each do |score|
+- if @score
+  .row
+    = render 'layouts/switches'
+    .col-md-4
+      h2 = params[:map]
+      p Total Records: #{@map[:total_scores]}
+  - if @map[:total_scores] != 0
+    table.table.table-striped.table-hover.table-condensed
+      thead
         tr
-        td = score[:rank]
-        td = link_to score[:name], player_path(score[:player_id], mode_params(score[:mode]))
-        td = time_string(score[:time])
-        td = score[:date]
-  = paginate @map[:scores]
+          th Rank
+          th Name
+          th Time
+          th Date
+      tbody
+        - @map[:scores].each do |score|
+          tr
+          td = score[:rank]
+          td = link_to score[:name], player_path(score[:player_id], mode_params(score[:mode]))
+          td = time_string(score[:time])
+          td = score[:date]
+    = paginate @map[:scores]
+- else
+  p That map doesn't exist or doesn't have any records.
