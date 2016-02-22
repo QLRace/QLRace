@@ -10,7 +10,7 @@ class ScoresController < ApplicationController
     return if Score.where(map: params[:map]).count == 0
     scores = Score.map_scores params
     total_scores = scores.length
-    scores = Kaminari.paginate_array(scores).page(params[:page]).per(20)
+    scores = Kaminari.paginate_array(scores).page(params[:page]).per(25)
     @map = { total_scores: total_scores, scores: scores }
   end
 
@@ -33,6 +33,6 @@ class ScoresController < ApplicationController
     mode = params.fetch(:mode, -1).to_i
     records = mode.between?(0, 3) ? model.where(mode: mode) : model
     @recent = records.order(updated_at: :desc).includes(:player)
-              .page(params[:page]).per(20)
+              .page(params[:page]).per(25)
   end
 end
