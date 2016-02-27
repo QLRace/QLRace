@@ -12,7 +12,7 @@
       ul.list-inline
         li Average rank: #{@player[:average]}
         li Total Records: #{@player[:scores].length}
-  - if @player[:scores].length != 0
+  - if !@player[:scores].empty?
     table.table.table-striped.table-hover.table-condensed.sortable
       thead
         tr
