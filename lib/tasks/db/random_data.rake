@@ -1,7 +1,7 @@
 namespace :db do
   desc 'Insert Random data into DB'
   task random_data: :environment do
-    t = Time.now
+    t = Time.now.to_i
 
     maps = %w(campgrounds trinity skyward overlord infinity theedge jumpwerkz)
     Score.transaction do
@@ -17,6 +17,6 @@ namespace :db do
     end
 
     puts 'Done.'
-    puts "Inserting data took #{Time.now - t} seconds."
+    puts "Inserting data took #{Time.now.to_i - t} seconds."
   end
 end

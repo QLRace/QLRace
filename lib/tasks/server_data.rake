@@ -1,21 +1,19 @@
-namespace :server_data do
-  desc 'Get status of QLRace servers and save to cache'
-  task get: :environment do
-    require 'steam-condenser'
+desc 'Get status of QLRace servers and save to cache'
+task get_server_data: :environment do
+  require 'steam-condenser'
 
-    servers = []
-    ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
-    ports = [27_960, 27_961, 27_962, 27_970, 27_971]
-    ips.each do |ip|
-      ports.each { |port| servers << get_server_info(ip, port) }
-    end
-
-    ports = [27_960, 27_961, 27_962, 27_963, 27_964, 27_970, 27_971]
-    ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
-
-    data = { time: Time.now.strftime('%H:%M:%S'), servers: servers.compact }
-    Rails.cache.write('servers', data)
+  servers = []
+  ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
+  ports = [27_960, 27_961, 27_962, 27_970, 27_971]
+  ips.each do |ip|
+    ports.each { |port| servers << get_server_info(ip, port) }
   end
+
+  ports = [27_960, 27_961, 27_962, 27_963, 27_964, 27_970, 27_971]
+  ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
+
+  data = { time: Time.now.utc.strftime('%H:%M:%S'), servers: servers.compact }
+  Rails.cache.write('servers', data)
 end
 
 def get_server_info(ip, port)
