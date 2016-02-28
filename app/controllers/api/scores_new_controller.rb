@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Api::ScoresNewController < Api::ApiController
   before_action :authenticate, :check_score
 

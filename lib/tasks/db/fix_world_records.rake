@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 namespace :db do
   desc 'Fix world records after times have been deleted.'
   task fix_world_records: :environment do

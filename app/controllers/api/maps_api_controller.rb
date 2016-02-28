@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Api::MapsApiController < Api::ApiController
   resource_description do
     resource_id 'Maps'

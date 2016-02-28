@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 namespace :db do
   desc 'Insert Random data into DB'
   task random_data: :environment do
