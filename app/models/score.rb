@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: scores
@@ -15,11 +16,11 @@
 
 class Score < ActiveRecord::Base
   belongs_to :player
-  validates_presence_of :map, :mode, :player_id, :time, :match_guid, :player
-  validates_inclusion_of :mode, in: 0..3
-  validates_uniqueness_of :player_id, scope: [:map, :mode],
+  validates :map, :mode, :player_id, :time, :match_guid, :player, presence: true
+  validates :mode, inclusion: { in: 0..3 }
+  validates :player_id, uniqueness: { scope: [:map, :mode],
                                       message: 'Players may only have one record
-                                                per map for each mode.'
+                                                per map for each mode.' }
 
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
