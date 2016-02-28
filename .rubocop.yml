@@ -1,13 +1,19 @@
 AllCops:
   Include:
-    - '**/Rakefile'
+    - '**/*.rake'
     - '**/config.ru'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - '**/Rakefile'
   Exclude:
     - 'db/**/*'
+    - 'bin/**/*'
     - 'config/**/*'
-    - 'script/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
   TargetRubyVersion: 2.3
 
 Rails:
   Enabled: true
+
+Style/Documentation:
+  Enabled: false

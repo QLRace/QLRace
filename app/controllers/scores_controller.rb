@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScoresController < ApplicationController
   def home
     @total_scores = Score.count

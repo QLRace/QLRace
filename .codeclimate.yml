@@ -13,30 +13,27 @@ engines:
     enabled: true
   fixme:
     enabled: true
+  reek:
+    enabled: true
   rubocop:
     enabled: true
   scss-lint:
     enabled: true
+
 ratings:
   paths:
-  - Gemfile.lock
+  - "**.js"
   - "**.rb"
   - "**.rake"
   - "**.slim"
   - "**.scss"
-  - "**.js"
+  - Gemfile.lock
+
 exclude_paths:
-- app/assets/images/*
 - bin/*
 - config/**/*
 - db/**/*
-- log/*
 - public/*
 - vendor/**/*
 - app/assets/javascripts/sorttable.js
 - .rubocop.yml
-- config.ru
-- Gemfile
-- Guardfile
-- LICENSE
-- Rakefile
