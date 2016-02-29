@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.5.2'
 
 gem 'apipie-rails', '~> 0.3.5'
 gem 'bootstrap-sass', '~> 3.3'
