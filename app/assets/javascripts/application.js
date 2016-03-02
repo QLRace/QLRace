@@ -17,7 +17,7 @@
 //= require autocomplete-rails
 //= require bootstrap-sprockets
 //= require bootstrap-switch
-//= require sort-table
+//= require sorttable
 //= require turbolinks
 //= require_tree .
 Turbolinks.enableProgressBar();
