@@ -52,7 +52,7 @@ var sorttable = {
 		}
 	},
 	makeSortable: function(table) {
-		if (table['stInfo'])
+		if (table === null || table['stInfo'])
 			return;
 		if (!table.getElementsByTagName('thead').length) {
 			// table doesn't have a tHead. Since it should have, create one and
