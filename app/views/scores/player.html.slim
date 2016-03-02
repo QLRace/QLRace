@@ -13,7 +13,7 @@
         li Average rank: #{@player[:average]}
         li Total Records: #{@player[:scores].length}
   - if !@player[:scores].empty?
-    table.table.table-striped.table-hover.table-condensed.sortable
+    table#player-records.table.table-striped.table-hover.table-condensed.sortable
       thead
         tr
           th Map

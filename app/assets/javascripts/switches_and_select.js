@@ -8,7 +8,7 @@ $(document).ready(function() {
             } else {
                 value = state;
             }
-            Turbolinks.visit(updateUrlParameter(window.location.href, this.name, value));
+            Turbolinks.visit(updateUrlParameter(location.href, this.name, value));
         });
     } else if ($('#mode-select').length) {
         setSelect();
@@ -18,7 +18,7 @@ $(document).ready(function() {
                 Turbolinks.visit(location.pathname);
             } else {
                 mode = parseInt(mode, 10);
-                Turbolinks.visit(updateUrlParameter(window.location.href, 'mode', mode));
+                Turbolinks.visit(updateUrlParameter(location.href, 'mode', mode));
             }
         });
     }
@@ -48,7 +48,7 @@ setSwitches = function() {
 };
 
 urlParam = function(name) {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(location.href);
     return results === null ? null : results[1] || 0;
 };
 

@@ -21,3 +21,7 @@
 //= require turbolinks
 //= require_tree .
 Turbolinks.enableProgressBar();
+
+$(document).on('ready page:load', function(event) {
+    sorttable.makeSortable(document.getElementById('player-records'));
+});
