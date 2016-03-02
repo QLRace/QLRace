@@ -20,18 +20,15 @@ engines:
 
 ratings:
   paths:
-  - "**.js"
-  - "**.rb"
-  - "**.rake"
-  - "**.slim"
-  - "**.scss"
+  - app/**/*
+  - lib/**/*
   - Gemfile.lock
 
 exclude_paths:
 - bin/*
 - config/**/*
 - db/**/*
+- log/*
 - public/*
 - vendor/**/*
-- app/assets/javascripts/sorttable.js
 - .rubocop.yml
