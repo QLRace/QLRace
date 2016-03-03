@@ -25,10 +25,11 @@ ratings:
   - Gemfile.lock
 
 exclude_paths:
+- app/assets/images*
 - bin/*
 - config/**/*
 - db/**/*
 - log/*
-- public/*
+- public/**/*
 - vendor/**/*
 - .rubocop.yml
