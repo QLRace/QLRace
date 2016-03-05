@@ -7,16 +7,16 @@ table.table.table-striped.table-hover.table-condensed
       th Map
       th Mode
       th Player
-      th Time
-      th Date
+      th.text-right Time
+      th.text-right Date
   tbody
     - @recent_wrs.each do |wr|
       tr
         td = link_to wr.map, map_path(wr.map)
         td = mode_string(wr.mode)
         td = link_to wr.player.name, player_path(wr.player_id)
-        td = time_string(wr.time)
-        td = wr.updated_at
+        td.text-right = time_string(wr.time)
+        td.text-right = wr.updated_at
 = link_to 'More', recent_wrs_path
 
 table.table.table-striped.table-hover.table-condensed

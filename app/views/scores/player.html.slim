@@ -18,14 +18,14 @@
         tr
           th Map
           th Rank
-          th.sorttable_numeric Time
-          th Date
+          th.sorttable_numeric.text-right Time
+          th.text-right Date
       tbody
         - @player[:scores].each do |score|
           tr
             td = link_to score[:map], map_path(score[:map], mode_params(score[:mode]))
             td = score[:rank]
-            td = time_string(score[:time])
-            td = score[:date]
+            td.text-right = time_string(score[:time])
+            td.text-right = score[:date]
 - else
   p That player doesn't exist.
