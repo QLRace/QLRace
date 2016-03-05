@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-heading
+    = server[:name]
+  .panel-body
+    ul.list-unstyled
+      li IP: #{link_to server[:address], "steam://connect/#{server[:address]}"}
+      li Map: #{link_to server[:map], map_path(server[:map])}
+      li Players: #{server[:num_players]}
+      li
+        - if server[:players].present?
+          table.table.table-striped.table-hover.table-condensed
+            thead
+              tr
+                th Name
+                th.text-right Time
+            tbody
+              - server[:players].each do |player|
+                tr
+                  td = player[:name]
+                  td.text-right = time_string(player[:time])
