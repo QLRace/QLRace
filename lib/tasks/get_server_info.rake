@@ -1,5 +1,5 @@
 desc 'Get status of QLRace servers and save to cache'
-task get_server_data: :environment do
+task get_server_info: :environment do
   require 'steam-condenser'
 
   servers = []
