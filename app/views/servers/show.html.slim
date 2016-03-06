@@ -5,7 +5,7 @@ p I will make this look better sometime.
   h3 Last update: #{@servers[:time]} UTC
   .row
     - @servers[:servers].each do |server|
-      .col-md-4
+      .col-md-4.col-sm-6
         = render 'layouts/server_info', server: server
 - else
   p There was a problem getting server info.
