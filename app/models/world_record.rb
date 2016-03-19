@@ -17,8 +17,10 @@ class WorldRecord < ActiveRecord::Base
   belongs_to :player
   validates :map, :mode, :player_id, :time, :player, presence: true
   validates :mode, inclusion: { in: 0..3 }
-  validates :mode, uniqueness: { scope: :map, message: 'One record per mode for
-                                                       each map.' }
+  validates :mode, uniqueness: { scope: :map,
+                                 message: 'One record per mode for each map.' }
+  validates :time, numericality: { only_integer: true,
+                                   greater_than: 0 }
 
   def self.check(score)
     wr = world_record(score[:map], score[:mode])
