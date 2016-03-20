@@ -5,8 +5,7 @@ class Api::ScoresNewController < Api::ApiController
     return head :bad_request if @score.values.any?(&:blank?)
     return head :not_modified if map_disabled?
 
-    wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
-    return head :not_modified unless update_score? wr_time
+    return head :not_modified unless update_score?
     render json: @score
   end
 
@@ -24,10 +23,18 @@ class Api::ScoresNewController < Api::ApiController
     return head :bad_request
   end
 
-  private def update_score?(wr_time)
+  private def update_score?
+    score = Score.find_by(map: @score[:map], mode: @score[:mode],
+                          player_id: @score[:player_id])
+    if score
+      @score[:old_rank] = score.rank_
+      @score[:old_time] = score.time
+    end
+
+    wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
     if Score.new_score(@score)
       @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
-                                    time: @score[:time]).rank_
+                                    player_id: @score[:player_id]).rank_
       @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
       return true
     end
