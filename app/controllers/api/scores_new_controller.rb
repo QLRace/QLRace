@@ -24,11 +24,11 @@ class Api::ScoresNewController < Api::ApiController
   end
 
   private def update_score?
-    score = Score.find_by(map: @score[:map], mode: @score[:mode],
-                          player_id: @score[:player_id])
-    if score
-      @score[:old_rank] = score.rank_
-      @score[:old_time] = score.time
+    old_pb = Score.find_by(map: @score[:map], mode: @score[:mode],
+                           player_id: @score[:player_id])
+    if old_pb
+      @score[:old_rank] = old_pb.rank_
+      @score[:old_time] = old_pb.time
     end
 
     wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
