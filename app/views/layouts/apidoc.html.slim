@@ -10,5 +10,4 @@ html lang='en'
         .container
           = yield
           = render 'disqus' if Apipie.configuration.use_disqus?
-        .footer
-          = yield :apipie_footer
+          = render 'layouts/footer'
