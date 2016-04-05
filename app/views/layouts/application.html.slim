@@ -4,5 +4,8 @@ html lang='en'
   body
     = render 'layouts/navbar'
     .container
+      p
+        | GameTribe online race cup #{link_to '#gametribeqlrace', 'webchat.quakenet.org/?channels=gametribeqlrace'}, 6th April 20:00 CEST
+        |  #{link_to 'more info', 'esreality.com/post/2801132/gametribe-online-race-cup/'}
       = yield
       = render 'layouts/footer'
