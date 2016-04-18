@@ -4,7 +4,7 @@ task get_server_info: :environment do
 
   servers = []
   ips = %w(de.qlrace.com il.qlrace.com au.qlrace.com)
-  ports = [27_960, 27_961, 27_962, 27_970, 27_971]
+  ports = [27_960, 27_961, 27_962, 27_963, 27_970, 27_971, 27_972, 27_972]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
   end
