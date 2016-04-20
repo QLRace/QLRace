@@ -90,10 +90,17 @@ class Score < ActiveRecord::Base
   end
 
   def self.mode_from_params(params)
-    factory = params.fetch(:factory, 'turbo')
+    physics = if params[:physics]
+                params[:physics]
+              elsif params[:factory]
+                params[:factory]
+              else
+                'turbo'
+              end
+
     w = params.fetch(:weapons, 'true')
     weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
-    return weapons ? 2 : 3 if factory == 'classic'
+    return weapons ? 2 : 3 if physics == 'classic'
     weapons ? 0 : 1
   end
 

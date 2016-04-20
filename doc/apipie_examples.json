@@ -356,7 +356,7 @@
       "versions": [
         "1.0"
       ],
-      "query": "factory=classic&weapons=false",
+      "query": "physics=classic&weapons=false",
       "request_data": null,
       "response_data": {
         "name": "ᴿᴰᴷ",

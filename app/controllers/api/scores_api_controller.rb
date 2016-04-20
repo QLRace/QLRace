@@ -5,7 +5,7 @@ class Api::ScoresApiController < Api::ApiController
 
   def_param_group :mode do
     param :weapons, %w(true false), desc: 'Default is true'
-    param :factory, %w(turbo classic), desc: 'Default is turbo'
+    param :physics, %w(turbo classic), desc: 'Default is turbo'
   end
 
   api :GET, '/player/:id', 'Player records'

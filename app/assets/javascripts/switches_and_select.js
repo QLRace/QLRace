@@ -1,9 +1,9 @@
 $(document).ready(function() {
     if ($('#switches').length) {
         setSwitches();
-        $('input[name="factory"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        $('input[name="physics"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
             var value;
-            if (this.name === 'factory') {
+            if (this.name === 'physics') {
                 value = state ? 'turbo' : 'classic';
             } else {
                 value = state;
@@ -34,10 +34,10 @@ setSelect = function() {
 };
 
 setSwitches = function() {
-    if (urlParam('factory') === 'classic') {
-        $('input[name="factory"]').bootstrapSwitch('state', false, false);
+    if (urlParam('physics') === 'classic') {
+        $('input[name="physics"]').bootstrapSwitch('state', false, false);
     } else {
-        $('input[name="factory"]').bootstrapSwitch('state', true, true);
+        $('input[name="physics"]').bootstrapSwitch('state', true, true);
     }
 
     if (urlParam('weapons') === 'false') {

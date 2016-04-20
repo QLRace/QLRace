@@ -6,8 +6,8 @@ module ScoresHelper
   end
 
   def mode_params(mode)
-    params = [{}, { weapons: 'false' }, { factory: 'classic', weapons: 'true' },
-              { factory: 'classic', weapons: 'false' }]
+    params = [{}, { weapons: 'false' }, { physics: 'classic', weapons: 'true' },
+              { physics: 'classic', weapons: 'false' }]
     params[mode]
   end
 end
