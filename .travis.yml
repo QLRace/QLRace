@@ -5,7 +5,7 @@ addons:
 
 services: postgresql
 
-rvm: 2.3.0
+rvm: 2.3.1
 bundler_args: --without development
 cache: bundler
 
