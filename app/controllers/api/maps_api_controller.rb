@@ -7,9 +7,9 @@ class Api::MapsApiController < Api::ApiController
   param :sort, %w(alphabetical recent), desc: 'Default is alphabetical'
   def maps
     maps = if params[:sort] == 'recent'
-             Score.order(:created_at).pluck(:map).uniq.reverse
+             Score.order(:created_at).uniq.pluck(:map).reverse
            else
-             WorldRecord.order(:map).pluck(:map).uniq
+             WorldRecord.order(:map).uniq.pluck(:map)
            end
     render json: { maps: maps }
   end
