@@ -22,5 +22,11 @@ module Qlrace
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Use dalli(memcache) as default cache store.
+    config.cache_store = :dalli_store, {
+      namespace: 'qlrace',
+      expires_in: 1.hour
+    }
   end
 end

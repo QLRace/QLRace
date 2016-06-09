@@ -6,6 +6,7 @@ gem 'apipie-rails', '~> 0.3.5'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap-switch-rails'
 gem 'bootswatch-rails', '~> 3.3'
+gem 'dalli'
 gem 'fast_blank'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -45,8 +46,4 @@ group :development do
   gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'spring'
-end
-
-group :production do
-  gem 'dalli'
 end
