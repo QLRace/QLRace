@@ -65,6 +65,7 @@ class Score < ActiveRecord::Base
   def self.map_scores(params)
     mode = mode_from_params params
     map = params[:map]
+    limit = params[:limit].to_i > 0 ? "LIMIT '#{params[:limit]}'" : ''
     query = <<-SQL
     SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
            match_guid, scores.updated_at as date
@@ -73,6 +74,7 @@ class Score < ActiveRecord::Base
     ON scores.player_id = players.id
     WHERE mode = ? AND map = ?
     ORDER BY rank, date
+    #{limit}
     SQL
     Score.find_by_sql [query, mode, map]
   end
