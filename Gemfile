@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '4.2.6'
 
 gem 'apipie-rails', '~> 0.3.5'
