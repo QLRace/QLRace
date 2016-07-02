@@ -19,6 +19,7 @@ class Player < ActiveRecord::Base
 
   def self.update_player_name(id, name)
     player = Player.find_or_initialize_by(id: id)
+    name = name.gsub(/\^[0-9]/, '') # remove colour codes from names
     if player.name != name
       player.name = name.present? ? name : id
       player.save!
