@@ -15,7 +15,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:mode] = Integer(params[:mode])
     @score[:player_id] = Integer(params[:player_id])
     @score[:time] = Integer(params[:time])
-    @score[:name] = params[:name]
+    @score[:name] = params[:name].gsub(/\^[0-9]/, '')
     @score[:match_guid] = params[:match_guid]
     @score[:date] = params[:date] if params[:date].present?
     @score[:api_id] = @user.id
