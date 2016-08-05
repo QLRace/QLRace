@@ -18,6 +18,7 @@ gem 'pg', '~> 0.18.3'
 gem 'rails-jquery-autocomplete', '~> 1.0.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'skylight'
 gem 'slim-rails', '~> 3.0'
 gem 'steam-condenser', require: false
 gem 'turbolinks', '~> 2.0'
