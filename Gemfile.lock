@@ -43,7 +43,7 @@ GEM
     apipie-rails (0.3.6)
       json
     arel (6.0.3)
-    autoprefixer-rails (6.4.0)
+    autoprefixer-rails (6.4.0.1)
       execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -234,7 +234,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    skylight (0.10.5)
+    skylight (0.10.6)
       activesupport (>= 3.0.0)
     slim (3.0.7)
       temple (~> 0.7.6)
