@@ -31,21 +31,23 @@ group :test do
 end
 
 group :development, :test do
-  gem 'byebug'
+  gem 'byebug', platform: :mri
   gem 'factory_girl'
   gem 'faker'
   gem 'guard-rspec'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'spring-commands-rspec'
 end
 
 group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'listen', '~> 3.0.5'
   gem 'mina', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'
 end
