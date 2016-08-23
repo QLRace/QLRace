@@ -262,7 +262,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
-    tunemygc (1.0.68)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -316,7 +315,6 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   steam-condenser
-  tunemygc
   turbolinks (~> 2.0)
   uglifier (>= 1.3.0)
   whenever

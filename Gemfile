@@ -21,7 +21,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'skylight'
 gem 'slim-rails', '~> 3.0'
 gem 'steam-condenser', require: false
-gem 'tunemygc'
 gem 'turbolinks', '~> 2.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
