@@ -17,6 +17,7 @@ gem 'kaminari'
 gem 'newrelic_rpm'
 gem 'pg', '~> 0.19.0'
 gem 'rails-jquery-autocomplete', '~> 1.0.2'
+gem 'rollbar'
 gem 'ruby-progressbar'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
