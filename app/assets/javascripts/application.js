@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
@@ -20,8 +19,7 @@
 //= require sorttable
 //= require turbolinks
 //= require_tree .
-Turbolinks.enableProgressBar();
 
-$(document).on('ready page:load', function(event) {
-    sorttable.makeSortable(document.getElementById('player-records'));
-});
+document.addEventListener("turbolinks:load", function() {
+  sorttable.makeSortable(document.getElementById('player-records'));
+})

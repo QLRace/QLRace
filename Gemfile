@@ -11,7 +11,6 @@ gem 'dalli'
 gem 'fast_blank'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'newrelic_rpm'
@@ -23,7 +22,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails', '~> 3.0'
 gem 'steam-condenser', require: false
-gem 'turbolinks', '~> 2.0'
+gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 

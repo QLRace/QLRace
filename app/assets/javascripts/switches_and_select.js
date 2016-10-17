@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
     if ($('#switches').length) {
         setSwitches();
         $('input[name="physics"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
