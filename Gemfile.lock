@@ -40,10 +40,10 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
-    apipie-rails (0.3.6)
+    apipie-rails (0.3.7)
       json
     arel (6.0.3)
-    autoprefixer-rails (6.5.0.2)
+    autoprefixer-rails (6.5.1)
       execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -136,7 +136,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     nenv (0.3.0)
-    newrelic_rpm (3.16.3.323)
+    newrelic_rpm (3.17.0.325)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
