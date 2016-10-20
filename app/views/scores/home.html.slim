@@ -35,7 +35,7 @@ table.table.table-striped.table-hover.table-condensed
         - wrs.each do |wr|
           - if wr
             td
-              = link_to wr['name'], player_path(wr['player_id'], mode_params(wr['mode']))
+              = link_to wr.player.name, player_path(wr['player_id'], mode_params(wr['mode']))
               span.pull-right = time_string(wr['time'])
           - else
             td
