@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
   # Should maybe be in WorldRecordController?
   def most_wrs
     @mode = params.fetch(:mode, -1).to_i
+    @mode = -1 unless @mode.between?(0, 3)
     @players = WorldRecord.most_world_records @mode
   end
 end
