@@ -7,7 +7,7 @@ class ScoresController < ApplicationController
   end
 
   def map
-    return if Score.where(map: params[:map]).count == 0
+    return unless Score.where(map: params[:map]).exists?
     scores = Score.map_scores params
     total_scores = scores.length
     scores = Kaminari.paginate_array(scores).page(params[:page]).per(25)
