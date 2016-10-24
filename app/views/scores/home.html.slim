@@ -31,12 +31,12 @@ table.table.table-striped.table-hover.table-condensed.table-responsive
   tbody
     - @map_scores.each do |map, wrs|
       tr
-        td.col-xs-2 = link_to map, map_path(map)
+        td = link_to map, map_path(map)
         - wrs.each do |wr|
           - if wr
-            td.col-xs-2
+            td
               = link_to wr.player.name, player_path(wr['player_id'], mode_params(wr['mode']))
               span.pull-right = time_string(wr['time'])
           - else
-            td.col-xs-2
+            td
               span.pull-right -
