@@ -17,6 +17,6 @@ form.col-md-3.col-sm-4.col-xs-7
     tbody
       - @players.each do |p|
         tr
-          td = link_to p.name, player_path(p.player_id)
-          td = p.num_wrs
-          td = p.player.scores.count
+          td.col-xs-6 = link_to p.name, player_path(p.player_id)
+          td.col-xs-3 = p.num_wrs
+          td.col-xs-3 = p.player.scores.count

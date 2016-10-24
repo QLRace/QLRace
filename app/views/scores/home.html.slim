@@ -12,11 +12,11 @@ table.table.table-striped.table-hover.table-condensed
   tbody
     - @recent_wrs.each do |wr|
       tr
-        td = link_to wr.map, map_path(wr.map)
-        td = mode_string(wr.mode)
-        td = link_to wr.player.name, player_path(wr.player_id)
-        td.text-right = time_string(wr.time)
-        td.text-right = wr.updated_at
+        td.col-xs-2 = link_to wr.map, map_path(wr.map)
+        td.col-xs-2 = mode_string(wr.mode)
+        td.col-xs-2 = link_to wr.player.name, player_path(wr.player_id)
+        td.col-xs-1.text-right = time_string(wr.time)
+        td.col-xs-3.text-right = wr.updated_at
 = link_to 'More', recent_wrs_path
 
 table.table.table-striped.table-hover.table-condensed
@@ -31,12 +31,12 @@ table.table.table-striped.table-hover.table-condensed
   tbody
     - @map_scores.each do |map, wrs|
       tr
-        td = link_to map, map_path(map)
+        td.col-xs-2 = link_to map, map_path(map)
         - wrs.each do |wr|
           - if wr
-            td
+            td.col-xs-2
               = link_to wr.player.name, player_path(wr['player_id'], mode_params(wr['mode']))
               span.pull-right = time_string(wr['time'])
           - else
-            td
+            td.col-xs-2
               span.pull-right -
