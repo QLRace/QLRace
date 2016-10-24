@@ -48,5 +48,17 @@ class WorldRecord < ActiveRecord::Base
     world_record.save!
   end
 
+  def self.most_world_records(mode)
+    where_mode = mode.positive? ? " AND mode = #{mode}" : ''
+    query = <<-SQL
+    SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs
+    FROM world_records wr, players p
+    WHERE wr.player_id = p.id#{where_mode}
+    GROUP BY p.name, wr.player_id
+    ORDER BY num_wrs DESC
+    SQL
+    Score.find_by_sql [query]
+  end
+
   private_class_method :update_world_record
 end

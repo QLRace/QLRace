@@ -11,11 +11,12 @@ nav.navbar.navbar-default
       ul.nav.navbar-nav
         li.dropdown
           a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            | Recent
+            | Records
             span.caret
           ul.dropdown-menu
-            li = link_to 'Records', recent_scores_path
-            li = link_to 'World Records', recent_wrs_path
+            li = link_to 'Recent Records', recent_scores_path
+            li = link_to 'Recent World Records', recent_wrs_path
+            li = link_to 'Most World Records', most_wrs_path
         li
           = link_to 'Players', players_path
         li
