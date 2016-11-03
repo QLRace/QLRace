@@ -1,4 +1,4 @@
-$(document).ready(function() {
+switches_and_select = function() {
     if ($('#switches').length) {
         setSwitches();
         $('input[name="physics"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
@@ -22,7 +22,7 @@ $(document).ready(function() {
             }
         });
     }
-});
+};
 
 setSelect = function() {
     var mode = parseInt(urlParam('mode'), 10);

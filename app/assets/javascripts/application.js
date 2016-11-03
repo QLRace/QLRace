@@ -20,8 +20,9 @@
 //= require sorttable
 //= require turbolinks
 //= require_tree .
-Turbolinks.enableProgressBar();
+Turbolinks.ProgressBar.enable();
 
-$(document).on('ready page:load', function(event) {
-  sorttable.makeSortable(document.getElementById('player-records'));
+$(document).on('ready page:load page:restore', function(event) {
+    switches_and_select();
+    sorttable.makeSortable(document.getElementById('player-records'));
 })
