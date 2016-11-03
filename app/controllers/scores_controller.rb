@@ -1,4 +1,8 @@
 class ScoresController < ApplicationController
+  # CSRF is not needed since GET requests are idempotent
+  skip_before_action :verify_authenticity_token
+  caches_page :home
+
   def home
     @total_scores = Score.count
     @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
