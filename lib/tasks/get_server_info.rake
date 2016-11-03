@@ -4,7 +4,7 @@ task get_server_info: :environment do
 
   servers = []
   de_ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
-  ips = [de_ip, 'il.qlrace.com' ,'au.qlrace.com']
+  ips = [de_ip, 'il.qlrace.com', 'au.qlrace.com']
   ports = [27_960, 27_961, 27_962, 27_963, 27_970, 27_971, 27_972, 27_973]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
