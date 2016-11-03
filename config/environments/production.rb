@@ -75,6 +75,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Cache directory for actionpack-page_caching
-  # https://github.com/rails/actionpack-page_caching/wiki
+  # https://github.com/rails/actionpack-page_caching
   config.action_controller.page_cache_directory = Rails.public_path
 end

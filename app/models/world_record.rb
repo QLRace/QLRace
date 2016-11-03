@@ -39,15 +39,6 @@ class WorldRecord < ActiveRecord::Base
     WorldRecord.find_or_initialize_by(map: map, mode: mode)
   end
 
-  def self.update_world_record(world_record, score)
-    world_record.time = score[:time]
-    world_record.player_id = score[:player_id]
-    world_record.match_guid = score[:match_guid]
-    world_record.api_id = score[:api_id]
-    world_record.updated_at = score[:date] if score[:date]
-    world_record.save!
-  end
-
   def self.most_world_records(mode)
     where_mode = mode != -1 ? " AND mode = #{mode}" : ''
     query = <<-SQL
@@ -58,6 +49,15 @@ class WorldRecord < ActiveRecord::Base
     ORDER BY num_wrs DESC
     SQL
     Score.find_by_sql [query]
+  end
+
+  def self.update_world_record(world_record, score)
+    world_record.time = score[:time]
+    world_record.player_id = score[:player_id]
+    world_record.match_guid = score[:match_guid]
+    world_record.api_id = score[:api_id]
+    world_record.updated_at = score[:date] if score[:date]
+    world_record.save!
   end
 
   private_class_method :update_world_record

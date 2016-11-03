@@ -20,3 +20,6 @@
 
 # Ignore byebug history file
 .byebug_history
+
+# Ignore index.html page cache
+public/index.html
