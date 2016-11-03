@@ -32,12 +32,11 @@ class Api::ScoresNewController < Api::ApiController
     end
 
     wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
-    if Score.new_score(@score)
-      @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
-                                    player_id: @score[:player_id]).rank_
-      @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
-      return true
-    end
+    return unless Score.new_score(@score)
+    @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
+                                  player_id: @score[:player_id]).rank_
+    @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
+    true
   end
 
   private def map_disabled?
