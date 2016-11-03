@@ -30,6 +30,7 @@ def get_server_info(ip, port)
 
   players.sort_by! { |k| k[:time] }
   num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
+  ip = 'de.qlrace.com' if ip == 'localhost'
   { name: info[:server_name], address: "#{ip}:#{port}",
     map: info[:map_name].downcase, num_players: num_players, players: players }
 rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError
