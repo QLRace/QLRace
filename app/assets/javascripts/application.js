@@ -23,6 +23,8 @@
 Turbolinks.ProgressBar.enable();
 
 $(document).on('ready page:load page:restore', function(event) {
-    switches_and_select();
-    sorttable.makeSortable(document.getElementById('player-records'));
-})
+    if (/player/.test(window.location.href)) {
+        switches_and_select();
+        sorttable.makeSortable(document.getElementById('player-records'));
+    }
+});
