@@ -25,4 +25,4 @@ Turbolinks.ProgressBar.enable();
 $(document).on('ready page:load page:restore', function(event) {
     switches_and_select();
     sorttable.makeSortable(document.getElementById('player-records'));
-})
+});
