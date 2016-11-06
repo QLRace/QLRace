@@ -59,24 +59,25 @@ class Score < ActiveRecord::Base
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
-    [p.name, avg.round(2), medals, scores]
+    { name: p.name, id: p.id, average: avg,
+      medals: medals, scores: scores }
   end
 
   def self.map_scores(params)
     mode = mode_from_params params
     map = params[:map]
-    limit = params[:limit].to_i > 0 ? "LIMIT '#{params[:limit]}'" : ''
+    limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
     query = <<-SQL
     SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
            match_guid, scores.updated_at as date
     FROM scores
     INNER JOIN players
     ON scores.player_id = players.id
-    WHERE mode = ? AND map = ?
+    WHERE mode = :mode AND map = :map
     ORDER BY rank, date
-    #{limit}
+    LIMIT :limit
     SQL
-    Score.find_by_sql [query, mode, map]
+    Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
   end
 
   def self.player_score(map, mode, player_id)
