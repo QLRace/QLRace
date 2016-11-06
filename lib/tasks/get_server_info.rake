@@ -3,8 +3,7 @@ task get_server_info: :environment do
   require 'steam-condenser'
 
   servers = []
-  de_ip = Rails.env.production? ? 'localhost' : 'de.qlrace.com'
-  ips = [de_ip, 'il.qlrace.com', 'au.qlrace.com']
+  ips = ['de.qlrace.com', 'il.qlrace.com', 'au.qlrace.com']
   ports = [27_960, 27_961, 27_962, 27_963, 27_970, 27_971, 27_972, 27_973]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
@@ -30,7 +29,6 @@ def get_server_info(ip, port)
 
   players.sort_by! { |k| k[:time] }
   num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
-  ip = 'de.qlrace.com' if ip == 'localhost'
   { name: info[:server_name], address: "#{ip}:#{port}",
     map: info[:map_name].downcase, num_players: num_players, players: players }
 rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError

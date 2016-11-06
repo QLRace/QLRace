@@ -7,7 +7,7 @@ require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 #  deploy_to    - Path to deploy into.
 #  repository   - Git repo to clone from. (needed by mina/git)
 #  branch       - Branch name to deploy. (needed by mina/git)
-set :domain, 'de.qlrace.com'
+set :domain, 'qlrace.com'
 set :deploy_to, '/var/www/qlrace'
 set :repository, 'https://github.com/QLRace/QLRace.git'
 set :branch, 'master'
