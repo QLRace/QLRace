@@ -59,7 +59,7 @@ class Score < ActiveRecord::Base
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
-    { name: p.name, id: p.id, average: avg,
+    { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, scores: scores }
   end
 
