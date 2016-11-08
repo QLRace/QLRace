@@ -5,9 +5,9 @@
     = render 'layouts/switches'
     .col-md-4
       h2 = params[:map]
-      p Total Records: #{@map[:total_scores]}
+      p Records: #{@map[:total_scores]}
   - if @map[:total_scores] != 0
-    table.table.table-striped.table-hover.table-condensed
+    table.table.table-striped.table-hover.table-xtra-condensed
       thead
         tr
           th Rank

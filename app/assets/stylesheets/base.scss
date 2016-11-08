@@ -30,6 +30,15 @@ caption {
   }
 }
 
+.table-xtra-condensed > thead > tr > th,
+.table-xtra-condensed > tbody > tr > th,
+.table-xtra-condensed > tfoot > tr > th,
+.table-xtra-condensed > thead > tr > td,
+.table-xtra-condensed > tbody > tr > td,
+.table-xtra-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
 .ui-autocomplete {
   // -moz-background-clip: padding;
   // -webkit-background-clip: padding-box;

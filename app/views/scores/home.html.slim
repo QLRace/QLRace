@@ -1,25 +1,27 @@
 p #{@total_scores} total records on #{@map_scores.length} maps
 
-table.table.table-striped.table-hover.table-condensed
-  caption Recent World Records
-  thead
-    tr
-      th Map
-      th Mode
-      th Player
-      th.text-right Time
-      th.text-right Date
-  tbody
-    - @recent_wrs.each do |wr|
+table.table.table-striped.table-hover.table-xtra-condensed
+    caption Recent World Records
+    thead
       tr
-        td.col-xs-2 = link_to wr.map, map_path(wr.map)
-        td.col-xs-2 = mode_string(wr.mode)
-        td.col-xs-2 = link_to wr.player.name, player_path(wr.player_id)
-        td.col-xs-1.text-right = time_string(wr.time)
-        td.col-xs-3.text-right = wr.updated_at
+        th Map
+        th Mode
+        th Player
+        th.text-right Time
+        th.text-right Date
+    tbody
+      - @recent_wrs.each do |wr|
+        tr
+          td = link_to wr.map, map_path(wr.map)
+          td = mode_string(wr.mode)
+          td = link_to wr.player.name, player_path(wr.player_id)
+          td
+            span.pull-right = time_string(wr.time)
+          td
+            span.pull-right = wr.updated_at
 = link_to 'More', recent_wrs_path
 
-table.table.table-striped.table-hover.table-condensed.table-responsive
+table.table.table-striped.table-hover.table-xtra-condensed
   caption World Records
   thead
     tr

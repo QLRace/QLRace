@@ -1,14 +1,14 @@
 - provide(:title, 'Players')
 
 - if @total_players != 0
-  table.table.table-striped.table-hover.table-condensed
-    caption Found #{@total_players} Players
+  table.table.table-striped.table-hover.table-xtra-condensed
+    caption = 'Found '  + pluralize(@total_players, 'player')
     thead
       tr
         th Name
         th Steam ID
         th Records
-        th Current WRs
+        th WRs
     tbody
       - @players.each do |player|
         tr
@@ -17,3 +17,5 @@
           td.col-xs-2 = player.scores.count
           td.col-xs-2 = player.world_records.count
   = paginate @players
+- else
+  p No players were found
