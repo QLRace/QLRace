@@ -12,7 +12,9 @@ class Api::ScoresApiController < Api::ApiController
   param :id, Integer, desc: 'SteamID64', required: true
   param_group :mode
   def player
-    render json: Score.player_scores(params)
+    p_scores = Score.player_scores(params)
+    p_scores[:records] = p_scores.delete :scores
+    render json: p_scores
   end
 
   api :GET, '/map/:map', 'Map records'
