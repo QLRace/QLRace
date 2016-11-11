@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :db do
   desc 'Update player names using steam api.'
   task update_player_names: :environment do

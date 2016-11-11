@@ -18,5 +18,5 @@ Rails:
 Style/Documentation:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
+Style/ClassAndModuleChildren:
   Enabled: false

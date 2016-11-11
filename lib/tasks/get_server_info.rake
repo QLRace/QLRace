@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 desc 'Get status of QLRace servers and save to cache'
 task get_server_info: :environment do
   require 'steam-condenser'

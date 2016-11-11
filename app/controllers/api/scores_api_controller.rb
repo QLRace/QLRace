@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Api::ScoresApiController < Api::ApiController
   resource_description do
     resource_id 'records'

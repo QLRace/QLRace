@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WorldRecordObserver < ActiveRecord::Observer
   def after_update(_record)
     delete_page_cache 'index.html'
