@@ -1,4 +1,7 @@
-- provide(:title, 'Recent World Records')
+- if @wrs
+  - provide(:title, 'Recent World Records')
+- else
+  - provide(:title, 'Recent Records')
 
 form.col-md-3.col-sm-4.col-xs-7
   label for='mode' Mode
