@@ -53,7 +53,7 @@ GEM
     apipie-rails (0.3.7)
       json
     arel (6.0.4)
-    autoprefixer-rails (6.7.0)
+    autoprefixer-rails (6.7.2)
       execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)

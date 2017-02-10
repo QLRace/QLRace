@@ -52,7 +52,7 @@ group :development do
   gem 'mina', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring'
 end
