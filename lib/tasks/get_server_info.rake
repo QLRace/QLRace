@@ -10,6 +10,9 @@ task get_server_info: :environment do
     ports.each { |port| servers << get_server_info(ip, port) }
   end
 
+  # RU server
+  servers << get_server_info('91.226.93.118', 27_970)
+
   ports = [27_960, 27_961, 27_962, 27_970]
   ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
 
