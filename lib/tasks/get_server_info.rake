@@ -2,6 +2,7 @@
 desc 'Get status of QLRace servers and save to cache'
 task get_server_info: :environment do
   require 'steam-condenser'
+  SteamSocket.timeout = 500
 
   servers = []
   ips = ['de.qlrace.com', 'il.qlrace.com', 'au.qlrace.com']
@@ -10,8 +11,10 @@ task get_server_info: :environment do
     ports.each { |port| servers << get_server_info(ip, port) }
   end
 
-  # RU server
-  servers << get_server_info('91.226.93.118', 27_970)
+  # RU servers
+  (27_970..27_989).each do |port|
+    servers << get_server_info('ru.qlrace.com', port)
+  end
 
   ports = [27_960, 27_961, 27_962, 27_970]
   ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
