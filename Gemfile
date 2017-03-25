@@ -2,12 +2,11 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', groups: [:development, :test]
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.3.5'
 gem 'bootstrap-sass', '~> 3.3'
-gem 'bootstrap-switch-rails'
 gem 'bootswatch-rails', '~> 3.3'
 gem 'dalli'
 gem 'fast_blank'

@@ -12,7 +12,6 @@ A leaderboard site for Quake Live race made using Ruby on Rails. The race plugin
 - [PostgreSQL](http://www.postgresql.org/) Object-Relational DBMS
 - [bootstrap-sass](https://github.com/twbs/bootstrap-sass) Official Sass port of [Bootstrap](http://getbootstrap.com/)
 - [bootswatch-rails](https://github.com/maxim/bootswatch-rails) SCSS versions of [Bootswatch themes](https://bootswatch.com/)
-- [bootstrap-switch-rails](https://github.com/manuelvanrijn/bootstrap-switch-rails) Turns checkboxes and radio buttons to toggle switches
 - [slim-rails](https://github.com/slim-template/slim-rails) Template language(replaces ERB)
 - [Kaminari](https://github.com/amatsuda/kaminari) Paginator
 - [Apipie-rails](https://github.com/Apipie/apipie-rails) API Documentation Tool
