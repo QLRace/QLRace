@@ -5,19 +5,17 @@ task get_server_info: :environment do
   SteamSocket.timeout = 500
 
   servers = []
-  ips = ['de.qlrace.com', 'il.qlrace.com', 'au.qlrace.com']
-  ports = [27_960, 27_961, 27_962, 27_963, 27_970, 27_971, 27_972, 27_973]
+  
+  # Tuna, Pork, Sorgy, Hydra Servers (DE)
+  ports = [27_970, 27_971, 27_980, 27_981]
+  ports.each { |port| servers << get_server_info('45.76.92.77', port) }
+
+  # DF Physics Servers (EU AND NA)
+  ips = ['45.77.65.92', '149.28.122.125']
+  ports = [27_960, 27_961, 27_962]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
   end
-
-  # RU servers
-  (27_970..27_989).each do |port|
-    servers << get_server_info('ru.qlrace.com', port)
-  end
-
-  ports = [27_960, 27_961, 27_962, 27_970]
-  ports.each { |port| servers << get_server_info('kr.qlrace.com', port) }
 
   data = { time: Time.now.utc.strftime('%H:%M:%S'), servers: servers.compact }
   Rails.cache.write('servers', data)
