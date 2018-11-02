@@ -20,4 +20,7 @@ form.col-md-3.col-sm-4.col-xs-7
         tr
           td.col-xs-6 = link_to p.name, player_path(p.player_id)
           td.col-xs-3 = p.num_wrs
-          td.col-xs-3 = p.player.scores.count
+          - if @mode != -1
+            td.col-xs-3 = p.player.scores.where(mode: @mode).count
+          - else
+            td.col-xs-3 = p.player.scores.count
