@@ -25,6 +25,8 @@ class Api::ScoresNewController < Api::ApiController
   end
 
   private def update_score?
+    @score[:old_total_records] = Score.where(map: @score[:map], mode: @score[:mode]).count
+
     old_pb = Score.find_by(map: @score[:map], mode: @score[:mode],
                            player_id: @score[:player_id])
     if old_pb
@@ -37,6 +39,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
                                   player_id: @score[:player_id]).rank_
     @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
+    @score[:total_records] = Score.where(map: @score[:map], mode: @score[:mode]).count
     true
   end
 
