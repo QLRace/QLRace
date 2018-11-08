@@ -19,7 +19,7 @@ gem 'pg', '~> 0.21'
 gem 'rails-jquery-autocomplete', '~> 1.0.2'
 gem 'rails-observers', '0.1.2'
 gem 'rollbar'
-gem 'ruby-progressbar'
+gem 'ruby-progressbar', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails', '~> 3.0'
@@ -29,17 +29,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
 group :test do
-  gem 'capybara'
   gem 'database_cleaner'
 end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'factory_girl'
   gem 'faker'
-  gem 'guard-rspec'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -51,6 +46,5 @@ group :development do
   gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'spring'
-  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
 end
