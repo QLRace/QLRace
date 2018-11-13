@@ -1,5 +1,6 @@
 AllCops:
   Include:
+    - '**/*.rb'
     - '**/*.rake'
     - '**/config.ru'
     - '**/Gemfile'

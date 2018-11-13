@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 gem 'rails', '4.2.10'
 
 gem 'actionpack-page_caching'

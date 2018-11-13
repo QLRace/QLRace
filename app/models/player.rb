@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: players
@@ -10,8 +11,8 @@
 #
 
 class Player < ActiveRecord::Base
-  has_many :scores
-  has_many :world_records
+  has_many :scores, dependent: :destroy
+  has_many :world_records, dependent: :destroy
   validates :name, presence: true
 
   def self.search(search)
@@ -22,7 +23,8 @@ class Player < ActiveRecord::Base
     player = Player.find_or_initialize_by(id: id)
     name = name.gsub(/\^[0-9]/, '') # remove colour codes from names
     return unless player.name != name
-    player.name = name.present? ? name : id
+
+    player.name = name.presence || id
     player.save!
   end
 end

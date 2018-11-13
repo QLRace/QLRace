@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ScoresController < ApplicationController
   # CSRF is not needed since GET requests are idempotent
   skip_before_action :verify_authenticity_token
@@ -13,6 +14,7 @@ class ScoresController < ApplicationController
 
   def map
     return unless Score.where(map: params[:map]).exists?
+
     scores = Score.map_scores params
     total_scores = scores.length
     scores = Kaminari.paginate_array(scores).page(params[:page]).per(25)
@@ -33,10 +35,12 @@ class ScoresController < ApplicationController
     render 'recent'
   end
 
-  private def get_recent_records(model)
+  private
+
+  def get_recent_records(model)
     mode = params.fetch(:mode, -1).to_i
     records = mode.between?(0, 3) ? model.where(mode: mode) : model
     @recent = records.order(updated_at: :desc).includes(:player)
-              .page(params[:page]).per(25)
+                     .page(params[:page]).per(25)
   end
 end

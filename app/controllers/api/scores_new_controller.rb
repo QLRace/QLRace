@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Api::ScoresNewController < Api::ApiController
   before_action :authenticate, :check_score
 
@@ -7,10 +8,13 @@ class Api::ScoresNewController < Api::ApiController
     return head :not_modified if map_disabled?
 
     return head :not_modified unless update_score?
+
     render json: @score
   end
 
-  private def check_score
+  private
+
+  def check_score
     @score = {}
     @score[:map] = params[:map].downcase
     @score[:mode] = Integer(params[:mode])
@@ -21,11 +25,12 @@ class Api::ScoresNewController < Api::ApiController
     @score[:date] = params[:date] if params[:date].present?
     @score[:api_id] = @user.id
   rescue NoMethodError, TypeError, ArgumentError
-    return head :bad_request
+    head :bad_request
   end
 
-  private def update_score?
-    @score[:old_total_records] = Score.where(map: @score[:map], mode: @score[:mode]).count
+  def update_score?
+    @score[:old_total_records] = Score.where(map: @score[:map],
+                                             mode: @score[:mode]).count
 
     old_pb = Score.find_by(map: @score[:map], mode: @score[:mode],
                            player_id: @score[:player_id])
@@ -36,16 +41,18 @@ class Api::ScoresNewController < Api::ApiController
 
     wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
     return unless Score.new_score(@score)
+
     @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
                                   player_id: @score[:player_id]).rank_
     @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
-    @score[:total_records] = Score.where(map: @score[:map], mode: @score[:mode]).count
+    @score[:total_records] = Score.where(map: @score[:map],
+                                         mode: @score[:mode]).count
     true
   end
 
-  private def map_disabled?
-    disabled_maps = %w(q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
-                       q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2)
+  def map_disabled?
+    disabled_maps = %w[q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
+                       q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2]
     disabled_maps.include? @score[:map]
   end
 end

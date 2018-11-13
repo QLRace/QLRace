@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :db do
   desc 'Fix world records after times have been deleted.'
   task fix_world_records: :environment do
@@ -15,6 +16,7 @@ namespace :db do
           progress.increment
           s = Score.where(map: map, mode: mode).order(:time, :updated_at).first
           next if s.nil?
+
           WorldRecord.create!(s.attributes.except('id'))
         end
       end

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 class Api::ScoresApiController < Api::ApiController
   resource_description do
     resource_id 'records'
   end
 
   def_param_group :mode do
-    param :weapons, %w(true false), desc: 'Default is true'
-    param :physics, %w(turbo classic), desc: 'Default is turbo'
+    param :weapons, %w[true false], desc: 'Default is true'
+    param :physics, %w[turbo classic], desc: 'Default is turbo'
   end
 
   api :GET, '/player/:id', 'Player records'

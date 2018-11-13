@@ -1,11 +1,12 @@
 # frozen_string_literal: true
+
 desc 'Get status of QLRace servers and save to cache'
 task get_server_info: :environment do
   require 'steam-condenser'
   SteamSocket.timeout = 500
 
   servers = []
-  
+
   # Tuna, Pork, Sorgy, Hydra Servers (DE)
   ports = [27_970, 27_971, 27_980, 27_981]
   ports.each { |port| servers << get_server_info('45.76.92.77', port) }
@@ -37,5 +38,5 @@ def get_server_info(ip, port)
   { name: info[:server_name], address: "#{ip}:#{port}",
     map: info[:map_name].downcase, num_players: num_players, players: players }
 rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError
-  return
+  nil
 end

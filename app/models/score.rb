@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: scores
@@ -20,7 +21,7 @@ class Score < ActiveRecord::Base
   validates :mode, inclusion: { in: 0..3 }
   validates :time, numericality: { only_integer: true,
                                    greater_than: 0 }
-  validates :player_id, uniqueness: { scope: [:map, :mode],
+  validates :player_id, uniqueness: { scope: %i[map mode],
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
 
@@ -104,6 +105,7 @@ class Score < ActiveRecord::Base
     w = params.fetch(:weapons, 'true')
     weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
     return weapons ? 2 : 3 if physics == 'classic'
+
     weapons ? 0 : 1
   end
 
