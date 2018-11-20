@@ -1,6 +1,5 @@
 # QLRace
 
-[![Build Status](https://travis-ci.org/QLRace/QLRace.svg)](https://travis-ci.org/QLRace/QLRace)
 [![Code Climate](https://codeclimate.com/github/QLRace/QLRace/badges/gpa.svg)](https://codeclimate.com/github/QLRace/QLRace)
 
 A leaderboard site for Quake Live race made using Ruby on Rails. The race plugins for [minqlx](https://github.com/MinoMino/minqlx) are [here](../../../minqlx-plugins).
