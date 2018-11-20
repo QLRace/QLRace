@@ -55,8 +55,8 @@ class Score < ActiveRecord::Base
     p.scores.where(mode: mode).order(:map).each do |score|
       rank = score.rank_
       scores << { map: score.map, mode: mode, rank: rank, time: score.time,
-                  match_guid: score.match_guid, id: score.id,
-                  date: score.updated_at }
+                  checkpoints: score.checkpoints, match_guid: score.match_guid,
+                  id: score.id, date: score.updated_at }
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
@@ -70,7 +70,7 @@ class Score < ActiveRecord::Base
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
     query = <<-SQL
     SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
-           match_guid, scores.updated_at as date
+           scores.checkpoints, match_guid, scores.updated_at as date
     FROM scores
     INNER JOIN players
     ON scores.player_id = players.id
@@ -90,6 +90,7 @@ class Score < ActiveRecord::Base
     score.match_guid = new_score[:match_guid]
     score.api_id = new_score[:api_id]
     score.updated_at = new_score[:date] if new_score[:date]
+    score.checkpoints = new_score[:checkpoints] if new_score[:checkpoints]
     score.save!
   end
 
