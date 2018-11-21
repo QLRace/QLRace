@@ -25,7 +25,8 @@ class Api::ScoresNewController < Api::ApiController
     @score[:date] = params[:date] if params[:date].present?
     @score[:api_id] = @user.id
     if params[:checkpoints].present? && params[:checkpoints].all? { |i| i.is_a? Integer }
-      @score[:checkpoints] = params[:checkpoints]
+      cps = params[checkpoints].select(&:positive?)
+      @score[:checkpoints] = cps unless cps.empty?
     end
   rescue NoMethodError, TypeError, ArgumentError
     head :bad_request
