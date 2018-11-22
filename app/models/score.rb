@@ -55,7 +55,9 @@ class Score < ActiveRecord::Base
     p.scores.where(mode: mode).order(:map).each do |score|
       rank = score.rank_
       scores << { map: score.map, mode: mode, rank: rank, time: score.time,
-                  checkpoints: score.checkpoints, match_guid: score.match_guid,
+                  checkpoints: score.checkpoints, speed_start: score.speed_start,
+                  speed_end: score.speed_end, speed_top: score.speed_top,
+                  speed_average: score.speed_average, match_guid: score.match_guid,
                   id: score.id, date: score.updated_at }
       medals[rank - 1] += 1 if rank.between?(1, 3)
     end
@@ -70,7 +72,8 @@ class Score < ActiveRecord::Base
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
     query = <<-SQL
     SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
-           scores.checkpoints, match_guid, scores.updated_at as date
+           scores.checkpoints, scores.speed_start, scores.speed_end, scores.speed_top,
+           scores.speed_average, match_guid, scores.updated_at as date
     FROM scores
     INNER JOIN players
     ON scores.player_id = players.id
