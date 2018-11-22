@@ -28,6 +28,10 @@ class Api::ScoresNewController < Api::ApiController
       cps = params[:checkpoints].select(&:positive?)
       @score[:checkpoints] = cps unless cps.empty?
     end
+    @score[:speed_start] = params[:speed_start] if params[:speed_start].present?
+    @score[:speed_end] = params[:speed_end] if params[:speed_end].present?
+    @score[:speed_top] = params[:speed_top] if params[:speed_top].present?
+    @score[:speed_average] = params[:speed_average] if params[:speed_average].present?
   rescue NoMethodError, TypeError, ArgumentError
     head :bad_request
   end
