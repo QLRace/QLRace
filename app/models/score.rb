@@ -42,7 +42,6 @@ class Score < ActiveRecord::Base
 
   def self.player_scores(params)
     mode = mode_from_params(params)
-    scores = []
     begin
       player_id = Integer(params[:player_id])
       p = Player.find(player_id)
@@ -51,17 +50,26 @@ class Score < ActiveRecord::Base
       # return name and avg as nil, medals and scores as empty arrays
       return { name: params[:player_id] }
     end
-    medals = [0, 0, 0]
-    p.scores.where(mode: mode).order(:map).each do |score|
-      rank = score.rank_
-      scores << { map: score.map, mode: mode, rank: rank, time: score.time,
-                  checkpoints: score.checkpoints, speed_start: score.speed_start,
-                  speed_end: score.speed_end, speed_top: score.speed_top,
-                  speed_average: score.speed_average, match_guid: score.match_guid,
-                  id: score.id, date: score.updated_at }
-      medals[rank - 1] += 1 if rank.between?(1, 3)
-    end
+
+    query = <<-SQL
+    SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
+    s.speed_start, s.speed_end, s.speed_top, s.speed_average,
+    s.match_guid, s.updated_at as date, s.time, (
+      SELECT (COUNT(*) + 1) FROM scores s_
+      WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
+    ) rank
+    FROM scores s
+    WHERE s.mode = :mode AND s.player_id = :player_id
+    ORDER BY map
+    SQL
+    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
+
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
+    medals = [
+      scores.count { |s| s[:rank] == 1},
+      scores.count { |s| s[:rank] == 2},
+      scores.count { |s| s[:rank] == 3}
+    ]
     { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, scores: scores }
   end
