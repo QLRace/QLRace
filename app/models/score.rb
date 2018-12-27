@@ -66,9 +66,9 @@ class Score < ActiveRecord::Base
 
     avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
     medals = [
-      scores.count { |s| s[:rank] == 1},
-      scores.count { |s| s[:rank] == 2},
-      scores.count { |s| s[:rank] == 3}
+      scores.count { |s| s[:rank] == 1 },
+      scores.count { |s| s[:rank] == 2 },
+      scores.count { |s| s[:rank] == 3 }
     ]
     { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, scores: scores }

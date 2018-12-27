@@ -17,7 +17,14 @@ namespace :db do
           s = Score.where(map: map, mode: mode).order(:time, :updated_at).first
           next if s.nil?
 
-          WorldRecord.create!(s.attributes.except('id'))
+          WorldRecord.create!(
+            s.attributes.except('id',
+                                'checkpoints',
+                                'speed_start',
+                                'speed_end',
+                                'speed_top',
+                                'speed_average')
+          )
         end
       end
     end
