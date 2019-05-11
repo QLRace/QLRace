@@ -12,11 +12,15 @@ task get_server_info: :environment do
   ports.each { |port| servers << get_server_info('45.76.92.77', port) }
 
   # DF Physics Servers (EU AND NA)
-  ips = ['45.77.65.92', '149.28.122.125']
+  ips = ['45.77.65.92', '107.191.48.9']
   ports = [27_960, 27_961, 27_962]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
   end
+  
+  # Chile servers
+  ports = [27_960, 27_961]
+  ports.each { |port| servers << get_server_info('186.64.120.137', port) }
 
   data = { time: Time.now.utc.strftime('%H:%M:%S'), servers: servers.compact }
   Rails.cache.write('servers', data)
