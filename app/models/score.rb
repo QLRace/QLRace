@@ -54,10 +54,13 @@ class Score < ActiveRecord::Base
     query = <<-SQL
     SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
     s.speed_start, s.speed_end, s.speed_top, s.speed_average,
-    s.match_guid, s.updated_at as date, s.time, (
+    s.match_guid, s.updated_at AS date, s.time, (
       SELECT (COUNT(*) + 1) FROM scores s_
       WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
-    ) rank
+    ) AS rank, (
+      SELECT COUNT(*) FROM scores s_
+      WHERE s_.map = s.map AND s_.mode = s.mode
+    ) AS total_records
     FROM scores s
     WHERE s.mode = :mode AND s.player_id = :player_id
     ORDER BY map
