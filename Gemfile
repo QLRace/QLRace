@@ -7,7 +7,7 @@ gem 'rails', '4.2.11.1'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
-gem 'bootstrap-sass', '~> 3.3'
+gem 'bootstrap-sass', '~> 3.4'
 gem 'bootswatch-rails', '~> 3.3'
 gem 'dalli'
 gem 'fast_blank'
