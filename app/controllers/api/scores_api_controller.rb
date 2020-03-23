@@ -6,8 +6,9 @@ class Api::ScoresApiController < Api::ApiController
   end
 
   def_param_group :mode do
+    param :mode,  [0, 1, 2, 3], desc: 'Default is 0, overrides weapons and physics params'
     param :weapons, %w[true false], desc: 'Default is true'
-    param :physics, %w[turbo classic], desc: 'Default is turbo'
+    param :physics, %w[pql turbo vql classic], desc: 'Default is turbo, turbo is same as pql, classic is same as vql'
   end
 
   api :GET, '/player/:id', 'Player records'

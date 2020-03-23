@@ -4,7 +4,7 @@ switches_and_select = function() {
         $('input[name="physics"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
             var value;
             if (this.name === 'physics') {
-                value = state ? 'turbo' : 'classic';
+                value = state ? 'pql' : 'vql';
             } else {
                 value = state;
             }
@@ -34,7 +34,7 @@ setSelect = function() {
 };
 
 setSwitches = function() {
-    if (urlParam('physics') === 'classic') {
+    if (urlParam('physics') === 'vql' || urlParam('physics') === 'classic') {
         $('input[name="physics"]').bootstrapSwitch('state', false, false);
     } else {
         $('input[name="physics"]').bootstrapSwitch('state', true, true);

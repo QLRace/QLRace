@@ -356,7 +356,7 @@
       "versions": [
         "1.0"
       ],
-      "query": "physics=classic&weapons=false",
+      "query": "physics=vql&weapons=false",
       "request_data": null,
       "response_data": {
         "name": "ᴿᴰᴷ",
