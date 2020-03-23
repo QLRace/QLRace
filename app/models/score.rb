@@ -82,7 +82,7 @@ class Score < ActiveRecord::Base
       medals[score[:rank] - 1] += 1 if score[:rank].between?(1, 3)
     end
 
-    avg = total/scores.count.to_f
+    avg = total/scores.size.to_f
 
     { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, scores: scores }
