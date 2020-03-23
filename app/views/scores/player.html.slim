@@ -2,7 +2,15 @@
 
 - if @player[:scores]
   .row
-    = render 'layouts/switches'
+    .col-md-4.col-sm-6.pull-right-mode
+      .panel.panel-default
+        .panel-heading Mode
+        .panel-body
+          select#mode-select.form-control
+            option value='0' PQL Weapons
+            option value='1' PQL Strafe
+            option value='2' VQL Weapons
+            option value='3' VQL Strafe
     .col-md-4
       h2 = link_to @player[:name], "http://steamcommunity.com/profiles/#{@player[:id]}"
       p

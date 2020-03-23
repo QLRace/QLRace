@@ -1,16 +1,5 @@
-switches_and_select = function() {
-    if ($('#switches').length) {
-        setSwitches();
-        $('input[name="physics"], input[name="weapons"]').on('switchChange.bootstrapSwitch', function(event, state) {
-            var value;
-            if (this.name === 'physics') {
-                value = state ? 'pql' : 'vql';
-            } else {
-                value = state;
-            }
-            Turbolinks.visit(updateUrlParameter(location.href, this.name, value));
-        });
-    } else if ($('#mode-select').length) {
+selects = function() {
+    if ($('#mode-select').length) {
         setSelect();
         $('#mode-select').change(function() {
             var mode = this.value;
@@ -18,7 +7,7 @@ switches_and_select = function() {
                 Turbolinks.visit(location.pathname);
             } else {
                 mode = parseInt(mode, 10);
-                Turbolinks.visit(updateUrlParameter(location.href, 'mode', mode));
+                Turbolinks.visit(location.pathname + '?mode=' + mode);
             }
         });
     }
@@ -27,23 +16,9 @@ switches_and_select = function() {
 setSelect = function() {
     var mode = parseInt(urlParam('mode'), 10);
     if (isNaN(mode) || (mode < 0 || mode > 3)) {
-        $('#mode-select').val(-1).change();
+        $('#mode-select').prop("selectedIndex", 0)
     } else {
         $('#mode-select').val(mode).change();
-    }
-};
-
-setSwitches = function() {
-    if (urlParam('physics') === 'vql' || urlParam('physics') === 'classic') {
-        $('input[name="physics"]').bootstrapSwitch('state', false, false);
-    } else {
-        $('input[name="physics"]').bootstrapSwitch('state', true, true);
-    }
-
-    if (urlParam('weapons') === 'false') {
-        $('input[name="weapons"]').bootstrapSwitch('state', false, false);
-    } else {
-        $('input[name="weapons"]').bootstrapSwitch('state', true, true);
     }
 };
 

@@ -16,13 +16,12 @@
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
 //= require bootstrap-sprockets
-//= require bootstrap-switch
 //= require sorttable
 //= require turbolinks
 //= require_tree .
 Turbolinks.ProgressBar.enable();
 
 $(document).on('ready page:load page:restore', function(event) {
-    switches_and_select();
+    selects();
     sorttable.makeSortable(document.getElementById('player-records'));
 });

@@ -6,7 +6,7 @@ class Api::ScoresApiController < Api::ApiController
   end
 
   def_param_group :mode do
-    param :mode,  [0, 1, 2, 3], desc: 'Default is 0, overrides weapons and physics params'
+    param :mode,  [0, 1, 2, 3], desc: 'Default is 0, overrides weapons and physics params. 0: PQL Weapons, 1: PQL Strafe, 2: VQL Weapons, 3: VQL Strafe,'
     param :weapons, %w[true false], desc: 'Default is true'
     param :physics, %w[pql turbo vql classic], desc: 'Default is turbo, turbo is same as pql, classic is same as vql'
   end
