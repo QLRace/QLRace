@@ -104,7 +104,11 @@ class Score < ActiveRecord::Base
     score.match_guid = new_score[:match_guid]
     score.api_id = new_score[:api_id]
     score.updated_at = new_score[:date] if new_score[:date]
-    score.checkpoints = new_score[:checkpoints] if new_score[:checkpoints]
+    if not params[:checkpoints].present?
+      score.checkpoints = []
+    else
+      score.checkpoints = new_score[:checkpoints]
+    end
     score.speed_start = new_score[:speed_start] if new_score[:speed_start]
     score.speed_end = new_score[:speed_end] if new_score[:speed_end]
     score.speed_top = new_score[:speed_top] if new_score[:speed_top]

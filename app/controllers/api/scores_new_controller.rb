@@ -26,7 +26,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:api_id] = @user.id
     if params[:checkpoints].present? && params[:checkpoints].all? { |i| i.is_a? Integer }
       cps = params[:checkpoints].select(&:positive?)
-      @score[:checkpoints] = cps unless cps.empty?
+      @score[:checkpoints] = cps
     end
     @score[:speed_start] = params[:speed_start] if params[:speed_start].present?
     @score[:speed_end] = params[:speed_end] if params[:speed_end].present?
