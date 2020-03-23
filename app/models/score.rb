@@ -25,6 +25,8 @@ class Score < ActiveRecord::Base
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
 
+  @cup_map = "kool_woodtory"
+
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
   end
@@ -53,8 +55,8 @@ class Score < ActiveRecord::Base
 
     query = <<-SQL
     SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
-    s.speed_start, s.speed_end, s.speed_top, s.speed_average,
-    s.match_guid, s.updated_at AS date, s.time, (
+    s.speed_end, s.speed_top, s.speed_average, s.match_guid,
+    s.updated_at AS date, s.time, (
       SELECT (COUNT(*) + 1) FROM scores s_
       WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
     ) AS rank, (
@@ -66,13 +68,22 @@ class Score < ActiveRecord::Base
     ORDER BY map
     SQL
     scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
+    
+    total = 0
+    medals = [0, 0, 0]
+    avg = 0.0
 
-    avg = scores.map { |s| s[:rank] }.reduce(0, :+) / scores.size.to_f
-    medals = [
-      scores.count { |s| s[:rank] == 1 },
-      scores.count { |s| s[:rank] == 2 },
-      scores.count { |s| s[:rank] == 3 }
-    ]
+    scores.each do |score|
+      if score[:map] == @cup_map
+        %w(checkpoints speed_start speed_end speed_top speed_average).each {|k| score[k] = nil}
+      end
+
+      total += score[:rank]
+      medals[score[:rank] - 1] += 1 if score[:rank].between?(1, 3)
+    end
+
+    avg = total/scores.count.to_f
+
     { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, scores: scores }
   end
@@ -92,7 +103,19 @@ class Score < ActiveRecord::Base
     ORDER BY rank, date
     LIMIT :limit
     SQL
-    Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
+    scores = Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
+
+    if map == @cup_map
+      scores.each do |score|
+        score.checkpoints = nil
+        score.speed_start = nil
+        score.speed_end = nil
+        score.speed_top = nil
+        score.speed_average = nil
+      end
+    end
+
+    return scores
   end
 
   def self.player_score(map, mode, player_id)
