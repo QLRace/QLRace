@@ -6,10 +6,4 @@ module ScoresHelper
                     'VQL Strafe']
     mode_strings[mode]
   end
-
-  def mode_params(mode)
-    params = [{}, { weapons: 'false' }, { physics: 'vql', weapons: 'true' },
-              { physics: 'vql', weapons: 'false' }]
-    params[mode]
-  end
 end

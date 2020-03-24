@@ -15,8 +15,12 @@ selects = function() {
 
 setSelect = function() {
     var mode = parseInt(urlParam('mode'), 10);
-    if (isNaN(mode) || (mode < 0 || mode > 3)) {
-        $('#mode-select').prop("selectedIndex", 0)
+    if (isNaN(mode)) {
+        mode = urlParam('weapons') === 'false' ? 1 : 0;
+        if (urlParam('physics') === 'vql' || urlParam('physics') === 'classic') mode += 2;
+    }
+    if (mode < 0 || mode > 3) {
+        $('#mode-select').prop('selectedIndex', 0);
     } else {
         $('#mode-select').val(mode).change();
     }

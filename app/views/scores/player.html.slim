@@ -31,7 +31,7 @@
       tbody
         - @player[:scores].each do |score|
           tr
-            td.col-xs-3 = link_to score[:map], map_path(score[:map], mode_params(score[:mode]))
+            td.col-xs-3 = link_to score[:map], map_path(score[:map], mode: score[:mode])
             td.col-xs-1 = score[:rank]
             td.col-xs-4.text-right = time_string(score[:time])
             td.col-xs-4.text-right = score[:date]

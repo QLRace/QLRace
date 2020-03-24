@@ -26,7 +26,7 @@
         - @map[:scores].each do |score|
           tr
           td.col-xs-1 = score[:rank]
-          td.col-xs-3 = link_to score[:name], player_path(score[:player_id], mode_params(score[:mode]))
+          td.col-xs-3 = link_to score[:name], player_path(score[:player_id], mode: score[:mode])
           td.col-xs-4.text-right = time_string(score[:time])
           td.col-xs-4.text-right = score[:date]
     = paginate @map[:scores]
