@@ -18,6 +18,7 @@ setSelect = function() {
     if (isNaN(mode)) {
         mode = urlParam('weapons') === 'false' ? 1 : 0;
         if (urlParam('physics') === 'vql' || urlParam('physics') === 'classic') mode += 2;
+        return
     }
     if (mode < 0 || mode > 3) {
         $('#mode-select').prop('selectedIndex', 0);
