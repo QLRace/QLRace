@@ -16,6 +16,7 @@ selects = function() {
 setSelect = function() {
     var mode = parseInt(urlParam('mode'), 10);
     if (isNaN(mode)) {
+        if (urlParam('weapons') === null && urlParam('physics') === null) return;
         mode = urlParam('weapons') === 'false' ? 1 : 0;
         if (urlParam('physics') === 'vql' || urlParam('physics') === 'classic') mode += 2;
     }
