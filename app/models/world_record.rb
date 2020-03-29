@@ -24,6 +24,8 @@ class WorldRecord < ActiveRecord::Base
   validates :time, numericality: { only_integer: true,
                                    greater_than: 0 }
 
+  @cup_map = 'kool_woodtory'
+
   def self.check(score)
     wr = world_record(score[:map], score[:mode])
     update_world_record(wr, score) if wr.time.nil? || score[:time] < wr.time
@@ -31,7 +33,7 @@ class WorldRecord < ActiveRecord::Base
 
   def self.map_scores
     map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
-    WorldRecord.order(:map).includes(:player).each do |world_record|
+    WorldRecord.where.not(map: @cup_map).order(:map).includes(:player).each do |world_record|
       map_scores[world_record.map][world_record.mode] = world_record
     end
     map_scores
@@ -46,7 +48,7 @@ class WorldRecord < ActiveRecord::Base
     query = <<-SQL
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs
     FROM world_records wr, players p
-    WHERE wr.player_id = p.id#{where_mode}
+    WHERE wr.player_id = p.id#{where_mode} AND map != 'kool_woodtory'
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL

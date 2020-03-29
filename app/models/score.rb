@@ -25,7 +25,7 @@ class Score < ActiveRecord::Base
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
 
-  @cup_map = "kool_woodtory"
+  @cup_map = 'kool_woodtory'
 
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
@@ -68,16 +68,13 @@ class Score < ActiveRecord::Base
     ORDER BY map
     SQL
     scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
-    
+    scores = scores.reject{|s| s.map == @cup_map}
+
     total = 0
     medals = [0, 0, 0]
     avg = 0.0
 
     scores.each do |score|
-      if score[:map] == @cup_map
-        %w(checkpoints speed_start speed_end speed_top speed_average).each {|k| score[k] = nil}
-      end
-
       total += score[:rank]
       medals[score[:rank] - 1] += 1 if score[:rank].between?(1, 3)
     end
@@ -104,16 +101,6 @@ class Score < ActiveRecord::Base
     LIMIT :limit
     SQL
     scores = Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
-
-    if map == @cup_map
-      scores.each do |score|
-        score.checkpoints = nil
-        score.speed_start = nil
-        score.speed_end = nil
-        score.speed_top = nil
-        score.speed_average = nil
-      end
-    end
 
     return scores
   end
