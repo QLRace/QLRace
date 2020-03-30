@@ -82,7 +82,7 @@ class Score < ActiveRecord::Base
     avg = total/scores.size.to_f
 
     { name: p.name, id: p.id, average: avg.round(2),
-      medals: medals, scores: scores }
+      medals: medals, records: scores }
   end
 
   def self.map_scores(params)

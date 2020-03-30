@@ -16,7 +16,7 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   def player
     p_scores = Score.player_scores(params)
-    p_scores[:records] = p_scores.delete :scores
+    p_scores[:id] = p_scores[:id].to_s
     render json: p_scores
   end
 
