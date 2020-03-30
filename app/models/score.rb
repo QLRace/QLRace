@@ -64,11 +64,10 @@ class Score < ActiveRecord::Base
       WHERE s_.map = s.map AND s_.mode = s.mode
     ) AS total_records
     FROM scores s
-    WHERE s.mode = :mode AND s.player_id = :player_id
+    WHERE s.mode = :mode AND s.player_id = :player_id AND s.map != :cup_map
     ORDER BY map
     SQL
-    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
-    scores = scores.reject{|s| s.map == @cup_map}
+    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id, cup_map: @cup_map }]
 
     total = 0
     medals = [0, 0, 0]
