@@ -25,7 +25,7 @@ class Score < ActiveRecord::Base
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
 
-  @cup_map = 'kool_woodtory'
+  @cup_map = 'kool_slopes'
 
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
