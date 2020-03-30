@@ -1,6 +1,6 @@
 - provide(:title, @player[:name])
 
-- if @player[:scores]
+- if @player[:records]
   .row
     .col-md-4.col-sm-6.pull-right-mode
       .panel.panel-default
@@ -19,8 +19,8 @@
         | #{image_tag 'bronze.png', size: '16', alt: 'bronze medal'} #{@player[:medals][2]}
       ul.list-inline
         li Average rank: #{@player[:average]}
-        li Total Records: #{@player[:scores].length}
-  - if !@player[:scores].empty?
+        li Total Records: #{@player[:records].length}
+  - if !@player[:records].empty?
     table#player-records.table.table-striped.table-hover.table-xtra-condensed.sortable.responsive
       thead
         tr
@@ -29,7 +29,7 @@
           th.sorttable_numeric.text-right Time
           th.text-right Date
       tbody
-        - @player[:scores].each do |score|
+        - @player[:records].each do |score|
           tr
             td.col-xs-3 = link_to score[:map], map_path(score[:map], mode: score[:mode])
             td.col-xs-1 = score[:rank]
