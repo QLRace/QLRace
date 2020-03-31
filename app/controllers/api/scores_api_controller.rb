@@ -34,4 +34,11 @@ class Api::ScoresApiController < Api::ApiController
     end
     render json: { records: Score.map_scores(params) }
   end
+
+  api :GET, '/record/:id', 'Record'
+  param :id, Integer, desc: 'Record Id', required: true
+  def record
+    r = Score.exists?(params[:record_id]) ? Score.find(params[:record_id]) : {}
+    render json: r
+  end
 end
