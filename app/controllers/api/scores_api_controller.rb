@@ -38,7 +38,14 @@ class Api::ScoresApiController < Api::ApiController
   api :GET, '/record/:id', 'Record'
   param :id, Integer, desc: 'Record Id', required: true
   def record
-    r = Score.exists?(params[:record_id]) ? Score.find(params[:record_id]) : {}
-    render json: r
+    if !Score.exists?(params[:record_id])
+      render json: {}
+      return
+    end
+    
+    s = Score.find(params[:record_id])
+    j = s.as_json.tap { |hash| hash['date'] = hash.delete 'updated_at' }
+    j['rank'] = s.rank_
+    render json: j
   end
 end
