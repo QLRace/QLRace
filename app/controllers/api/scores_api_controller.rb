@@ -38,14 +38,16 @@ class Api::ScoresApiController < Api::ApiController
   api :GET, '/record/:id', 'Record'
   param :id, Integer, desc: 'Record Id', required: true
   def record
-    unless Score.exists?(params[:record_id])
-      render json: {}
-      return
-    end
+    return render json: {} unless Score.exists?(params[:record_id])
 
     s = Score.find(params[:record_id])
+    if s.map == 'kool_slopes' && params[:key] != ENV['QLRACE_CUP_KEY']
+      return render json: {}
+    end
+
     j = s.as_json.tap { |hash| hash['date'] = hash.delete 'updated_at' }
     j['rank'] = s.rank_
+    j['name'] = s.player.name
     render json: j
   end
 end
