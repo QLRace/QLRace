@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::ApiController < ActionController::Base
+class Api::ApiController < ApplicationController
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   private

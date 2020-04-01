@@ -71,14 +71,13 @@ class Score < ActiveRecord::Base
 
     total = 0
     medals = [0, 0, 0]
-    avg = 0.0
 
     scores.each do |score|
       total += score[:rank]
       medals[score[:rank] - 1] += 1 if score[:rank].between?(1, 3)
     end
 
-    avg = total/scores.size.to_f
+    avg = total / scores.size.to_f
 
     { name: p.name, id: p.id, average: avg.round(2),
       medals: medals, records: scores }
@@ -99,9 +98,7 @@ class Score < ActiveRecord::Base
     ORDER BY rank, date
     LIMIT :limit
     SQL
-    scores = Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
-
-    return scores
+    Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
   end
 
   def self.player_score(map, mode, player_id)
@@ -113,11 +110,7 @@ class Score < ActiveRecord::Base
     score.match_guid = new_score[:match_guid]
     score.api_id = new_score[:api_id]
     score.updated_at = new_score[:date] if new_score[:date]
-    if not new_score[:checkpoints].present?
-      score.checkpoints = []
-    else
-      score.checkpoints = new_score[:checkpoints]
-    end
+    score.checkpoints = new_score[:checkpoints].presence || []
     score.speed_start = new_score[:speed_start] if new_score[:speed_start]
     score.speed_end = new_score[:speed_end] if new_score[:speed_end]
     score.speed_top = new_score[:speed_top] if new_score[:speed_top]
@@ -126,9 +119,8 @@ class Score < ActiveRecord::Base
   end
 
   def self.mode_from_params(params)
-    if %w(0 1 2 3).include? params[:mode]
-      return params[:mode].to_i
-    end
+    return params[:mode].to_i if %w[0 1 2 3].include? params[:mode]
+
     physics = if params[:physics]
                 params[:physics]
               elsif params[:factory]
@@ -139,7 +131,7 @@ class Score < ActiveRecord::Base
 
     w = params.fetch(:weapons, 'true')
     weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
-    return weapons ? 2 : 3 if %w(vql classic).include? physics
+    return weapons ? 2 : 3 if %w[vql classic].include? physics
 
     weapons ? 0 : 1
   end

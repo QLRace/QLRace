@@ -46,6 +46,8 @@ group :development do
   gem 'mina', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'spring'
   gem 'spring-watcher-listen'
 end

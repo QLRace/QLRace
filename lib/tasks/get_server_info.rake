@@ -19,8 +19,8 @@ task get_server_info: :environment do
   end
 
   # NL DF shysics server
-  servers << get_server_info('45.32.186.104', 27960)
-  
+  servers << get_server_info('45.32.186.104', 27_960)
+
   # Chile servers
   ports = [27_960, 27_961]
   ports.each { |port| servers << get_server_info('186.64.120.137', port) }
