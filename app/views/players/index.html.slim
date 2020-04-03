@@ -15,7 +15,7 @@
           td.col-xs-4 = link_to player.name, player_path(player.id)
           td.col-xs-4 = player.id
           td.col-xs-2 = player.scores.count
-          td.col-xs-2 = player.world_records.where.not(map: 'kool_slopes').count
+          td.col-xs-2 = player.world_records.where.not(map: 'kool_woodtory').count
   = paginate @players
 - else
   p No players were found

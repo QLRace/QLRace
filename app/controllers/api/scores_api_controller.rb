@@ -24,7 +24,7 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   param :limit, Integer, desc: 'Number of records which will be returned'
   def map
-    if params[:map] == 'kool_slopes'
+    if params[:map] == 'kool_woodtory'
       if params[:key] == ENV['QLRACE_CUP_KEY']
         render json: { records: Score.map_scores(params) }
       else
@@ -41,7 +41,7 @@ class Api::ScoresApiController < Api::ApiController
     return render json: {} unless Score.exists?(params[:record_id])
 
     s = Score.find(params[:record_id])
-    if s.map == 'kool_slopes' && params[:key] != ENV['QLRACE_CUP_KEY']
+    if s.map == 'kool_woodtory' && params[:key] != ENV['QLRACE_CUP_KEY']
       return render json: {}
     end
 

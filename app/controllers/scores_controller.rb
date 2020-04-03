@@ -7,7 +7,7 @@ class ScoresController < ApplicationController
 
   def home
     @total_scores = Score.count
-    @recent_wrs = WorldRecord.where.not(map: 'kool_slopes')
+    @recent_wrs = WorldRecord.where.not(map: 'kool_woodtory')
                              .order(updated_at: :desc).includes(:player)
                              .limit(5)
     @map_scores = WorldRecord.map_scores
@@ -15,7 +15,7 @@ class ScoresController < ApplicationController
 
   def map
     return unless Score.where(map: params[:map].downcase).exists?
-    return if params[:map].downcase == 'kool_slopes'
+    return if params[:map].downcase == 'kool_woodtory'
 
     scores = Score.map_scores params
     total_scores = scores.length
@@ -42,7 +42,7 @@ class ScoresController < ApplicationController
   def get_recent_records(model)
     mode = params.fetch(:mode, -1).to_i
     records = mode.between?(0, 3) ? model.where(mode: mode) : model
-    @recent = records.where.not(map: 'kool_slopes')
+    @recent = records.where.not(map: 'kool_woodtory')
                      .order(updated_at: :desc).includes(:player)
                      .page(params[:page]).per(25)
   end

@@ -24,7 +24,7 @@ class WorldRecord < ActiveRecord::Base
   validates :time, numericality: { only_integer: true,
                                    greater_than: 0 }
 
-  @cup_map = 'kool_slopes'
+  @cup_map = 'kool_woodtory'
 
   def self.check(score)
     wr = world_record(score[:map], score[:mode])
@@ -48,7 +48,7 @@ class WorldRecord < ActiveRecord::Base
     query = <<-SQL
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs
     FROM world_records wr, players p
-    WHERE wr.player_id = p.id#{where_mode} AND map != 'kool_slopes'
+    WHERE wr.player_id = p.id#{where_mode} AND map != 'kool_woodtory'
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL
