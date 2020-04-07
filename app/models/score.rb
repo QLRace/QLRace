@@ -25,8 +25,6 @@ class Score < ActiveRecord::Base
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
 
-  @cup_map = 'kool_woodtory'
-
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
   end
@@ -64,10 +62,10 @@ class Score < ActiveRecord::Base
       WHERE s_.map = s.map AND s_.mode = s.mode
     ) AS total_records
     FROM scores s
-    WHERE s.mode = :mode AND s.player_id = :player_id AND s.map != :cup_map
+    WHERE s.mode = :mode AND s.player_id = :player_id
     ORDER BY map
     SQL
-    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id, cup_map: @cup_map }]
+    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
 
     total = 0
     medals = [0, 0, 0]
