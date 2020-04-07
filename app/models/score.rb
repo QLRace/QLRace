@@ -4,15 +4,20 @@
 #
 # Table name: scores
 #
-#  id         :integer          not null, primary key
-#  map        :string           not null
-#  mode       :integer          not null
-#  player_id  :bigint           not null
-#  time       :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  match_guid :uuid             not null
-#  api_id     :integer
+#  id            :integer          not null, primary key
+#  map           :string           not null
+#  mode          :integer          not null
+#  player_id     :bigint           not null
+#  time          :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  match_guid    :uuid             not null
+#  api_id        :integer
+#  checkpoints   :integer          is an Array
+#  speed_start   :float
+#  speed_end     :float
+#  speed_top     :float
+#  speed_average :float
 #
 
 class Score < ActiveRecord::Base
