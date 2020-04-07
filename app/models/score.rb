@@ -53,7 +53,7 @@ class Score < ActiveRecord::Base
     rescue ArgumentError, ActiveRecord::RecordNotFound
       # player id is not an int or doesn't exist
       # return name and avg as nil, medals and scores as empty arrays
-      return { name: params[:player_id] }
+      return { name: nil, id: nil, medals: [], scores: [] }
     end
 
     query = <<-SQL
