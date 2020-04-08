@@ -40,14 +40,18 @@ class Api::ScoresApiController < Api::ApiController
   def record
     return render json: {} unless Score.exists?(params[:record_id])
 
-    s = Score.find(params[:record_id])
+    s = Score.joins(:player)
+             .select(:id, :map, :mode, :player_id, :time, :match_guid,
+                     :checkpoints, :speed_start, :speed_end, :speed_top,
+                     :speed_average, :name, 'scores.updated_at as date')
+             .find(params[:record_id])
+
     if s.map == 'kool_woodtory' && params[:key] != ENV['QLRACE_CUP_KEY']
       return render json: {}
     end
 
-    j = s.as_json.tap { |hash| hash['date'] = hash.delete 'updated_at' }
+    j = s.as_json
     j['rank'] = s.rank_
-    j['name'] = s.player.name
     render json: j
   end
 end
