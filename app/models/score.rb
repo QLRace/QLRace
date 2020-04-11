@@ -4,15 +4,20 @@
 #
 # Table name: scores
 #
-#  id         :integer          not null, primary key
-#  map        :string           not null
-#  mode       :integer          not null
-#  player_id  :bigint           not null
-#  time       :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  match_guid :uuid             not null
-#  api_id     :integer
+#  id            :integer          not null, primary key
+#  map           :string           not null
+#  mode          :integer          not null
+#  player_id     :bigint           not null
+#  time          :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  match_guid    :uuid             not null
+#  api_id        :integer
+#  checkpoints   :integer          is an Array
+#  speed_start   :float
+#  speed_end     :float
+#  speed_top     :float
+#  speed_average :float
 #
 
 class Score < ActiveRecord::Base
@@ -24,8 +29,6 @@ class Score < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: %i[map mode],
                                       message: 'Players may only have one record
                                                 per map for each mode.' }
-
-  @cup_map = 'kool_woodtory'
 
   def rank_
     Score.where(map: map, mode: mode).where('time < ?', time).count + 1
@@ -50,7 +53,7 @@ class Score < ActiveRecord::Base
     rescue ArgumentError, ActiveRecord::RecordNotFound
       # player id is not an int or doesn't exist
       # return name and avg as nil, medals and scores as empty arrays
-      return { name: params[:player_id] }
+      return { name: nil, id: nil, medals: [], scores: [] }
     end
 
     query = <<-SQL
@@ -64,10 +67,10 @@ class Score < ActiveRecord::Base
       WHERE s_.map = s.map AND s_.mode = s.mode
     ) AS total_records
     FROM scores s
-    WHERE s.mode = :mode AND s.player_id = :player_id AND s.map != :cup_map
+    WHERE s.mode = :mode AND s.player_id = :player_id
     ORDER BY map
     SQL
-    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id, cup_map: @cup_map }]
+    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
 
     total = 0
     medals = [0, 0, 0]

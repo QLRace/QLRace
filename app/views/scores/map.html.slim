@@ -13,8 +13,8 @@
             option value='3' VQL Strafe
     .col-md-4
       h2 = params[:map]
-      p Records: #{@map[:total_scores]}
-  - if @map[:total_scores] != 0
+      p Records: #{@map[:total_records]}
+  - if @map[:total_records] != 0
     table.table.table-striped.table-hover.table-xtra-condensed
       thead
         tr
@@ -23,12 +23,12 @@
           th.text-right Time
           th.text-right Date
       tbody
-        - @map[:scores].each do |score|
+        - @map[:records].each do |record|
           tr
-          td.col-xs-1 = score[:rank]
-          td.col-xs-3 = link_to score[:name], player_path(score[:player_id], mode: score[:mode])
-          td.col-xs-4.text-right = time_string(score[:time])
-          td.col-xs-4.text-right = score[:date]
-    = paginate @map[:scores]
+          td.col-xs-1 = record[:rank]
+          td.col-xs-3 = link_to record[:name], player_path(record[:player_id], mode: record[:mode])
+          td.col-xs-4.text-right = time_string(record[:time])
+          td.col-xs-4.text-right = record[:date]
+    = paginate @map[:records]
 - else
   p That map doesn't exist or doesn't have any records.
