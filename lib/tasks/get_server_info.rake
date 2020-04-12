@@ -7,7 +7,7 @@ task get_server_info: :environment do
 
   servers = []
 
-  # Tuna, Pork, Sorgy, Hydra Servers (DE)
+  # Tuna, Pork, Sorgy, Hydra servers (DE)
   ports = [27_970, 27_971, 27_980, 27_981]
   ports.each { |port| servers << get_server_info('45.76.92.77', port) }
 
@@ -18,12 +18,12 @@ task get_server_info: :environment do
     ports.each { |port| servers << get_server_info(ip, port) }
   end
 
-  # DE DF Physics servers
+  # DE DF physics servers
   ports = [27_960, 27_961]
-  ports.each { |port| servers << get_server_info('139.162.157.251', port) }
+  ports.each { |port| servers << get_server_info('de.qlrace.com', port) }
 
   # NL DF physics server
-  servers << get_server_info('45.32.186.104', 27_960)
+  servers << get_server_info('nl.qlrace.com', 27_960)
 
   # Chile servers
   ports = [27_960, 27_961]
