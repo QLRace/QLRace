@@ -12,7 +12,7 @@ task get_server_info: :environment do
   ports.each { |port| servers << get_server_info('45.76.92.77', port) }
 
   # DF physics servers (EU AND NA)
-  ips = ['de.qlrace.com', 'na.qlrace.com']
+  ips = ['eu.qlrace.com', 'na.qlrace.com']
   ports = [27_960, 27_961, 27_962]
   ips.each do |ip|
     ports.each { |port| servers << get_server_info(ip, port) }
