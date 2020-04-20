@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200420112137) do
+ActiveRecord::Schema.define(version: 20200420113834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,26 @@ ActiveRecord::Schema.define(version: 20200420112137) do
       	WHERE s.mode = mode_id AND s.map = map_name
       	ORDER BY rank, date
       	LIMIT scores_limit;
+      END; $function$
+  SQL
+  create_function :player_scores, sql_definition: <<-SQL
+      CREATE OR REPLACE FUNCTION public.player_scores(p_id bigint, mode_id integer)
+       RETURNS TABLE(id integer, map character varying, mode integer, "time" integer, checkpoints integer[], speed_start double precision, speed_end double precision, speed_top double precision, speed_average double precision, match_guid uuid, date timestamp without time zone, rank bigint, total_records bigint)
+       LANGUAGE plpgsql
+      AS $function$
+      BEGIN
+      	RETURN QUERY SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
+      	s.speed_end, s.speed_top, s.speed_average, s.match_guid,
+      	s.updated_at AS date, (
+      	  SELECT (COUNT(*) + 1) FROM scores s_
+      	  WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
+      	) AS rank, (
+      	  SELECT COUNT(*) FROM scores s_
+      	  WHERE s_.map = s.map AND s_.mode = s.mode
+      	) AS total_records
+      FROM scores s
+      WHERE s.mode = mode_id AND s.player_id = p_id
+      ORDER BY map;
       END; $function$
   SQL
 end

@@ -56,21 +56,8 @@ class Score < ActiveRecord::Base
       return { name: nil, id: nil, medals: [], scores: [] }
     end
 
-    query = <<-SQL
-    SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
-    s.speed_end, s.speed_top, s.speed_average, s.match_guid,
-    s.updated_at AS date, s.time, (
-      SELECT (COUNT(*) + 1) FROM scores s_
-      WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
-    ) AS rank, (
-      SELECT COUNT(*) FROM scores s_
-      WHERE s_.map = s.map AND s_.mode = s.mode
-    ) AS total_records
-    FROM scores s
-    WHERE s.mode = :mode AND s.player_id = :player_id
-    ORDER BY map
-    SQL
-    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
+    query = 'SELECT * FROM player_scores(:p_id, :mode)'
+    scores = Score.find_by_sql [query, { p_id: p.id, mode: mode }]
 
     total = 0
     medals = [0, 0, 0]
