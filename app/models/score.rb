@@ -90,18 +90,8 @@ class Score < ActiveRecord::Base
     mode = mode_from_params params
     map = params[:map]
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
-    query = <<-SQL
-    SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
-           scores.checkpoints, scores.speed_start, scores.speed_end, scores.speed_top,
-           scores.speed_average, match_guid, scores.updated_at as date
-    FROM scores
-    INNER JOIN players
-    ON scores.player_id = players.id
-    WHERE mode = :mode AND map = :map
-    ORDER BY rank, date
-    LIMIT :limit
-    SQL
-    Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
+    query = 'SELECT * FROM map_scores(:map, :mode, :limit)'
+    Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
   end
 
   def self.player_score(map, mode, player_id)
