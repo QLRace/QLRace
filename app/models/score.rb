@@ -56,21 +56,8 @@ class Score < ActiveRecord::Base
       return { name: nil, id: nil, medals: [], scores: [] }
     end
 
-    query = <<-SQL
-    SELECT s.id, s.map, s.mode, s.time, s.checkpoints, s.speed_start,
-    s.speed_end, s.speed_top, s.speed_average, s.match_guid,
-    s.updated_at AS date, s.time, (
-      SELECT (COUNT(*) + 1) FROM scores s_
-      WHERE s_.map = s.map AND s_.mode = s.mode AND (s_.time < s.time)
-    ) AS rank, (
-      SELECT COUNT(*) FROM scores s_
-      WHERE s_.map = s.map AND s_.mode = s.mode
-    ) AS total_records
-    FROM scores s
-    WHERE s.mode = :mode AND s.player_id = :player_id
-    ORDER BY map
-    SQL
-    scores = Score.find_by_sql [query, { mode: mode, player_id: p.id }]
+    query = 'SELECT * FROM player_scores(:p_id, :mode)'
+    scores = Score.find_by_sql [query, { p_id: p.id, mode: mode }]
 
     total = 0
     medals = [0, 0, 0]
@@ -90,18 +77,8 @@ class Score < ActiveRecord::Base
     mode = mode_from_params params
     map = params[:map]
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
-    query = <<-SQL
-    SELECT rank() OVER (ORDER BY time), scores.id, mode, player_id, name, time,
-           scores.checkpoints, scores.speed_start, scores.speed_end, scores.speed_top,
-           scores.speed_average, match_guid, scores.updated_at as date
-    FROM scores
-    INNER JOIN players
-    ON scores.player_id = players.id
-    WHERE mode = :mode AND map = :map
-    ORDER BY rank, date
-    LIMIT :limit
-    SQL
-    Score.find_by_sql [query, { mode: mode, map: map, limit: limit }]
+    query = 'SELECT * FROM map_scores(:map, :mode, :limit)'
+    Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
   end
 
   def self.player_score(map, mode, player_id)
