@@ -52,8 +52,8 @@ class Score < ActiveRecord::Base
       p = Player.find(player_id)
     rescue ArgumentError, ActiveRecord::RecordNotFound
       # player id is not an int or doesn't exist
-      # return name and avg as nil, medals and scores as empty arrays
-      return { name: nil, id: nil, medals: [], scores: [] }
+      # return name and avg as nil, medals and records as empty arrays
+      return { name: nil, id: nil, medals: [], records: [] }
     end
 
     query = 'SELECT * FROM player_scores(:p_id, :mode)'
