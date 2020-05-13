@@ -25,10 +25,6 @@ task get_server_info: :environment do
   # NL DF physics server
   servers << get_server_info('nl.qlrace.com', 27_960)
 
-  # Chile servers
-  ports = [27_960, 27_961]
-  ports.each { |port| servers << get_server_info('186.64.120.137', port) }
-
   data = { time: Time.now.utc.strftime('%H:%M:%S'), servers: servers.compact }
   Rails.cache.write('servers', data)
 end
@@ -48,6 +44,6 @@ def get_server_info(ip, port)
   num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
   { name: info[:server_name], address: "#{ip}:#{port}",
     map: info[:map_name].downcase, num_players: num_players, players: players }
-rescue SocketError, Errno::ECONNREFUSED, SteamCondenser::TimeoutError
+rescue SocketError, Errno::ECONNREFUSED, Errno::EHOSTUNREACH, SteamCondenser::TimeoutError
   nil
 end
