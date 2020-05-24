@@ -3,34 +3,27 @@
 desc 'Get status of QLRace servers and save to cache'
 task get_server_info: :environment do
   require 'steam-condenser'
-  SteamSocket.timeout = 500
+  SteamSocket.timeout = 750
+  servers = [
+    '45.76.92.77:27970', '45.76.92.77:27971', '45.76.92.77:27980',
+    '45.76.92.77:27981', 'eu.qlrace.com:27960', 'eu.qlrace.com:27961',
+    'eu.qlrace.com:27962', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
+    'nl.qlrace.com:27960', 'na.qlrace.com:27960', 'na.qlrace.com:27961',
+    'na.qlrace.com:27962', '149.28.72.79:27960', '149.28.72.79:27961',
+    '149.28.72.79:27962', '207.148.102.141:27960', '207.148.102.141:27961',
+    '207.148.102.141:27962'
+  ]
+  server_status = []
 
-  servers = []
+  servers.each { |s| server_status << get_server_info(s) }
 
-  # Tuna, Pork, Sorgy, Hydra servers (DE)
-  ports = [27_970, 27_971, 27_980, 27_981]
-  ports.each { |port| servers << get_server_info('45.76.92.77', port) }
-
-  # DF physics servers (EU AND NA)
-  ips = ['eu.qlrace.com', 'na.qlrace.com']
-  ports = [27_960, 27_961, 27_962]
-  ips.each do |ip|
-    ports.each { |port| servers << get_server_info(ip, port) }
-  end
-
-  # DE DF physics servers
-  ports = [27_960, 27_961]
-  ports.each { |port| servers << get_server_info('de.qlrace.com', port) }
-
-  # NL DF physics server
-  servers << get_server_info('nl.qlrace.com', 27_960)
-
-  data = { time: Time.now.utc.strftime('%H:%M:%S'), servers: servers.compact }
+  data = { time: Time.now.utc.strftime('%H:%M:%S'),
+           servers: server_status.compact }
   Rails.cache.write('servers', data)
 end
 
-def get_server_info(ip, port)
-  server = SourceServer.new(ip, port)
+def get_server_info(address)
+  server = SourceServer.new(address)
   info = server.server_info
 
   players = []
@@ -42,7 +35,7 @@ def get_server_info(ip, port)
 
   players.sort_by! { |k| k[:time] }
   num_players = "#{info[:number_of_players]}/#{info[:max_players]}"
-  { name: info[:server_name], address: "#{ip}:#{port}",
+  { name: info[:server_name], address: address,
     map: info[:map_name].downcase, num_players: num_players, players: players }
 rescue SocketError, Errno::ECONNREFUSED, Errno::EHOSTUNREACH, SteamCondenser::TimeoutError
   nil
