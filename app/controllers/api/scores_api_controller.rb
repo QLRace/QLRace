@@ -30,13 +30,14 @@ class Api::ScoresApiController < Api::ApiController
   api :GET, '/record/:id', 'Record'
   param :id, Integer, desc: 'Record Id', required: true
   def record
-    return render json: {} unless Score.exists?(params[:record_id])
+    id = params[:record_id].to_i
+    return render json: {} unless Score.exists?(id)
 
     s = Score.joins(:player)
              .select(:id, :map, :mode, :player_id, :time, :match_guid,
                      :checkpoints, :speed_start, :speed_end, :speed_top,
                      :speed_average, :name, 'scores.updated_at as date')
-             .find(params[:record_id])
+             .find(id)
 
     j = s.as_json
     j['rank'] = s.rank_
