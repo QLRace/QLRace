@@ -56,6 +56,9 @@ class Api::ScoresNewController < Api::ApiController
     @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
     @score[:total_records] = Score.where(map: @score[:map],
                                          mode: @score[:mode]).count
+
+    presigned = request_presigned_post
+    @score[:upload] = presigned unless presigned.nil?
     true
   end
 
@@ -63,5 +66,17 @@ class Api::ScoresNewController < Api::ApiController
     disabled_maps = %w[q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
                        q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2]
     disabled_maps.include? @score[:map]
+  end
+
+  def request_presigned_post
+    return unless defined?(S3_BUCKET) && !S3_BUCKET.nil?
+
+    presigned_url = S3_BUCKET.presigned_post(
+      key: "#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}",
+      success_action_status: '201',
+      signature_expiration: (Time.now.utc + 1.hour)
+    )
+
+    { url: presigned_url.url, fields: presigned_url.fields }
   end
 end
