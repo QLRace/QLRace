@@ -58,7 +58,7 @@ class Api::ScoresNewController < Api::ApiController
                                          mode: @score[:mode]).count
 
     presigned = request_presigned_post
-    @score[:upload] = presigned unless presigned.nil?
+    @score[:upload_url] = presigned unless presigned.nil?
     true
   end
 
@@ -71,10 +71,7 @@ class Api::ScoresNewController < Api::ApiController
   def request_presigned_post
     return unless defined?(S3_BUCKET) && !S3_BUCKET.nil?
 
-    presigned_url = S3_BUCKET.presigned_post(
-      key: "#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}"
-    )
-
-    { url: presigned_url.url, fields: presigned_url.fields }
+    obj = S3_BUCKET.object("#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}.json")
+    obj.presigned_url(:put)
   end
 end
