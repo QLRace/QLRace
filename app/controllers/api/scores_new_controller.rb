@@ -57,7 +57,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:total_records] = Score.where(map: @score[:map],
                                          mode: @score[:mode]).count
 
-    presigned = request_presigned_post
+    presigned = request_presigned_url
     @score[:upload_url] = presigned unless presigned.nil?
     true
   end
@@ -68,7 +68,7 @@ class Api::ScoresNewController < Api::ApiController
     disabled_maps.include? @score[:map]
   end
 
-  def request_presigned_post
+  def request_presigned_url
     return unless defined?(S3_BUCKET) && !S3_BUCKET.nil?
 
     obj = S3_BUCKET.object("#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}.json")
