@@ -72,9 +72,7 @@ class Api::ScoresNewController < Api::ApiController
     return unless defined?(S3_BUCKET) && !S3_BUCKET.nil?
 
     presigned_url = S3_BUCKET.presigned_post(
-      key: "#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}",
-      success_action_status: '201',
-      signature_expiration: (Time.now.utc + 1.hour)
+      key: "#{@score[:map]}/#{@score[:mode]}/#{@score[:player_id]}"
     )
 
     { url: presigned_url.url, fields: presigned_url.fields }
