@@ -29,9 +29,9 @@ table.table.table-striped.table-hover.table-xtra-condensed
   tbody
     - @recent.each do |score|
       tr
-        td = link_to score.map, map_path(score.map)
+        td = link_to score.map, map_path(score.map, mode: score.mode)
         td = mode_string(score.mode)
-        td = link_to score.player.name, player_path(score.player_id)
+        td = link_to score.player.name, player_path(score.player_id, mode: score.mode)
         - unless @wrs
           td = score.rank_
         td.text-right = time_string(score.time)
