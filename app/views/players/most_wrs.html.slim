@@ -18,6 +18,9 @@ form.col-md-3.col-sm-4.col-xs-7
     tbody
       - @players.each do |p|
         tr
-          td.col-xs-6 = link_to p.name, player_path(p.player_id, mode: @mode)
+          - if @mode == -1
+            td.col-xs-6 = link_to p.name, player_path(p.player_id)
+          - else
+            td.col-xs-6 = link_to p.name, player_path(p.player_id, mode: @mode)
           td.col-xs-3 = p.num_wrs
           td.col-xs-3 = p.num_records
