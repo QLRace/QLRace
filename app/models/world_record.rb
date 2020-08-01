@@ -44,7 +44,10 @@ class WorldRecord < ActiveRecord::Base
   def self.most_world_records(mode)
     where_mode = mode.to_i != -1 ? " AND mode = #{mode.to_i}" : ''
     query = <<-SQL
-    SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs
+    SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
+        (SELECT COUNT(*)
+         FROM scores
+         WHERE scores.player_id = wr.player_id#{where_mode}) AS num_records
     FROM world_records wr, players p
     WHERE wr.player_id = p.id#{where_mode}
     GROUP BY p.name, wr.player_id
