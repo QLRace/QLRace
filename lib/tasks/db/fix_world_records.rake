@@ -9,7 +9,7 @@ namespace :db do
     WorldRecord.transaction do
       WorldRecord.delete_all
       ActiveRecord::Base.connection.reset_pk_sequence!('world_records')
-      maps = Score.uniq.pluck(:map).sort
+      maps = Score.distinct.pluck(:map).sort
       progress = ProgressBar.create(total: maps.length * 4)
       maps.each do |map|
         (0..3).each do |mode|

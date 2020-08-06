@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class Player < ActiveRecord::Base
+class Player < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_many :world_records, dependent: :destroy
   validates :name, presence: true

@@ -15,7 +15,7 @@
 #  api_id     :integer
 #
 
-class WorldRecord < ActiveRecord::Base
+class WorldRecord < ApplicationRecord
   belongs_to :player
   validates :map, :mode, :player_id, :time, :player, presence: true
   validates :mode, inclusion: { in: 0..3 }

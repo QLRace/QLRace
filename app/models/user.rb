@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   before_validation :set_api_key
   validates :api_key, presence: true
 

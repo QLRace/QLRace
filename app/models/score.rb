@@ -20,7 +20,7 @@
 #  speed_average :float
 #
 
-class Score < ActiveRecord::Base
+class Score < ApplicationRecord
   belongs_to :player
   validates :map, :mode, :player_id, :time, :match_guid, :player, presence: true
   validates :mode, inclusion: { in: 0..3 }
@@ -110,7 +110,7 @@ class Score < ActiveRecord::Base
               end
 
     w = params.fetch(:weapons, 'true')
-    weapons = ActiveRecord::Type::Boolean.new.type_cast_from_user(w)
+    weapons = ActiveRecord::Type::Boolean.new.cast(w)
     return weapons ? 2 : 3 if %w[vql classic].include? physics
 
     weapons ? 0 : 1
