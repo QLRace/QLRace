@@ -16,7 +16,6 @@ gem 'fast_blank'
 gem 'fx', '~> 0.5.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', '< 6'
 gem 'kaminari'
 gem 'pg'
@@ -27,7 +26,7 @@ gem 'ruby-progressbar', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'steam-condenser', require: false
-gem 'turbolinks', git: 'https://github.com/turbolinks/turbolinks-classic'
+gem 'turbolinks', '~> 5.2.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 
