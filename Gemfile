@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', groups: %i[development test]
-gem 'rails', '4.2.11.3'
+gem 'rails', '5.0.7.2'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
