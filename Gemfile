@@ -19,13 +19,13 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', '< 6'
 gem 'kaminari'
 gem 'pg', '0.20'
-gem 'rails-jquery-autocomplete', '~> 1.0.2'
-gem 'rails-observers', '0.1.2'
+gem 'rails-jquery-autocomplete'
+gem 'rails-observers'
 gem 'rollbar'
 gem 'ruby-progressbar', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'slim-rails', '~> 3.0'
+gem 'slim-rails'
 gem 'steam-condenser', require: false
 gem 'turbolinks', git: 'https://github.com/turbolinks/turbolinks-classic'
 gem 'uglifier', '>= 1.3.0'
