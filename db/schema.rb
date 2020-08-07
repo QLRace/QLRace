@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,56 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200420113834) do
+ActiveRecord::Schema.define(version: 2020_08_07_204632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "players", id: :bigserial, force: :cascade do |t|
-    t.string   "name",       null: false
+  create_table "players", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_players_on_name"
+  end
+
+  create_table "scores", id: :serial, force: :cascade do |t|
+    t.string "map", null: false
+    t.integer "mode", null: false
+    t.bigint "player_id", null: false
+    t.integer "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "match_guid", null: false
+    t.integer "api_id"
+    t.integer "checkpoints", array: true
+    t.float "speed_start"
+    t.float "speed_end"
+    t.float "speed_top"
+    t.float "speed_average"
+    t.index ["map", "mode"], name: "index_scores_on_map_and_mode"
+    t.index ["player_id", "map", "mode"], name: "index_scores_on_player_id_and_map_and_mode", unique: true
+    t.index ["player_id", "mode"], name: "index_scores_on_player_id_and_mode"
+    t.index ["player_id"], name: "index_scores_on_player_id"
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "scores", force: :cascade do |t|
-    t.string   "map",                     null: false
-    t.integer  "mode",                    null: false
-    t.integer  "player_id",     limit: 8, null: false
-    t.integer  "time",                    null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.uuid     "match_guid",              null: false
-    t.integer  "api_id"
-    t.integer  "checkpoints",                          array: true
-    t.float    "speed_start"
-    t.float    "speed_end"
-    t.float    "speed_top"
-    t.float    "speed_average"
-  end
-
-  add_index "scores", ["map", "mode"], name: "index_scores_on_map_and_mode", using: :btree
-  add_index "scores", ["player_id", "map", "mode"], name: "index_scores_on_player_id_and_map_and_mode", unique: true, using: :btree
-  add_index "scores", ["player_id", "mode"], name: "index_scores_on_player_id_and_mode", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.string   "api_key"
+  create_table "world_records", id: :serial, force: :cascade do |t|
+    t.string "map", null: false
+    t.integer "mode", null: false
+    t.bigint "player_id", null: false
+    t.integer "time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "match_guid", null: false
+    t.integer "api_id"
+    t.index ["map", "mode"], name: "index_world_records_on_map_and_mode", unique: true
+    t.index ["player_id"], name: "index_world_records_on_player_id"
   end
-
-  create_table "world_records", force: :cascade do |t|
-    t.string   "map",                  null: false
-    t.integer  "mode",                 null: false
-    t.integer  "player_id",  limit: 8, null: false
-    t.integer  "time",                 null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.uuid     "match_guid",           null: false
-    t.integer  "api_id"
-  end
-
-  add_index "world_records", ["map", "mode"], name: "index_world_records_on_map_and_mode", unique: true, using: :btree
-  add_index "world_records", ["player_id"], name: "index_world_records_on_player_id", using: :btree
 
   add_foreign_key "scores", "players", name: "scores_player_id_fk", on_delete: :cascade
   add_foreign_key "world_records", "players", name: "world_records_player_id_fk", on_delete: :cascade
