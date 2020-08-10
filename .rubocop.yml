@@ -1,19 +1,18 @@
-require: rubocop-rails
+require:
+  - rubocop-performance
+  - rubocop-rails
 
 AllCops:
-  Include:
-    - '**/*.rb'
-    - '**/*.rake'
-    - '**/config.ru'
-    - '**/Gemfile'
-    - '**/Guardfile'
-    - '**/Rakefile'
+  TargetRubyVersion: 2.6
+  NewCops: enable
   Exclude:
-    - 'db/**/*'
+    - '**/tmp/**/*'
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - '**/node_modules/**/*'
     - 'bin/**/*'
     - 'config/**/*'
-    - !ruby/regexp /old_and_unused\.rb$/
-  TargetRubyVersion: 2.6
+    - 'db/**/*'
 
 Rails:
   Enabled: true
