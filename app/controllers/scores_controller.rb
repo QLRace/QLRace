@@ -13,7 +13,7 @@ class ScoresController < ApplicationController
   end
 
   def map
-    return unless Score.where(map: params[:map].downcase).exists?
+    return unless Score.exists?(map: params[:map].downcase)
 
     scores = Score.map_scores params
     total_scores = scores.length
