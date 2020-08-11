@@ -102,9 +102,9 @@ class Score < ApplicationRecord
     return params[:mode].to_i if %w[0 1 2 3].include? params[:mode]
 
     physics = if params[:physics]
-                params[:physics]
+                params[:physics].downcase
               elsif params[:factory]
-                params[:factory]
+                params[:factory].downcase
               else
                 'pql'
               end
