@@ -30,11 +30,19 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.map_scores
+    query = <<-SQL
+    SELECT wr.map, wr.mode, wr.time, p.id AS player_id, p.name AS player_name
+    FROM world_records wr
+    INNER JOIN players p
+    ON wr.player_id = p.id
+    ORDER BY wr.map, wr.mode;
+    SQL
+    wrs = WorldRecord.find_by_sql [query]
     map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
-    WorldRecord.order(:map).includes(:player).each do |world_record|
-      map_scores[world_record.map][world_record.mode] = world_record
+    wrs.each do |wr|
+      map_scores[wr.map][wr.mode] = wr
     end
-    map_scores
+    return map_scores
   end
 
   def self.world_record(map, mode)

@@ -37,8 +37,8 @@ table.table.table-striped.table-hover.table-xtra-condensed
         - wrs.each do |wr|
           - if wr
             td
-              = link_to wr.player.name, player_path(wr['player_id'], mode: wr['mode'])
-              span.pull-right = time_string(wr['time'])
+              = link_to wr.player_name, player_path(wr.player_id, mode: wr.mode)
+              span.pull-right = time_string(wr.time)
           - else
             td
               span.pull-right -
