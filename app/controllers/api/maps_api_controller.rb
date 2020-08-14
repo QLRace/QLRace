@@ -11,7 +11,7 @@ class Api::MapsApiController < Api::ApiController
     maps = if params[:sort] == 'recent'
              Score.order(:created_at).pluck(:map).uniq.reverse
            else
-             WorldRecord.distinct.pluck(:map).sort
+             WorldRecord.order(:map).distinct(:map).pluck(:map)
            end
     render json: { maps: maps }
   end
