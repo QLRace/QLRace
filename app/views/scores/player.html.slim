@@ -12,7 +12,8 @@
             option value='2' VQL Weapons
             option value='3' VQL Strafe
     .col-md-4
-      h2 = link_to @player[:name], "http://steamcommunity.com/profiles/#{@player[:id]}"
+      h2
+        a href='http://steamcommunity.com/profiles/#{@player[:id]}' #{@player[:name]}
       p
         | #{image_tag 'gold.png', size: '16', alt: 'gold medal'} #{@player[:medals][0]}
         | #{image_tag 'silver.png', size: '16', alt: 'silver medal'} #{@player[:medals][1]}
@@ -31,7 +32,8 @@
       tbody
         - @player[:records].each do |record|
           tr
-            td.col-xs-3 = link_to record[:map], map_path(record[:map], mode: record[:mode])
+            td.col-xs-3
+              a href='/map/#{record[:map]}?mode=#{record[:mode]}' #{record[:map]}
             td.col-xs-1 = record[:rank]
             td.col-xs-4.text-right = time_string(record[:time])
             td.col-xs-4.text-right = record[:date]

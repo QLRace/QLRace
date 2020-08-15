@@ -12,7 +12,8 @@
     tbody
       - @players.each do |player|
         tr
-          td.col-xs-4 = link_to player.name, player_path(player.id)
+          td.col-xs-4
+            a href='/player/#{player.id}' #{player.name}
           td.col-xs-4 = player.id
           td.col-xs-2 = player.scores.count
           td.col-xs-2 = player.world_records.count
