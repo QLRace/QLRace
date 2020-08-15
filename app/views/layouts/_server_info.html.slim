@@ -4,10 +4,10 @@
   .panel-body
     ul.list-unstyled
       li
-        | IP: 
+        ' IP:
         a href='steam://connect/#{server[:address]}' #{server[:address]}
       li
-        | Map: 
+        ' Map:
         a href='/map/#{server[:map]}' #{server[:map]}
       li Players: #{server[:num_players]}
       li

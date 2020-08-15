@@ -13,10 +13,10 @@ table.table.table-striped.table-hover.table-xtra-condensed
       - @recent_wrs.each do |wr|
         tr
           td
-            a href = '/map/#{wr.map}?mode=#{wr.mode}' #{wr.map}
+            a href='/map/#{wr.map}?mode=#{wr.mode}' #{wr.map}
           td = mode_string(wr.mode)
           td
-            a href = '/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player.name}
+            a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player.name}
           td
             span.pull-right = time_string(wr.time)
           td
@@ -36,11 +36,11 @@ table.table.table-striped.table-hover.table-xtra-condensed
     - @map_scores.each do |map, wrs|
       tr
         td
-          a href = '/map/#{map}' #{map}
+          a href='/map/#{map}' #{map}
         - wrs.each do |wr|
           - if wr
             td
-              a href = '/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player_name}
+              a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player_name}
               span.pull-right = time_string(wr.time)
           - else
             td

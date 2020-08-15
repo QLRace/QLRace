@@ -21,7 +21,7 @@
       ul.list-inline
         li Average rank: #{@player[:average]}
         li Total Records: #{@player[:records].length}
-  - if !@player[:records].empty?
+  - unless @player[:records].empty?
     table#player-records.table.table-striped.table-hover.table-xtra-condensed.sortable.responsive
       thead
         tr
@@ -38,4 +38,4 @@
             td.col-xs-4.text-right = time_string(record[:time])
             td.col-xs-4.text-right = record[:date]
 - else
-  p That player doesn't exist.
+  h3 That player doesn't exist.

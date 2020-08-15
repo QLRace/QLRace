@@ -7,7 +7,7 @@ form.col-md-3.col-sm-4.col-xs-7
     option value='2' VQL Weapons
     option value='3' VQL Strafe
 
-- if @players.length > 0
+- if @players.!empty?
   table.table.table-striped.table-hover.table-xtra-condensed
     caption Most World Records
     thead
@@ -22,7 +22,7 @@ form.col-md-3.col-sm-4.col-xs-7
             td.col-xs-6
               a href='/player/#{p.player_id}' #{p.name}
           - else
-            td.col-xs-6 
+            td.col-xs-6
               a href='/player/#{p.player_id}?mode=#{@mode}' #{p.name}
           td.col-xs-3 = p.num_wrs
           td.col-xs-3 = p.num_records
