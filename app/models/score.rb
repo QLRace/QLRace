@@ -90,15 +90,11 @@ class Score < ApplicationRecord
     map = params[:map].downcase
     total_scores = Score.where(map: map, mode: mode).count
 
-    limit = params[:limit].to_i.positive? ? params[:limit].to_i : 25
+    limit = 25
     page = params[:page].to_i.positive? ? params[:page].to_i : 1
 
-    if page
-      offset = (page - 1) * 25
-      limit = 25
-    else
-      offset = 0
-    end
+    offset = (page - 1) * 25
+    limit = 25
 
     query = 'SELECT * FROM map_scores(:map, :mode, :limit, :offset)'
     scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit, offset: offset }]
