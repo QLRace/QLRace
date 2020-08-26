@@ -15,9 +15,7 @@ class ScoresController < ApplicationController
   def map
     return unless Score.exists?(map: params[:map].downcase)
 
-    scores = Score.map_scores_paginated params
-    scores[:records] = Kaminari.paginate_array(scores[:records], total_count: scores[:total_records]).page(params[:page]).per(25)
-    @map = scores
+    @map = Score.map_scores_paginated params
   end
 
   def player
