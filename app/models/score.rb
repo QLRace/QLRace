@@ -77,7 +77,7 @@ class Score < ApplicationRecord
     mode = mode_from_params params
     map = params[:map]
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
-    query = 'SELECT * FROM map_scores(:map, :mode, :limit)'
+    query = 'SELECT * FROM map_scores(:map, :mode, :limit, 0)'
     Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
   end
 
