@@ -42,7 +42,7 @@ class WorldRecord < ApplicationRecord
     wrs.each do |wr|
       map_scores[wr.map][wr.mode] = wr
     end
-    return map_scores
+    map_scores
   end
 
   def self.world_record(map, mode)

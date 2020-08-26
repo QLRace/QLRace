@@ -75,10 +75,34 @@ class Score < ApplicationRecord
 
   def self.map_scores(params)
     mode = mode_from_params params
-    map = params[:map]
+    map = params[:map].downcase
+    total_scores = Score.where(map: map, mode: mode).count
+
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
+
     query = 'SELECT * FROM map_scores(:map, :mode, :limit, 0)'
-    Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
+    scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
+    { total_records: total_scores, records: scores }
+  end
+
+  def self.map_scores_paginated(params)
+    mode = mode_from_params params
+    map = params[:map].downcase
+    total_scores = Score.where(map: map, mode: mode).count
+
+    limit = params[:limit].to_i.positive? ? params[:limit].to_i : 25
+    page = params[:page].to_i.positive? ? params[:page].to_i : 1
+
+    if page
+      offset = (page - 1) * 25
+      limit = 25
+    else
+      offset = 0
+    end
+
+    query = 'SELECT * FROM map_scores(:map, :mode, :limit, :offset)'
+    scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit, offset: offset }]
+    { total_records: total_scores, records: scores }
   end
 
   def self.player_score(map, mode, player_id)
