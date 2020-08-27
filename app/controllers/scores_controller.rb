@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ScoresController < ApplicationController
+  include Pagy::Backend
+
   # CSRF is not needed since GET requests are idempotent
   skip_before_action :verify_authenticity_token
   caches_page :home
@@ -16,6 +18,7 @@ class ScoresController < ApplicationController
     return unless Score.exists?(map: params[:map].downcase)
 
     @map = Score.map_scores_paginated params
+    @pagy = Pagy.new(count: @map[:total_records], page: params[:page])
   end
 
   def player
@@ -37,7 +40,6 @@ class ScoresController < ApplicationController
   def get_recent_records(model)
     mode = params.fetch(:mode, -1).to_i
     records = mode.between?(0, 3) ? model.where(mode: mode) : model
-    @recent = records.order(updated_at: :desc).includes(:player)
-                     .page(params[:page]).per(25)
+    @pagy, @recent = pagy(records.order(updated_at: :desc).includes(:player))
   end
 end

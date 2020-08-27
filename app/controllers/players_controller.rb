@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class PlayersController < ApplicationController
+  include Pagy::Backend
+
   autocomplete :player, :name
   # CSRF is not needed since GET requests are idempotent
   skip_before_action :verify_authenticity_token
 
   def index
-    players = Player.search(params[:search]).order(:name)
-    @total_players = players.count
-    @players = players.page(params[:page]).per(25)
+    @pagy, @players = pagy(Player.search(params[:search]).order(:name))
   end
 
   # Should maybe be in WorldRecordController?

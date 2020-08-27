@@ -90,16 +90,15 @@ class Score < ApplicationRecord
     map = params[:map].downcase
     total_scores = Score.where(map: map, mode: mode).count
 
-    limit = 25
     page = params[:page].to_i.positive? ? params[:page].to_i : 1
 
-    offset = (page - 1) * 25
-    limit = 25
+    limit = 50
+    offset = (page - 1) * 50
 
     query = 'SELECT * FROM map_scores(:map, :mode, :limit, :offset)'
     scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit, offset: offset }]
     { total_records: total_scores,
-      records: Kaminari.paginate_array(scores, total_count: total_scores).page(page).per(25) }
+      records: scores}
   end
 
   def self.player_score(map, mode, player_id)

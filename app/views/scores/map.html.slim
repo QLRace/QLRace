@@ -30,6 +30,6 @@
             a href='/player/#{record[:player_id]}?mode=#{record[:mode]}' #{record[:name]}
           td.col-xs-4.text-right = time_string(record[:time])
           td.col-xs-4.text-right = record[:date]
-    = paginate @map[:records]
+    == pagy_bootstrap_nav(@pagy)
 - else
   h3 That map doesn't exist or doesn't have any records.

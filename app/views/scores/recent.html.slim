@@ -38,4 +38,4 @@ table.table.table-striped.table-hover.table-xtra-condensed
           td = score.rank_
         td.text-right = time_string(score.time)
         td.text-right = score.updated_at
-= paginate @recent
+== pagy_bootstrap_nav(@pagy)

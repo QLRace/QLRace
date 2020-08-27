@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include Pagy::Frontend
+
   def full_title(title = '')
     base_title = 'QLRace'
     title.empty? ? base_title : "#{title} | #{base_title}"
