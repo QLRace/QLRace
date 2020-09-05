@@ -30,7 +30,7 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.map_scores
-    query = <<-SQL
+    query = <<-SQL.squish
     SELECT wr.map, wr.mode, wr.time, p.id AS player_id, p.name AS player_name
     FROM world_records wr
     INNER JOIN players p
@@ -51,7 +51,7 @@ class WorldRecord < ApplicationRecord
 
   def self.most_world_records(mode)
     where_mode = mode.to_i != -1 ? " AND mode = #{mode.to_i}" : ''
-    query = <<-SQL
+    query = <<-SQL.squish
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
         (SELECT COUNT(*)
          FROM scores

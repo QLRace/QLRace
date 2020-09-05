@@ -98,7 +98,7 @@ class Score < ApplicationRecord
     query = 'SELECT * FROM map_scores(:map, :mode, :limit, :offset)'
     scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit, offset: offset }]
     { total_records: total_scores,
-      records: scores}
+      records: scores }
   end
 
   def self.player_score(map, mode, player_id)
