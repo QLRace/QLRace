@@ -50,7 +50,7 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.most_world_records(mode)
-    where_mode = mode.to_i != -1 ? " AND mode = #{mode.to_i}" : ''
+    where_mode = mode.to_i == -1 ? '' : " AND mode = #{mode.to_i}"
     query = <<-SQL.squish
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
         (SELECT COUNT(*)
