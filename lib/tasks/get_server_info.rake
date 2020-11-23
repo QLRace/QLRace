@@ -11,8 +11,7 @@ task get_server_info: :environment do
     'nl.qlrace.com:27960', 'na.qlrace.com:27960', 'na.qlrace.com:27961',
     'na.qlrace.com:27962', '149.28.72.79:27960', '149.28.72.79:27961',
     '149.28.72.79:27962', 'sg.qlrace.com:27960', 'sg.qlrace.com:27961',
-    'sg.qlrace.com:27962', '207.148.102.141:27960', '207.148.102.141:27961',
-    '207.148.102.141:27962'
+    'sg.qlrace.com:27962'
   ]
   server_status = []
 
