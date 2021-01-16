@@ -18,8 +18,8 @@ module Qlrace
 
     config.active_record.observers = :world_record_observer
 
-    # Use dalli(memcache) as default cache store.
-    config.cache_store = :dalli_store, {
+    # Use memcache as default cache store.
+    config.cache_store = :mem_cache_store, {
       namespace: 'qlrace',
       expires_in: 1.hour
     }
