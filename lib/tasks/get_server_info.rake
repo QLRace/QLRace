@@ -6,12 +6,8 @@ task get_server_info: :environment do
   SteamSocket.timeout = 750
   servers = [
     '45.76.92.77:27970', '45.76.92.77:27971', '45.76.92.77:27980',
-    '45.76.92.77:27981', 'eu.qlrace.com:27960', 'eu.qlrace.com:27961',
-    'eu.qlrace.com:27962', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
-    'nl.qlrace.com:27960', 'na.qlrace.com:27960', 'na.qlrace.com:27961',
-    'na.qlrace.com:27962', '149.28.72.79:27960', '149.28.72.79:27961',
-    '149.28.72.79:27962', 'sg.qlrace.com:27960', 'sg.qlrace.com:27961',
-    'sg.qlrace.com:27962'
+    '45.76.92.77:27981', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
+    'nl.qlrace.com:27960'
   ]
   server_status = []
 
