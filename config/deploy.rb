@@ -14,7 +14,7 @@ set :branch, 'master'
 
 # Optional settings:
 set :user, 'qlrace' # Username in the server to SSH to.
-# set :port, '30000' # SSH port number.
+set :port, nil # SSH port number. Unset to use port from ssh_config.
 # set :forward_agent, true # SSH forward_agent.
 
 # They will be linked in the 'deploy:link_shared_paths' step.
