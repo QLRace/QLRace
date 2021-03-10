@@ -1,4 +1,4 @@
-class AddSpeedsToScores < ActiveRecord::Migration
+class AddSpeedsToScores < ActiveRecord::Migration[4.2]
   def change
     add_column :scores, :speed_start, :float
     add_column :scores, :speed_end, :float

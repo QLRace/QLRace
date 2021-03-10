@@ -1,4 +1,4 @@
-class AddForeignKeys < ActiveRecord::Migration
+class AddForeignKeys < ActiveRecord::Migration[4.2]
   def change
     add_foreign_key 'scores', 'players',
                     name: 'scores_player_id_fk', on_delete: :cascade

@@ -1,4 +1,4 @@
-class CreateWorldRecords < ActiveRecord::Migration
+class CreateWorldRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :world_records do |t|
       t.string :map

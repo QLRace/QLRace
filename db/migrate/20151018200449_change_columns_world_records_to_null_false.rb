@@ -1,4 +1,4 @@
-class ChangeColumnsWorldRecordsToNullFalse < ActiveRecord::Migration
+class ChangeColumnsWorldRecordsToNullFalse < ActiveRecord::Migration[4.2]
   def change
     change_column_null :world_records, :map, false
     change_column_null :world_records, :mode, false

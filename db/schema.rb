@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_181057) do
 
   add_foreign_key "scores", "players", name: "scores_player_id_fk", on_delete: :cascade
   add_foreign_key "world_records", "players", name: "world_records_player_id_fk", on_delete: :cascade
-
   create_function :map_scores, sql_definition: <<-SQL
       CREATE OR REPLACE FUNCTION public.map_scores(map_name character varying, mode_id integer, scores_limit integer, scores_offset integer DEFAULT 0)
        RETURNS TABLE(rank bigint, id integer, mode integer, player_id bigint, name character varying, "time" integer, checkpoints integer[], speed_start double precision, speed_end double precision, speed_top double precision, speed_average double precision, date timestamp without time zone)
@@ -103,4 +102,5 @@ ActiveRecord::Schema.define(version: 2020_08_26_181057) do
       ORDER BY map;
       END; $function$
   SQL
+
 end
