@@ -7,7 +7,6 @@ gem 'rails', '5.2.4.5'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
-gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.4'
 gem 'bootswatch-rails', '~> 3.3'
