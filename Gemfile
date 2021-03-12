@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'dotenv-rails', groups: %i[development test]
 gem 'rails', '5.2.4.5'
+gem 'puma'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
@@ -44,6 +45,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'listen'
   gem 'mina', require: false
+  gem 'mina-ng-puma', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
