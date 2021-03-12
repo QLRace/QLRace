@@ -29,7 +29,12 @@ bind puma_socket if ENV.fetch('RAILS_ENV', 'development') == 'production'
 environment ENV.fetch('RAILS_ENV', 'development')
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch('PUMA_PIDFILE', 'tmp/pids/server.pid')
+if ENV.fetch('RAILS_ENV', 'development') == 'production' 
+  pidfile "#{shared_dir}/tmp/pids/server.pid"
+else
+  pidfile 'tmp/pids/server.pid'
+end
+
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
