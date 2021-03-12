@@ -55,8 +55,7 @@ task :deploy do
 
     on :launch do
       in_path(fetch(:current_path)) do
-        command %(mkdir -p tmp/)
-        command %(touch tmp/restart.txt)
+        command "#{fetch(:bundle_prefix)} pumactl restart"
       end
     end
   end
