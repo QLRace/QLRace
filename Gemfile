@@ -2,9 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', groups: %i[development test]
 gem 'rails', '5.2.4.5'
-gem 'puma'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
@@ -20,6 +18,7 @@ gem 'jquery-ui-rails', '< 6'
 gem 'oj'
 gem 'pagy'
 gem 'pg'
+gem 'puma'
 gem 'rails-jquery-autocomplete'
 gem 'rails-observers'
 gem 'rollbar'
@@ -37,6 +36,7 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -45,7 +45,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'listen'
   gem 'mina', require: false
-  gem 'mina-ng-puma', require: false
   gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
