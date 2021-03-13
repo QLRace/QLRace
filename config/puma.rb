@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_dir = "/var/www/qlrace/shared"
+shared_dir = '/var/www/qlrace/shared'
 
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
@@ -29,12 +29,11 @@ bind puma_socket if ENV.fetch('RAILS_ENV', 'development') == 'production'
 environment ENV.fetch('RAILS_ENV', 'development')
 
 # Specifies the `pidfile` that Puma will use.
-if ENV.fetch('RAILS_ENV', 'development') == 'production' 
+if ENV.fetch('RAILS_ENV', 'development') == 'production'
   pidfile "#{shared_dir}/tmp/pids/server.pid"
 else
   pidfile 'tmp/pids/server.pid'
 end
-
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
@@ -54,7 +53,7 @@ workers ENV.fetch('PUMA_WORKERS', 2)
 # Redirect STDOUT and STDERR to files specified. The append parameter
 # specifies whether the output is appended, the default is false.
 if ENV.fetch('RAILS_ENV', 'development') == 'production'
-    stdout_redirect "#{shared_dir}/log/puma_stdout.log", "#{shared_dir}/log/puma_stderr.log", true
+  stdout_redirect "#{shared_dir}/log/puma_stdout.log", "#{shared_dir}/log/puma_stderr.log", true
 end
 
 # Allow puma to be restarted by `rails restart` command.
