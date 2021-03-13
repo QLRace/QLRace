@@ -3,9 +3,9 @@
 servers = [
   '45.76.92.77:27970', '45.76.92.77:27971', '45.76.92.77:27980',
   '45.76.92.77:27981', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
-  'nl.qlrace.com:27960', 'na.qlrace.com:29760', 'na.qlrace.com:29761',
-  'na.qlrace.com:29762', 'na-west.qlrace.com:29760', 'na-west.qlrace.com:29761',
-  'na-west.qlrace.com:29762'
+  'nl.qlrace.com:27960', 'na.qlrace.com:27960', 'na.qlrace.com:27961',
+  'na.qlrace.com:27962', 'na-west.qlrace.com:27960', 'na-west.qlrace.com:27961',
+  'na-west.qlrace.com:27962'
 ]
 
 desc 'Get status of QLRace servers and save to cache'
