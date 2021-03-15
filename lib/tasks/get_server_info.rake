@@ -41,5 +41,4 @@ def get_players(server)
     players << { name: name, time: time }
   end
   players.sort_by! { |k| k[:time] }
-  players
 end
