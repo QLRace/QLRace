@@ -8,7 +8,11 @@ class PlayersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @pagy, @players = pagy(Player.search(params[:search]).order(:name))
+    @pagy, @players = pagy(
+      Player.includes(:scores, :world_records)
+      .search(params[:search])
+      .order(:name)
+    )
   end
 
   # Should maybe be in WorldRecordController?
