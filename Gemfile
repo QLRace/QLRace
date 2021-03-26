@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '5.2.4.5'
+gem 'rails', '5.2.5'
 
 gem 'actionpack-page_caching'
 gem 'apipie-rails', '~> 0.5'
