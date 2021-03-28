@@ -216,19 +216,16 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.90.0, < 2.0)
     ruby-progressbar (1.11.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-rails (5.1.0)
-      railties (>= 5.2.0)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -236,7 +233,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
-    sprockets (3.7.2)
+    sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.2)
@@ -283,7 +280,7 @@ DEPENDENCIES
   dotenv-rails
   fast_blank
   fx
-  jbuilder (~> 2.0)
+  jbuilder
   jquery-rails
   jquery-ui-rails (< 6)
   listen
@@ -302,11 +299,11 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   ruby-progressbar
-  sass-rails (~> 5.0)
+  sass-rails
   slim-rails
   steam-condenser
-  turbolinks (~> 5.2.0)
-  uglifier (>= 1.3.0)
+  turbolinks
+  uglifier
   whenever
 
 BUNDLED WITH

@@ -12,7 +12,7 @@ gem 'bootswatch-rails', '~> 3.3'
 gem 'dalli'
 gem 'fast_blank'
 gem 'fx'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '< 6'
 gem 'oj'
@@ -23,11 +23,11 @@ gem 'rails-jquery-autocomplete'
 gem 'rails-observers'
 gem 'rollbar'
 gem 'ruby-progressbar', require: false
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'slim-rails'
 gem 'steam-condenser', require: false
-gem 'turbolinks', '~> 5.2.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'turbolinks'
+gem 'uglifier'
 gem 'whenever', require: false
 
 group :test do
