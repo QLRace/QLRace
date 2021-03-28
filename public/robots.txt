@@ -4,4 +4,3 @@
 # User-agent: *
 # Disallow: /
 Disallow: /players/
-Disallow: /player/
