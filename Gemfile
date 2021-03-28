@@ -30,10 +30,6 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'whenever', require: false
 
-group :test do
-  gem 'database_cleaner'
-end
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
