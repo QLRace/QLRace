@@ -23,3 +23,4 @@
 
 # Ignore index.html page cache
 public/index.html
+/config/master.key
