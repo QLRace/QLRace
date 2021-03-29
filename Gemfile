@@ -31,17 +31,18 @@ gem 'uglifier'
 gem 'whenever', require: false
 
 group :development, :test do
+  gem 'better_errors'
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
+  gem 'pry-rails'
 end
 
 group :development do
   gem 'annotate'
-  gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
   gem 'listen'
   gem 'mina', require: false
-  gem 'pry-rails'
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
