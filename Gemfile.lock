@@ -39,6 +39,10 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_record_doctor (1.7.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
     activejob (6.0.3.6)
       activesupport (= 6.0.3.6)
       globalid (>= 0.3.6)
@@ -265,6 +269,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-page_caching
+  active_record_doctor
   annotate
   apipie-rails (~> 0.5)
   better_errors
