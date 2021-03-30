@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_132219) do
+ActiveRecord::Schema.define(version: 2021_03_30_124518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2021_03_28_132219) do
     t.index ["map", "mode"], name: "index_scores_on_map_and_mode"
     t.index ["player_id", "map", "mode"], name: "index_scores_on_player_id_and_map_and_mode", unique: true
     t.index ["player_id", "mode"], name: "index_scores_on_player_id_and_mode"
-    t.index ["player_id"], name: "index_scores_on_player_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
