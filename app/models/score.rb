@@ -5,19 +5,29 @@
 # Table name: scores
 #
 #  id            :integer          not null, primary key
+#  checkpoints   :integer          is an Array
 #  map           :string           not null
+#  match_guid    :uuid             not null
 #  mode          :integer          not null
-#  player_id     :bigint           not null
+#  speed_average :float
+#  speed_end     :float
+#  speed_start   :float
+#  speed_top     :float
 #  time          :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  match_guid    :uuid             not null
 #  api_id        :integer
-#  checkpoints   :integer          is an Array
-#  speed_start   :float
-#  speed_end     :float
-#  speed_top     :float
-#  speed_average :float
+#  player_id     :bigint           not null
+#
+# Indexes
+#
+#  index_scores_on_map_and_mode                (map,mode)
+#  index_scores_on_player_id_and_map_and_mode  (player_id,map,mode) UNIQUE
+#  index_scores_on_player_id_and_mode          (player_id,mode)
+#
+# Foreign Keys
+#
+#  scores_player_id_fk  (player_id => players.id) ON DELETE => cascade
 #
 
 class Score < ApplicationRecord
