@@ -5,7 +5,6 @@
 #
 Rails.application.config.permissions_policy do |f|
   f.accelerometer :none
-  f.ambient_light_sensor :none
   f.autoplay :none
   f.camera :none
   f.encrypted_media :none
@@ -17,8 +16,5 @@ Rails.application.config.permissions_policy do |f|
   f.midi :none
   f.payment :none
   f.picture_in_picture :none
-  f.speaker :none
   f.usb :none
-  f.vibrate :none
-  f.vr :none
 end
