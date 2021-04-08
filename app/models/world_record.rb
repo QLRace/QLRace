@@ -6,13 +6,22 @@
 #
 #  id         :integer          not null, primary key
 #  map        :string           not null
+#  match_guid :uuid             not null
 #  mode       :integer          not null
-#  player_id  :bigint           not null
 #  time       :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  match_guid :uuid             not null
 #  api_id     :integer
+#  player_id  :bigint           not null
+#
+# Indexes
+#
+#  index_world_records_on_map_and_mode  (map,mode) UNIQUE
+#  index_world_records_on_player_id     (player_id)
+#
+# Foreign Keys
+#
+#  world_records_player_id_fk  (player_id => players.id) ON DELETE => cascade
 #
 
 class WorldRecord < ApplicationRecord
