@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'scores#home'
   get 'recent', to: 'scores#recent', as: 'recent_scores'

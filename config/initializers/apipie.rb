@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Apipie.configure do |config|
   config.api_base_url = '/api'
   config.app_info = 'QLRace.com API'
