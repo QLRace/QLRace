@@ -42,6 +42,7 @@ group :development do
   gem 'active_record_doctor'
   gem 'annotate'
   gem 'binding_of_caller'
+  gem 'brakeman'
   gem 'bullet'
   gem 'listen'
   gem 'mina', require: false

@@ -1,0 +1,37 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "3fc18e551d38146c534870d00b2bae44f8e6d3533461aaeea95f211a357c5197",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/scores/map.html.slim",
+      "line": 33,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "pagy_bootstrap_nav(Pagy.new(:count => Score.map_scores_paginated(params)[:total_records], :page => params[:page]))",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "ScoresController",
+          "method": "map",
+          "line": 22,
+          "file": "app/controllers/scores_controller.rb",
+          "rendered": {
+            "name": "scores/map",
+            "file": "app/views/scores/map.html.slim"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "scores/map"
+      },
+      "user_input": "Score.map_scores_paginated(params)[:total_records]",
+      "confidence": "Weak",
+      "note": "https://github.com/ddnexus/pagy/blob/master/docs/how-to.md#ignoring-brakeman-unescapedoutputs-false-postives-warnings"
+    }
+  ],
+  "updated": "2021-04-12 19:55:58 +0100",
+  "brakeman_version": "5.0.0"
+}
