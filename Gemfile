@@ -36,6 +36,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec'
 end
 
 group :development do
@@ -47,8 +52,12 @@ group :development do
   gem 'listen'
   gem 'mina', require: false
   gem 'rack-mini-profiler'
-  gem 'rubocop', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
   gem 'web-console'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'capybara', '>= 3.26'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
