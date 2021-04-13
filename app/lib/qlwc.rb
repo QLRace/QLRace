@@ -28,7 +28,8 @@
 # End: May 22th at 18:00 UTC
 
 class Qlwc
-  MAPS = %w[qlwc21_round0 qlwc21_round1 qlwc21_round2 qlwc21_round3 qlwc21_round4].freeze
+  MAPS = %w[qlwc21_round0 qlwc21_round1 qlwc21_round2
+            qlwc21_round3 qlwc21_round4].freeze
   START_DATES = [Time.utc(2021, 4, 17, 19), Time.utc(2021, 4, 24, 19),
                  Time.utc(2021, 5, 1, 19), Time.utc(2021, 5, 8, 19),
                  Time.utc(2021, 5, 15, 19)].freeze
@@ -57,7 +58,7 @@ class Qlwc
     round = MAPS.find_index(map)
     return false if round.nil?
 
-    time > START_DATES[round]
+    time >= START_DATES[round]
   end
 
   def round_finished?(map, time)
@@ -65,5 +66,13 @@ class Qlwc
     return false if round.nil?
 
     time >= END_DATES[round]
+  end
+
+  def hidden_maps(time)
+    hidden = []
+    MAPS.each do |map|
+      hidden << map unless round_finished?(map, time)
+    end
+    hidden
   end
 end
