@@ -16,7 +16,7 @@
             a href='/player/#{player.id}' #{player.name}
           td.col-xs-4 = player.id
           td.col-xs-2 = player.scores.size
-          td.col-xs-2 = player.world_records.size
+          td.col-xs-2 = player.world_records.where.not(map: @hidden_maps).size
   == pagy_bootstrap_nav(@pagy)
 - else
   p No players were found

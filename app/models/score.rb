@@ -66,8 +66,12 @@ class Score < ApplicationRecord
       return { name: nil, id: nil, medals: [], records: [] }
     end
 
+    qlwc = Qlwc.new
+    hidden_maps = qlwc.hidden_maps(Time.now.utc)
+
     query = 'SELECT * FROM player_scores(:p_id, :mode)'
-    scores = Score.find_by_sql [query, { p_id: p.id, mode: mode }]
+    scores = (Score.find_by_sql [query, { p_id: p.id, mode: mode }])
+             .select { |s| hidden_maps.exclude?(s[:map]) }
 
     total = 0
     medals = [0, 0, 0]
