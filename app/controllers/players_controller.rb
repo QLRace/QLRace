@@ -13,8 +13,8 @@ class PlayersController < ApplicationController
       .search(params[:search])
       .order(:name)
     )
-    qlwc = Qlwc.new
-    @hidden_maps = qlwc.hidden_maps(Time.now.utc)
+    qlwc = Qlwc.new(Time.now.utc)
+    @hidden_maps = qlwc.hidden_maps
   end
 
   # Should maybe be in WorldRecordController?

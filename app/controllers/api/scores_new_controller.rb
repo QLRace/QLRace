@@ -4,9 +4,9 @@ class Api::ScoresNewController < Api::ApiController
   before_action :authenticate, :check_score
 
   def new
-    qlwc = Qlwc.new
+    qlwc = Qlwc.new(@score[:date])
     return head :not_modified if Qlwc::MAPS.include?(@score[:map]) &&
-                                 !qlwc.round_active?(@score[:map], @score[:date])
+                                 !qlwc.round_active?(@score[:map])
 
     @score[:name] = @score[:player_id].to_s if @score[:name].blank?
     return head :bad_request if @score.values.any?(&:blank?)

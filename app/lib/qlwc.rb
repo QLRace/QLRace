@@ -37,41 +37,45 @@ class Qlwc
                Time.utc(2021, 5, 8, 18), Time.utc(2021, 5, 15, 18),
                Time.utc(2021, 5, 22, 18)].freeze
 
-  def current_map(time)
-    return nil if time < START_DATES[0] || time >= END_DATES[4]
+  def initialize(date)
+    @date = date
+  end
+
+  def current_map()
+    return nil if @date < START_DATES[0] || @date >= END_DATES[4]
 
     MAPS.each_with_index do |map, round|
-      return map if time >= START_DATES[round] && time < END_DATES[round]
+      return map if @date >= START_DATES[round] && @date < END_DATES[round]
     end
 
     nil
   end
 
-  def round_active?(map, time)
+  def round_active?(map)
     round = MAPS.find_index(map)
     return false if round.nil?
 
-    time >= START_DATES[round] && time < END_DATES[round]
+    @date >= START_DATES[round] && @date < END_DATES[round]
   end
 
-  def round_started?(map, time)
+  def round_started?(map)
     round = MAPS.find_index(map)
     return false if round.nil?
 
-    time >= START_DATES[round]
+    @date >= START_DATES[round]
   end
 
-  def round_finished?(map, time)
+  def round_finished?(map)
     round = MAPS.find_index(map)
     return false if round.nil?
 
-    time >= END_DATES[round]
+    @date >= END_DATES[round]
   end
 
-  def hidden_maps(time)
+  def hidden_maps()
     hidden = []
     MAPS.each do |map|
-      hidden << map unless round_finished?(map, time)
+      hidden << map unless round_finished?(map)
     end
     hidden
   end

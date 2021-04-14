@@ -52,8 +52,8 @@ class Api::ScoresApiController < Api::ApiController
   private
 
   def map_hidden?(map)
-    qlwc = Qlwc.new
-    qlwc.hidden_maps(Time.now.utc).include?(map.downcase) &&
+    qlwc = Qlwc.new(Time.now.utc)
+    qlwc.hidden_maps.include?(map.downcase) &&
       params[:cup_key] != ENV['QLRACE_CUP_KEY']
   end
 end
