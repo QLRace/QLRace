@@ -12,7 +12,7 @@ DATES = [Time.utc(2021, 4, 17), Time.utc(2021, 4, 17, 19),
 RSpec.describe Qlwc do
   describe 'current_map' do
     it 'returns nil if time is before qlwc21 started' do
-      qlwc = Qlwc.new(Time.utc(2021, 4, 13))
+      qlwc = described_class.new(Time.utc(2021, 4, 13))
       expect(qlwc.current_map).to be_nil
     end
 
@@ -22,7 +22,7 @@ RSpec.describe Qlwc do
                  'qlwc21_round2', 'qlwc21_round3', 'qlwc21_round4', nil]
       DATES.zip(results).each do |date, result|
         # puts "#{date} #{result}"
-        qlwc = Qlwc.new(date)
+        qlwc = described_class.new(date)
         expect(qlwc.current_map).to eq(result)
       end
     end
@@ -30,59 +30,59 @@ RSpec.describe Qlwc do
 
   describe 'round_active?' do
     it 'returns false if map is not a qlwc map' do
-      qlwc = Qlwc.new(DATES[0])
+      qlwc = described_class.new(DATES[0])
       expect(qlwc.round_active?('trinity')).to eq(false)
     end
 
     it 'returns false if round 0 has not started' do
-      qlwc = Qlwc.new(DATES[0])
+      qlwc = described_class.new(DATES[0])
       expect(qlwc.round_active?('qlwc21_round0')).to eq(false)
     end
 
     it 'returns true if round 1 is active' do
-      qlwc = Qlwc.new(DATES[5])
+      qlwc = described_class.new(DATES[5])
       expect(qlwc.round_active?('qlwc21_round1')) == true
     end
   end
 
   describe 'round_started?' do
     it 'returns false if round 0 has not started' do
-      qlwc = Qlwc.new(DATES[0])
+      qlwc = described_class.new(DATES[0])
       expect(qlwc.round_started?('qlwc21_round0')).to eq(false)
     end
 
     it 'returns true if round 0 has started' do
-      qlwc = Qlwc.new(DATES[1])
+      qlwc = described_class.new(DATES[1])
       expect(qlwc.round_started?('qlwc21_round0')).to eq(true)
     end
   end
 
   describe 'round_finished?' do
     it 'returns false if round 1 has not finished' do
-      qlwc = Qlwc.new(DATES[5])
+      qlwc = described_class.new(DATES[5])
       expect(qlwc.round_finished?('qlwc21_round1')).to eq(false)
     end
 
     it 'returns true if round 1 has finished' do
-      qlwc = Qlwc.new(DATES[7])
+      qlwc = described_class.new(DATES[7])
       expect(qlwc.round_finished?('qlwc21_round1')).to eq(true)
     end
   end
 
   describe 'hidden_maps' do
     it 'returns all maps if round 0 has not finished' do
-      qlwc = Qlwc.new(DATES[0])
+      qlwc = described_class.new(DATES[0])
       expect(qlwc.hidden_maps).to eq(Qlwc::MAPS)
     end
 
     it 'returns round1-round4 if round 1 has finished' do
       result = Qlwc::MAPS[1..]
-      qlwc = Qlwc.new(DATES[4])
+      qlwc = described_class.new(DATES[4])
       expect(qlwc.hidden_maps).to eq(result)
     end
 
     it 'returns empty array if round 4 has finished' do
-      qlwc = Qlwc.new(DATES[11])
+      qlwc = described_class.new(DATES[11])
       expect(qlwc.hidden_maps).to eq([])
     end
   end

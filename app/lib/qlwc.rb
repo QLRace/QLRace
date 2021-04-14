@@ -41,7 +41,7 @@ class Qlwc
     @date = date
   end
 
-  def current_map()
+  def current_map
     return nil if @date < START_DATES[0] || @date >= END_DATES[4]
 
     MAPS.each_with_index do |map, round|
@@ -72,7 +72,7 @@ class Qlwc
     @date >= END_DATES[round]
   end
 
-  def hidden_maps()
+  def hidden_maps
     hidden = []
     MAPS.each do |map|
       hidden << map unless round_finished?(map)
