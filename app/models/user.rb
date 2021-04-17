@@ -9,6 +9,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_users_on_api_key  (api_key)
+#
 
 class User < ApplicationRecord
   before_validation :set_api_key
