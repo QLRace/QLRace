@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-servers = [
+SERVERS = [
   '45.76.92.77:27970', '45.76.92.77:27971', '45.76.92.77:27980',
-  '45.76.92.77:27981', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
+  '45.76.92.77:27981', 'eu.qlrace.com:27960', 'eu.qlrace.com:27961',
+  'eu.qlrace.com:27962', 'de.qlrace.com:27960', 'de.qlrace.com:27961',
   'fr.qlrace.com:27960', 'fr.qlrace.com:27961', 'nl.qlrace.com:27960',
   'na.qlrace.com:27960', 'na.qlrace.com:27961', 'na.qlrace.com:27962',
   'na-west.qlrace.com:27960', 'na-west.qlrace.com:27961', 'na-west.qlrace.com:27962'
-]
+].freeze
 
 desc 'Get status of QLRace servers and save to cache'
 task get_server_info: :environment do
@@ -14,7 +15,7 @@ task get_server_info: :environment do
   SteamSocket.timeout = 750
 
   server_status = []
-  servers.each { |s| server_status << get_server_info(s) }
+  SERVERS.each { |s| server_status << get_server_info(s) }
 
   data = { time: Time.now.utc.strftime('%H:%M:%S'),
            servers: server_status.compact }
