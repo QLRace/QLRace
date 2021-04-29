@@ -63,7 +63,8 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.most_world_records(mode)
-    where_mode = mode.to_i == -1 ? '' : " AND mode = #{mode.to_i}"
+    mode = mode.to_i
+    mode = nil if mode == -1
     qlwc = Qlwc.new(Time.now.utc)
     hidden_maps = qlwc.hidden_maps
 
@@ -71,13 +72,13 @@ class WorldRecord < ApplicationRecord
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
         (SELECT COUNT(*)
          FROM scores
-         WHERE scores.player_id = wr.player_id#{where_mode}) AS num_records
+         WHERE scores.player_id = wr.player_id AND (:mode is null OR mode = :mode)) AS num_records
     FROM world_records wr, players p
-    WHERE wr.player_id = p.id#{where_mode} AND wr.map NOT IN (?)
+    WHERE wr.player_id = p.id AND (:mode is null OR mode = :mode) AND wr.map NOT IN (:hidden_maps)
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL
-    Score.find_by_sql [query, hidden_maps]
+    WorldRecord.find_by_sql [query, { :mode => mode, :hidden_maps => hidden_maps}]
   end
 
   def self.update_world_record(world_record, score)
