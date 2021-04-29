@@ -78,7 +78,7 @@ class WorldRecord < ApplicationRecord
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL
-    WorldRecord.find_by_sql [query, { :mode => mode, :hidden_maps => hidden_maps}]
+    WorldRecord.find_by_sql [query, { mode: mode, hidden_maps: hidden_maps }]
   end
 
   def self.update_world_record(world_record, score)
