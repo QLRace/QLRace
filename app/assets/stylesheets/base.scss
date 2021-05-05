@@ -43,11 +43,22 @@ caption {
   padding: 5px;
 }
 
+.navbar-form {
+  .form-control {
+    background-color: $gray-dark;
+
+    &:focus {
+      border-color: white;
+    }
+  }
+}
+
+
 .ui-autocomplete {
   // -moz-background-clip: padding;
   // -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background-color: #fff;
+  background-color: $gray;
   border-color: $autocomplete-border;
   border-style: solid;
   border-width: 1px;
@@ -67,7 +78,7 @@ caption {
 
   .ui-menu-item {
     clear: both;
-    color: #555;
+    color: $gray-lighter;
     display: block;
     font-weight: normal;
     line-height: 18px;

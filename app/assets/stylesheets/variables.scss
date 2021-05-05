@@ -1,0 +1,79 @@
+//== Colors
+
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              #303030 !default;   // #333
+$gray:                   #464545 !default;
+$gray-light:             #999 !default;   // #999
+$gray-lighter:           #EBEBEB !default; // #eee
+
+$brand-primary:         #375a7f !default;
+$brand-success:         #3bb1df !default;
+$brand-info:            #3498DB !default;
+$brand-warning:         #F39C12 !default;
+$brand-danger:          #E74C3C !default;
+
+//== Scaffolding
+
+//** Background color for `<body>`.
+$body-bg:               $gray-darker !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-lighter !default;
+
+//** Global textual link color.
+$link-color:            #659bda !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      $brand-success !default;
+//** Link hover decoration.
+$link-hover-decoration: underline !default;
+
+
+//== Tables
+
+//** Padding for `<th>`s and `<td>`s.
+$table-cell-padding:            8px !default;
+//** Padding for cells in `.table-condensed`.
+$table-condensed-cell-padding:  5px !default;
+
+//** Default background color used for all tables.
+$table-bg:                      transparent !default;
+//** Background color used for `.table-striped`.
+$table-bg-accent:               lighten($gray-darker, 2.5%) !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover:                lighten($gray-dark, 3%) !default;
+$table-bg-active:               $table-bg-hover !default;
+
+//** Border color for table and cell borders.
+$table-border-color:            $gray !default;
+
+
+//== Forms
+
+//** `<input>` background color
+$input-bg:                      $gray !default;
+//** `<input disabled>` background color
+$input-bg-disabled:             $gray-dark !default;
+
+//** Text color for `<input>`s
+$input-color:                   $gray-lighter !default;
+//** `<input>` border color
+$input-border:                  #f1f1f1 !default;
+
+
+//== Pagination
+
+$pagination-color:                     #fff !default;
+$pagination-bg:                        $gray !default;
+$pagination-border:                    $gray-darker !default;
+
+$pagination-hover-color:               #fff !default;
+$pagination-hover-bg:                  lighten($gray, 6%) !default;
+$pagination-hover-border:              $gray-darker !default;
+
+$pagination-active-color:              $gray-light !default;
+$pagination-active-bg:                 darken($gray, 6%) !default;
+$pagination-active-border:             $gray-darker !default;
+
+$pagination-disabled-color:            rgb(82, 82, 82) !default;
+$pagination-disabled-bg:               darken($gray, 10%) !default;
+$pagination-disabled-border:           $gray-darker !default;
