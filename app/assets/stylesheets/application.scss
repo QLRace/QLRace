@@ -21,7 +21,6 @@ $autocomplete-border: rgba(0, 0, 0, .2);
 
 caption {
   color: inherit;
-  font-family: Source Sans Pro, Calibri, Candara, Arial, sans-serif;
   font-size: 28px;
   font-weight: 300;
   line-height: 1.1;
@@ -101,6 +100,6 @@ caption {
 }
 
 .ui-state-active {
-    background-color: $brand-primary;
-    font-weight: bold;
+  background-color: $brand-primary;
+  font-weight: bold;
 }

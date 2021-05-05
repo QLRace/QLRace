@@ -16,16 +16,16 @@ $brand-danger:          #E74C3C !default;
 //== Scaffolding
 
 //** Background color for `<body>`.
-$body-bg:               $gray-darker !default;
+$body-bg:                 $gray-darker !default;
 //** Global text color on `<body>`.
-$text-color:            $gray-lighter !default;
+$text-color:              $gray-lighter !default;
 
 //** Global textual link color.
 $link-color:            #659bda !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      $brand-success !default;
+$link-hover-color:        $brand-success !default;
 //** Link hover decoration.
-$link-hover-decoration: underline !default;
+$link-hover-decoration:   underline !default;
 
 
 //== Tables
@@ -62,18 +62,23 @@ $input-border:                  #f1f1f1 !default;
 
 //== Pagination
 
-$pagination-color:                     #fff !default;
-$pagination-bg:                        $gray !default;
-$pagination-border:                    $gray-darker !default;
+$pagination-color:              #fff !default;
+$pagination-bg:                 $gray !default;
+$pagination-border:             $gray-darker !default;
 
-$pagination-hover-color:               #fff !default;
-$pagination-hover-bg:                  lighten($gray, 6%) !default;
-$pagination-hover-border:              $gray-darker !default;
+$pagination-hover-color:        #fff !default;
+$pagination-hover-bg:           lighten($gray, 6%) !default;
+$pagination-hover-border:       $gray-darker !default;
 
-$pagination-active-color:              $gray-light !default;
-$pagination-active-bg:                 darken($gray, 6%) !default;
-$pagination-active-border:             $gray-darker !default;
+$pagination-active-color:       $gray-light !default;
+$pagination-active-bg:          darken($gray, 6%) !default;
+$pagination-active-border:      $gray-darker !default;
 
-$pagination-disabled-color:            rgb(82, 82, 82) !default;
-$pagination-disabled-bg:               darken($gray, 10%) !default;
-$pagination-disabled-border:           $gray-darker !default;
+$pagination-disabled-color:     rgb(82, 82, 82) !default;
+$pagination-disabled-bg:        darken($gray, 10%) !default;
+$pagination-disabled-border:    $gray-darker !default;
+
+//== Pre
+$pre-bg:                        $gray-dark !default;
+$pre-color:                     $gray-lighter !default;
+$pre-border-color:              $gray !default;
