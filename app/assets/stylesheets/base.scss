@@ -45,7 +45,7 @@ caption {
 
 .navbar-form {
   .form-control {
-    background-color: $gray-dark;
+    background-color: #303030;
 
     &:focus {
       border-color: white;
@@ -58,7 +58,7 @@ caption {
   // -moz-background-clip: padding;
   // -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background-color: $gray;
+  background-color: #464545;
   border-color: $autocomplete-border;
   border-style: solid;
   border-width: 1px;
@@ -78,7 +78,7 @@ caption {
 
   .ui-menu-item {
     clear: both;
-    color: $gray-lighter;
+    color: #EBEBEB;
     display: block;
     font-weight: normal;
     line-height: 18px;
