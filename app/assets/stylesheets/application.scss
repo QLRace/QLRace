@@ -3,4 +3,104 @@
 @import 'bootswatch/darkly/variables';
 @import 'bootstrap';
 @import 'bootswatch/darkly/bootswatch';
-@import 'base';
+
+
+$autocomplete-border: rgba(0, 0, 0, .2);
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pull-right-mode {
+    float: right;
+  }
+}
+
+caption {
+  color: inherit;
+  font-family: Source Sans Pro, Calibri, Candara, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.word-break {
+  word-break: break-all;
+}
+
+.table {
+  a:not(.btn) {
+    text-decoration: none;
+  }
+
+  &.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort)::after {
+    content: ' \25B4\25BE'; // ▴▾
+  }
+}
+
+.table-xtra-condensed > thead > tr > th,
+.table-xtra-condensed > tbody > tr > th,
+.table-xtra-condensed > tfoot > tr > th,
+.table-xtra-condensed > thead > tr > td,
+.table-xtra-condensed > tbody > tr > td,
+.table-xtra-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
+.navbar-form {
+  .form-control {
+    background-color: $gray-dark;
+
+    &:focus {
+      border-color: white;
+    }
+  }
+}
+
+
+.ui-autocomplete {
+  // -moz-background-clip: padding;
+  // -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: $gray;
+  border-color: $autocomplete-border;
+  border-style: solid;
+  border-width: 1px;
+  // -moz-box-shadow: 0 5px 10px $autocomplete-border;
+  // -webkit-box-shadow: 0 5px 10px $autocomplete-border;
+  box-shadow: 0 5px 10px $autocomplete-border;
+  display: none;
+  float: left;
+  left: 0;
+  list-style: none;
+  margin: 2px 0 0;
+  min-width: 160px;
+  padding: 4px 0;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+
+  .ui-menu-item {
+    clear: both;
+    color: $gray-lighter;
+    display: block;
+    font-weight: normal;
+    line-height: 18px;
+    padding: 3px 17px;
+    white-space: nowrap;
+
+    &.ui-state-focus {
+      background: #08c none;
+      color: $gray-lighter;
+      text-decoration: none;
+    }
+  }
+}
+
+.ui-state-active {
+    background-color: $brand-primary;
+    font-weight: bold;
+}
