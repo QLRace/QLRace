@@ -47,7 +47,7 @@ workers ENV.fetch('PUMA_WORKERS', 2)
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-# preload_app!
+preload_app!
 
 # Redirect STDOUT and STDERR to files specified. The append parameter
 # specifies whether the output is appended, the default is false.
