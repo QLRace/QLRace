@@ -45,6 +45,11 @@ workers ENV.fetch('PUMA_WORKERS', 2)
 # process behavior so workers use less memory.
 preload_app!
 
+# When enabled, Puma will GC 4 times before forking workers.
+# If available (Ruby 2.7+), we will also call GC.compact.
+# Not recommended for non-MRI Rubies.
+nakayoshi_fork
+
 # Attempts to route traffic to less-busy workers by causing them to delay
 # listening on the socket, allowing workers which are not processing any
 # requests to pick up new requests first.
