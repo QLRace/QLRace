@@ -25,8 +25,6 @@ class Api::ScoresApiController < Api::ApiController
   param_group :mode
   param :limit, Integer, desc: 'Number of records which will be returned'
   def map
-    return render json: { total_records: 0, records: [] } if map_hidden?(params[:map])
-
     render json: Score.map_scores(params)
   end
 
@@ -42,18 +40,8 @@ class Api::ScoresApiController < Api::ApiController
                      :speed_average, :name, 'scores.updated_at as date')
              .find(id)
 
-    return render json: {} if map_hidden?(s.map)
-
     j = s.as_json
     j['rank'] = s.rank_
     render json: j
-  end
-
-  private
-
-  def map_hidden?(map)
-    qlwc = Qlwc.new(Time.now.utc)
-    qlwc.hidden_maps.include?(map.downcase) &&
-      params[:cup_key] != Rails.configuration.x.qlwc.cup_key
   end
 end
