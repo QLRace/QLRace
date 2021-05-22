@@ -10,18 +10,13 @@ class ScoresController < ApplicationController
   def home
     @total_scores = Score.count
 
-    qlwc = Qlwc.new(Time.now.utc)
-    @recent_wrs = WorldRecord.where.not(map: qlwc.hidden_maps)
-                             .order(updated_at: :desc).includes(:player)
+    @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
                              .limit(5)
     @map_scores = WorldRecord.map_scores
   end
 
   def map
     return unless Score.exists?(map: params[:map].downcase)
-
-    qlwc = Qlwc.new(Time.now.utc)
-    return if qlwc.hidden_maps.include?(params[:map].downcase)
 
     @map = Score.map_scores_paginated params
     @pagy = Pagy.new(count: @map[:total_records], page: params[:page])
@@ -47,9 +42,7 @@ class ScoresController < ApplicationController
     mode = params.fetch(:mode, -1).to_i
     records = mode.between?(0, 3) ? model.where(mode: mode) : model
 
-    qlwc = Qlwc.new(Time.now.utc)
-    @pagy, @recent = pagy(records.where.not(map: qlwc.hidden_maps)
-                                 .order(updated_at: :desc)
+    @pagy, @recent = pagy(records.order(updated_at: :desc)
                                  .includes(:player))
   end
 end
