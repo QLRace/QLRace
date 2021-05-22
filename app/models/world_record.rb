@@ -39,18 +39,14 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.map_scores
-    qlwc = Qlwc.new(Time.now.utc)
-    hidden_maps = qlwc.hidden_maps
-
     query = <<-SQL.squish
     SELECT wr.map, wr.mode, wr.time, p.id AS player_id, p.name AS player_name
     FROM world_records wr
     INNER JOIN players p
     ON wr.player_id = p.id
-    WHERE wr.map NOT IN (?)
     ORDER BY wr.map, wr.mode;
     SQL
-    wrs = WorldRecord.find_by_sql [query, hidden_maps]
+    wrs = WorldRecord.find_by_sql [query]
     map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
     wrs.each do |wr|
       map_scores[wr.map][wr.mode] = wr
@@ -65,8 +61,6 @@ class WorldRecord < ApplicationRecord
   def self.most_world_records(mode)
     mode = mode.to_i
     mode = nil if mode == -1
-    qlwc = Qlwc.new(Time.now.utc)
-    hidden_maps = qlwc.hidden_maps
 
     query = <<-SQL.squish
     SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
@@ -74,11 +68,11 @@ class WorldRecord < ApplicationRecord
          FROM scores
          WHERE scores.player_id = wr.player_id AND (:mode is null OR mode = :mode)) AS num_records
     FROM world_records wr, players p
-    WHERE wr.player_id = p.id AND (:mode is null OR mode = :mode) AND wr.map NOT IN (:hidden_maps)
+    WHERE wr.player_id = p.id AND (:mode is null OR mode = :mode)
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL
-    WorldRecord.find_by_sql [query, { mode: mode, hidden_maps: hidden_maps }]
+    WorldRecord.find_by_sql [query, { mode: mode }]
   end
 
   def self.update_world_record(world_record, score)
