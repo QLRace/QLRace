@@ -8,16 +8,16 @@ module ApplicationHelper
     title.empty? ? base_title : "#{title} | #{base_title}"
   end
 
-  def time_string(ms)
-    return '-' if ms == 2_147_483_647 || ms.nil? || ms.zero?
+  def time_string(milli)
+    return '-' if milli == 2_147_483_647 || milli.nil? || milli.zero?
 
-    time = ms.to_i
+    time = milli.to_i
     s, ms = time.divmod(1000)
-    ms = ms.to_s.rjust(3, '0')
+    ms = format('%03d', ms)
     return "#{s}.#{ms}" if s < 60
 
     m, s = s.divmod(60)
-    s = s.to_s.rjust(2, '0')
+    s = format('%02d', s)
     "#{m}:#{s}.#{ms}"
   end
 end
