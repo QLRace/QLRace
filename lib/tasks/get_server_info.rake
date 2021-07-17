@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 SERVERS = [
-  'eu.qlrace.com:27960', 'eu.qlrace.com:27961','eu.qlrace.com:27962',
-  'de.qlrace.com:27960', 'de.qlrace.com:27961','fr.qlrace.com:27960',
-  'fr.qlrace.com:27961', 'nl.qlrace.com:27960','na.qlrace.com:27960',
-  'na.qlrace.com:27961', 'na.qlrace.com:27962','na-west.qlrace.com:27960',
+  'eu.qlrace.com:27960', 'eu.qlrace.com:27961', 'eu.qlrace.com:27962',
+  'de.qlrace.com:27960', 'de.qlrace.com:27961', 'fr.qlrace.com:27960',
+  'fr.qlrace.com:27961', 'nl.qlrace.com:27960', 'na.qlrace.com:27960',
+  'na.qlrace.com:27961', 'na.qlrace.com:27962', 'na-west.qlrace.com:27960',
   'na-west.qlrace.com:27961', 'na-west.qlrace.com:27962'
 ].freeze
 
