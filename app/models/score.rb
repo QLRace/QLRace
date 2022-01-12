@@ -32,7 +32,7 @@
 
 class Score < ApplicationRecord
   belongs_to :player
-  validates :map, :mode, :player_id, :time, :match_guid, :player, presence: true
+  validates :map, :mode, :time, :match_guid, presence: true
   validates :mode, inclusion: { in: 0..3 }
   validates :time, numericality: { only_integer: true,
                                    greater_than: 0 }

@@ -26,7 +26,7 @@
 
 class WorldRecord < ApplicationRecord
   belongs_to :player
-  validates :map, :mode, :player_id, :time, :player, :match_guid, presence: true
+  validates :map, :mode, :time, :match_guid, presence: true
   validates :mode, inclusion: { in: 0..3 }
   validates :mode, uniqueness: { scope: :map,
                                  message: 'One record per mode for each map.' }
