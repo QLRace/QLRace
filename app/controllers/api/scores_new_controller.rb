@@ -39,6 +39,7 @@ class Api::ScoresNewController < Api::ApiController
   end
 
   def update_score?
+    @score[:tied] = Score.exists?(map: @score[:map], mode: @score[:mode], time: @score[:time])
     @score[:old_total_records] = Score.where(map: @score[:map],
                                              mode: @score[:mode]).count
 
