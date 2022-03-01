@@ -31,12 +31,12 @@ RSpec.describe Qlwc do
   describe 'round_active?' do
     it 'returns false if map is not a qlwc map' do
       qlwc = described_class.new(DATES[0])
-      expect(qlwc.round_active?('trinity')).to eq(false)
+      expect(qlwc.round_active?('trinity')).to be(false)
     end
 
     it 'returns false if round 0 has not started' do
       qlwc = described_class.new(DATES[0])
-      expect(qlwc.round_active?('qlwc21_round0')).to eq(false)
+      expect(qlwc.round_active?('qlwc21_round0')).to be(false)
     end
 
     it 'returns true if round 1 is active' do
@@ -48,24 +48,24 @@ RSpec.describe Qlwc do
   describe 'round_started?' do
     it 'returns false if round 0 has not started' do
       qlwc = described_class.new(DATES[0])
-      expect(qlwc.round_started?('qlwc21_round0')).to eq(false)
+      expect(qlwc.round_started?('qlwc21_round0')).to be(false)
     end
 
     it 'returns true if round 0 has started' do
       qlwc = described_class.new(DATES[1])
-      expect(qlwc.round_started?('qlwc21_round0')).to eq(true)
+      expect(qlwc.round_started?('qlwc21_round0')).to be(true)
     end
   end
 
   describe 'round_finished?' do
     it 'returns false if round 1 has not finished' do
       qlwc = described_class.new(DATES[5])
-      expect(qlwc.round_finished?('qlwc21_round1')).to eq(false)
+      expect(qlwc.round_finished?('qlwc21_round1')).to be(false)
     end
 
     it 'returns true if round 1 has finished' do
       qlwc = described_class.new(DATES[7])
-      expect(qlwc.round_finished?('qlwc21_round1')).to eq(true)
+      expect(qlwc.round_finished?('qlwc21_round1')).to be(true)
     end
   end
 
