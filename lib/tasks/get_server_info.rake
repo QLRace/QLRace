@@ -6,7 +6,7 @@ SERVERS = [
   'fr.qlrace.com:27961', 'pl.qlrace.com:27960', 'pl.qlrace.com:27961',
   'nl.qlrace.com:27960', 'na.qlrace.com:27960', 'na.qlrace.com:27961',
   'na.qlrace.com:27962', 'na-west.qlrace.com:27960', 'na-west.qlrace.com:27961',
-  'na-west.qlrace.com:27962'
+  'na-west.qlrace.com:27962', 'au.qlrace.com:27960', 'au.qlrace.com:27961'
 ].freeze
 
 desc 'Get status of QLRace servers and save to cache'
