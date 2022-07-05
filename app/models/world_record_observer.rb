@@ -13,6 +13,6 @@ class WorldRecordObserver < ActiveRecord::Observer
 
   def delete_page_cache(page)
     page_file = Rails.public_path.join page
-    File.delete(page_file) if File.exist? page_file
+    FileUtils.rm_rf(page_file)
   end
 end
