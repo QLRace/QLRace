@@ -67,7 +67,7 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
-    apipie-rails (0.8.1)
+    apipie-rails (0.8.2)
       actionpack (>= 5.0)
       activesupport (>= 5.0)
     ast (2.4.2)
@@ -128,7 +128,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.18.0)
+    loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -199,7 +199,7 @@ GEM
       thor (~> 1.0)
     rainbow (3.1.1)
     rake (13.0.6)
-    rb-fsevent (0.11.1)
+    rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.5.0)
@@ -207,7 +207,7 @@ GEM
     rollbar (3.3.1)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
-    rspec-expectations (3.11.0)
+    rspec-expectations (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-mocks (3.11.1)
@@ -221,8 +221,8 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
-    rspec-support (3.11.0)
-    rubocop (1.35.1)
+    rspec-support (3.11.1)
+    rubocop (1.36.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -234,15 +234,15 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
-    rubocop-performance (1.14.3)
+    rubocop-performance (1.15.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.15.2)
+    rubocop-rails (2.16.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.12.1)
-      rubocop (~> 1.31)
+      rubocop (>= 1.33.0, < 2.0)
+    rubocop-rspec (2.13.1)
+      rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -283,7 +283,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.2.0)
+    unicode-display_width (2.3.0)
     uniform_notifier (1.16.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
@@ -302,50 +302,95 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-page_caching
+
   active_record_doctor
+
   annotate
+
   apipie-rails (~> 0.5)
+
   better_errors
+
   binding_of_caller
+
   bootsnap (>= 1.1.0)
+
   bootstrap-sass (~> 3.4)
+
   bootswatch-rails (~> 3.3)
+
   brakeman
+
   bullet
+
   byebug
+
   dalli
+
   dotenv-rails
+
   fast_blank
+
   fx
+
   jbuilder
+
   jquery-rails
+
   jquery-ui-rails
+
   listen
+
   mina
+
   oj
+
   pagy
+
   pg
+
   pry-rails
+
   puma
+
   rack-mini-profiler
+
   rails (= 6.1.6.1)
+
   rails-jquery-autocomplete
+
   rails-observers
+
   rollbar
+
   rspec-rails
+
   rubocop
+
   rubocop-performance
+
   rubocop-rails
+
   rubocop-rspec
+
   ruby-progressbar
+
   sass-rails
+
   shoulda-matchers
+
   slim-rails
+
   steam-condenser
+
   turbolinks
+
   uglifier
+
   web-console
+
   whenever
+
 
 RUBY VERSION
    ruby 2.7.6p219
