@@ -12,7 +12,7 @@ namespace :db do
       maps = Score.distinct.pluck(:map).sort
       progress = ProgressBar.create(total: maps.length * 4)
       maps.each do |map|
-        (0..3).each do |mode|
+        4.times do |mode|
           progress.increment
           s = Score.where(map: map, mode: mode).order(:time, :updated_at).first
           next if s.nil?
