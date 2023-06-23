@@ -51,7 +51,7 @@ class Api::ScoresNewController < Api::ApiController
     end
 
     wr_time = WorldRecord.world_record(@score[:map], @score[:mode]).time
-    return unless Score.new_score(@score)
+    return false unless Score.new_score(@score)
 
     @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
                                   player_id: @score[:player_id]).rank_
