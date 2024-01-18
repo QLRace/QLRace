@@ -6,7 +6,7 @@ ruby '~> 3.1.0'
 gem 'rails', '7.0.8'
 
 gem 'actionpack-page_caching'
-gem 'apipie-rails', '~> 0.5'
+gem 'apipie-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.4'
 gem 'bootswatch-rails', '~> 3.3'
