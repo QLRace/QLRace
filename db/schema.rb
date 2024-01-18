@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_01_18_211740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["name"], name: "index_players_on_name"
   end
 
@@ -27,8 +26,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
     t.integer "mode", null: false
     t.bigint "player_id", null: false
     t.integer "time", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.uuid "match_guid", null: false
     t.integer "api_id"
     t.integer "checkpoints", array: true
@@ -43,8 +42,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "api_key", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["api_key"], name: "index_users_on_api_key"
   end
 
@@ -53,8 +52,8 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
     t.integer "mode", null: false
     t.bigint "player_id", null: false
     t.integer "time", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.uuid "match_guid", null: false
     t.integer "api_id"
     t.index ["map", "mode"], name: "index_world_records_on_map_and_mode", unique: true
@@ -63,7 +62,7 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
 
   add_foreign_key "scores", "players", name: "scores_player_id_fk", on_delete: :cascade
   add_foreign_key "world_records", "players", name: "world_records_player_id_fk", on_delete: :cascade
-  create_function :map_scores, sql_definition: <<-SQL
+  create_function :map_scores, sql_definition: <<-'SQL'
       CREATE OR REPLACE FUNCTION public.map_scores(map_name character varying, mode_id integer, scores_limit integer, scores_offset integer DEFAULT 0)
        RETURNS TABLE(rank bigint, id integer, mode integer, player_id bigint, name character varying, "time" integer, checkpoints integer[], speed_start double precision, speed_end double precision, speed_top double precision, speed_average double precision, date timestamp without time zone)
        LANGUAGE plpgsql
@@ -82,7 +81,7 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_17_165757) do
       	OFFSET scores_offset;
       END; $function$
   SQL
-  create_function :player_scores, sql_definition: <<-SQL
+  create_function :player_scores, sql_definition: <<-'SQL'
       CREATE OR REPLACE FUNCTION public.player_scores(p_id bigint, mode_id integer)
        RETURNS TABLE(id integer, map character varying, mode integer, "time" integer, checkpoints integer[], speed_start double precision, speed_end double precision, speed_top double precision, speed_average double precision, date timestamp without time zone, rank bigint, total_records bigint)
        LANGUAGE plpgsql
