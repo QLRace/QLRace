@@ -10,7 +10,9 @@
       "request_data": null,
       "response_data": {
         "maps": [
-          "ojfc-19","ojfc-18","ojfc-17","ojfc-16","ojfc-15","ojfc-14"
+          "vp-omnimine-s6",
+          "vp-omnimine-s5",
+          "vp-omnimine-s4"
         ]
       },
       "code": 200,
@@ -21,42 +23,32 @@
   "records#map": [
     {
       "verb": "GET",
-      "path": "/api/map/mui-simple",
+      "path": "/api/map/kool_mini2",
       "versions": [
         "1.0"
       ],
-      "query": "mode=1&limit=2",
+      "query": "mode=1&limit=1",
       "request_data": null,
       "response_data": {
-        "total_records":95,
+        "total_records": 121,
         "records": [
           {
             "rank": 1,
-            "id": 383608,
+            "id": 385329,
             "mode": 1,
             "player_id": 76561198321167723,
-            "name": "p0thunter",
-            "time": 16872,
-            "checkpoints": [3808,6184,8256,10320,11880,15160],
-            "speed_start": 555.0,
-            "speed_end": 1774.0,
-            "speed_top": 1773.0,
-            "speed_average": 1315.0,
-            "date": "2020-08-09T06:16:53.217Z"
-          },
-          {
-            "rank": 2,
-            "id": 384159,
-            "mode": 1,
-            "player_id": 76561197960650088,
-            "name": "aDr",
-            "time": 16984,
-            "checkpoints": [3888,6288,8376,10440,12032,15256],
-            "speed_start": 555.0,
-            "speed_end": 1765.0,
-            "speed_top": 1764.0,
-            "speed_average": 1308.0,
-            "date": "2020-08-12T02:41:29.937Z"
+            "name": "t0phunter",
+            "time": 18360,
+            "checkpoints": [
+              7272,
+              11896,
+              14600
+            ],
+            "speed_start": 547.0,
+            "speed_end": 1837.0,
+            "speed_top": 1837.0,
+            "speed_average": 1341.0,
+            "date": "2020-08-02T15:31:22.409Z"
           }
         ]
       },
@@ -68,15 +60,16 @@
   "records#player": [
     {
       "verb": "GET",
-      "path": "/api/player/76561198022966773",
+      "path": "/api/player/76561198421677451",
       "versions": [
         "1.0"
       ],
-      "query": "physics=vql&weapons=false",
+      "query": "mode=0",
       "request_data": null,
       "response_data": {
-        "name": "ᴿᴰᴷ",
-        "average": 13.57,
+        "name": "KawaiiNeko-x",
+        "id": 76561198421677451,
+        "average": 59.0,
         "medals": [
           0,
           0,
@@ -84,72 +77,64 @@
         ],
         "records": [
           {
-            "map": "bloodlust",
-            "mode": 3,
-            "rank": 16,
-            "time": 20338,
-            "match_guid": "42de8d54-46e1-4b60-841a-96f0cccba34d",
-            "id": 861,
-            "date": "2015-11-05T20:56:45.217Z"
-          },
-          {
-            "map": "df_lickdirt",
-            "mode": 3,
-            "rank": 17,
-            "time": 8651,
-            "match_guid": "a39f3229-ad14-4892-9421-dcb736a79018",
-            "id": 7917,
-            "date": "2015-12-08T03:45:50.324Z"
-          },
-          {
-            "map": "eviscerated",
-            "mode": 3,
-            "rank": 12,
-            "time": 13768,
-            "match_guid": "34e610db-6dab-413f-8e76-5b8d40b8bfe9",
-            "id": 875,
-            "date": "2015-11-05T21:38:26.466Z"
-          },
-          {
-            "map": "q3wcp12",
-            "mode": 3,
-            "rank": 4,
-            "time": 16681,
-            "match_guid": "b8dd02ce-59e8-4806-aae4-236fcc1f46c5",
-            "id": 2712,
-            "date": "2015-11-13T01:19:30.396Z"
-          },
-          {
-            "map": "shiningforces",
-            "mode": 3,
-            "rank": 12,
-            "time": 13077,
-            "match_guid": "d1e98907-77d6-4ff4-bb5d-5c12795d4fc0",
-            "id": 929,
-            "date": "2015-11-06T02:55:10.391Z"
-          },
-          {
-            "map": "siberia",
-            "mode": 3,
-            "rank": 14,
-            "time": 14084,
-            "match_guid": "8e0fa27c-c2e8-42b2-be2e-55e7538dce0c",
-            "id": 7918,
-            "date": "2015-12-08T03:49:45.063Z"
-          },
-          {
-            "map": "stonekeep",
-            "mode": 3,
-            "rank": 20,
-            "time": 12934,
-            "match_guid": "ae8335a2-dff7-4a40-ab85-15cf4fc501cc",
-            "id": 7359,
-            "date": "2015-12-05T02:34:57.189Z"
+            "id": 528705,
+            "map": "kool_mini2",
+            "mode": 0,
+            "time": 18704,
+            "checkpoints": [
+              7584,
+              12512,
+              14952
+            ],
+            "speed_start": 849.0,
+            "speed_end": 1945.0,
+            "speed_top": 1981.0,
+            "speed_average": 1469.0,
+            "date": "2023-03-21T20:47:28.291Z",
+            "rank": 59,
+            "total_records": 75
           }
         ]
       },
       "code": 200,
       "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "records#record": [
+    {
+      "verb": "GET",
+      "path": "/api/record/500000",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": null,
+      "response_data": {
+        "id": 500000,
+        "map": "kool_ne",
+        "mode": 0,
+        "player_id": 76561197985028111,
+        "time": 21304,
+        "match_guid": "3f849ff5-2461-47e0-8920-e4b8e92d104a",
+        "checkpoints": [
+          4208,
+          6200,
+          9136,
+          11976,
+          15408,
+          19176
+        ],
+        "speed_start": 439.0,
+        "speed_end": 2640.0,
+        "speed_top": 2919.0,
+        "speed_average": 2082.0,
+        "name": "mrbØi",
+        "date": "2022-09-25T21:03:14.953Z",
+        "rank": 19
+      },
+      "code": 200,
+      "show_in_doc": 0,
       "recorded": true
     }
   ]
