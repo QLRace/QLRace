@@ -2,7 +2,7 @@
 
 # Production settings
 if ENV.fetch('RAILS_ENV', 'development') == 'production'
-  environment "production"
+  environment 'production'
   shared_dir = '/var/www/qlrace/shared'
   pidfile "#{shared_dir}/tmp/pids/server.pid"
   stdout_redirect "#{shared_dir}/log/puma_stdout.log", "#{shared_dir}/log/puma_stderr.log", true
