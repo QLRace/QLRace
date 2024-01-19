@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 namespace :db do
-  desc 'Fix world records after times have been deleted.'
+  desc "Fix world records after times have been deleted."
   task fix_world_records: :environment do
     Rails.application.eager_load!
-    require 'ruby-progressbar'
+    require "ruby-progressbar"
 
     WorldRecord.transaction do
       WorldRecord.delete_all
-      ActiveRecord::Base.connection.reset_pk_sequence!('world_records')
+      ActiveRecord::Base.connection.reset_pk_sequence!("world_records")
       maps = Score.distinct.pluck(:map).sort
       progress = ProgressBar.create(total: maps.length * 4)
       maps.each do |map|
@@ -18,12 +18,12 @@ namespace :db do
           next if s.nil?
 
           WorldRecord.create!(
-            s.attributes.except('id',
-                                'checkpoints',
-                                'speed_start',
-                                'speed_end',
-                                'speed_top',
-                                'speed_average')
+            s.attributes.except("id",
+                                "checkpoints",
+                                "speed_start",
+                                "speed_end",
+                                "speed_top",
+                                "speed_average")
           )
         end
       end

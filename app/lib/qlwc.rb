@@ -30,12 +30,12 @@
 class Qlwc
   MAPS = %w[qlwc21_round0 qlwc21_round1 qlwc21_round2
             qlwc21_round3 qlwc21_round4].freeze
-  START_DATES = [Time.utc(2021, 4, 17, 19), Time.utc(2021, 4, 24, 19),
+  START_DATES = [ Time.utc(2021, 4, 17, 19), Time.utc(2021, 4, 24, 19),
                  Time.utc(2021, 5, 1, 19), Time.utc(2021, 5, 8, 19),
-                 Time.utc(2021, 5, 15, 19)].freeze
-  END_DATES = [Time.utc(2021, 4, 24, 18), Time.utc(2021, 5, 1, 18),
+                 Time.utc(2021, 5, 15, 19) ].freeze
+  END_DATES = [ Time.utc(2021, 4, 24, 18), Time.utc(2021, 5, 1, 18),
                Time.utc(2021, 5, 8, 18), Time.utc(2021, 5, 15, 18),
-               Time.utc(2021, 5, 22, 18)].freeze
+               Time.utc(2021, 5, 22, 18) ].freeze
 
   def initialize(date)
     @date = date

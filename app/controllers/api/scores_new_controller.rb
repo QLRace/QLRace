@@ -5,7 +5,7 @@ class Api::ScoresNewController < Api::ApiController
 
   def new
     @score[:name] = @score[:player_id].to_s if @score[:name].blank?
-    return head :not_modified unless @score[:player_id].to_s.start_with?('765611')
+    return head :not_modified unless @score[:player_id].to_s.start_with?("765611")
     return head :bad_request if @score.values.any?(&:blank?)
     return head :not_modified if map_disabled?
 
@@ -22,7 +22,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:mode] = Integer(params[:mode])
     @score[:player_id] = Integer(params[:player_id])
     @score[:time] = Integer(params[:time])
-    @score[:name] = params[:name].gsub(/\^[0-7]/, '')
+    @score[:name] = params[:name].gsub(/\^[0-7]/, "")
     @score[:match_guid] = params[:match_guid]
     @score[:date] = params[:date] if params[:date].present?
     @score[:api_id] = @user.id

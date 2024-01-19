@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-DATES = [Time.utc(2021, 4, 17), Time.utc(2021, 4, 17, 19),
+DATES = [ Time.utc(2021, 4, 17), Time.utc(2021, 4, 17, 19),
          Time.utc(2021, 4, 22), Time.utc(2021, 4, 24, 18),
          Time.utc(2021, 4, 24, 19, 1), Time.utc(2021, 4, 26),
          Time.utc(2021, 5, 1, 17, 59, 59), Time.utc(2021, 5, 1, 18, 30),
          Time.utc(2021, 5, 5), Time.utc(2021, 5, 10), Time.utc(2021, 5, 16),
-         Time.utc(2021, 5, 22, 18)].freeze
+         Time.utc(2021, 5, 22, 18) ].freeze
 
 RSpec.describe Qlwc do
   describe 'current_map' do
@@ -17,9 +17,9 @@ RSpec.describe Qlwc do
     end
 
     it 'returns the current map' do
-      results = [nil, 'qlwc21_round0', 'qlwc21_round0', nil,
+      results = [ nil, 'qlwc21_round0', 'qlwc21_round0', nil,
                  'qlwc21_round1', 'qlwc21_round1', 'qlwc21_round1', nil,
-                 'qlwc21_round2', 'qlwc21_round3', 'qlwc21_round4', nil]
+                 'qlwc21_round2', 'qlwc21_round3', 'qlwc21_round4', nil ]
       DATES.zip(results).each do |date, result|
         # puts "#{date} #{result}"
         qlwc = described_class.new(date)

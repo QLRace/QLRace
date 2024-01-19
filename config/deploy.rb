@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'mina/rails'
-require 'mina/git'
-require 'mina/rbenv' # for rbenv support. (https://rbenv.org)
+require "mina/rails"
+require "mina/git"
+require "mina/rbenv" # for rbenv support. (https://rbenv.org)
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -10,14 +10,14 @@ require 'mina/rbenv' # for rbenv support. (https://rbenv.org)
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, 'qlrace'
-set :domain, 'qlrace.com'
-set :deploy_to, '/var/www/qlrace'
-set :repository, 'https://github.com/QLRace/QLRace.git'
-set :branch, 'master'
+set :application_name, "qlrace"
+set :domain, "qlrace.com"
+set :deploy_to, "/var/www/qlrace"
+set :repository, "https://github.com/QLRace/QLRace.git"
+set :branch, "master"
 
 # Optional settings:
-set :user, 'qlrace'       # Username in the server to SSH to.
+set :user, "qlrace"       # Username in the server to SSH to.
 set :port, nil            # SSH port number. Unset to use port from ssh_config.
 # set :forward_agent, true  # SSH forward_agent.
 
@@ -39,7 +39,7 @@ task :setup do
   command %(rbenv install 3.3.0 --skip-existing)
 end
 
-desc 'Deploys the current version to the server.'
+desc "Deploys the current version to the server."
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
   # invoke :'git:ensure_pushed'

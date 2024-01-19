@@ -8,6 +8,6 @@ class CreateWorldRecords < ActiveRecord::Migration[4.2]
 
       t.timestamps null: false
     end
-    add_index :world_records, [:map, :mode], :unique => true
+    add_index :world_records, [ :map, :mode ], unique: true
   end
 end

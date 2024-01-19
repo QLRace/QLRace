@@ -41,7 +41,7 @@ class Score < ApplicationRecord
                                                 per map for each mode.' }
 
   def rank_
-    Score.where(map: map, mode: mode).where('time < ?', time).count + 1
+    Score.where(map: map, mode: mode).where("time < ?", time).count + 1
   end
 
   def self.new_score(score)
@@ -66,11 +66,11 @@ class Score < ApplicationRecord
       return { name: nil, id: nil, medals: [], records: [] }
     end
 
-    query = 'SELECT * FROM player_scores(:p_id, :mode)'
-    scores = Score.find_by_sql [query, { p_id: p.id, mode: mode }]
+    query = "SELECT * FROM player_scores(:p_id, :mode)"
+    scores = Score.find_by_sql [ query, { p_id: p.id, mode: mode } ]
 
     total = 0
-    medals = [0, 0, 0]
+    medals = [ 0, 0, 0 ]
 
     scores.each do |score|
       total += score[:rank]
@@ -90,8 +90,8 @@ class Score < ApplicationRecord
 
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
 
-    query = 'SELECT * FROM map_scores(:map, :mode, :limit, 0)'
-    scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit }]
+    query = "SELECT * FROM map_scores(:map, :mode, :limit, 0)"
+    scores = Score.find_by_sql [ query, { map: map, mode: mode, limit: limit } ]
     { total_records: total_scores, records: scores }
   end
 
@@ -105,8 +105,8 @@ class Score < ApplicationRecord
     limit = 50
     offset = (page - 1) * 50
 
-    query = 'SELECT * FROM map_scores(:map, :mode, :limit, :offset)'
-    scores = Score.find_by_sql [query, { map: map, mode: mode, limit: limit, offset: offset }]
+    query = "SELECT * FROM map_scores(:map, :mode, :limit, :offset)"
+    scores = Score.find_by_sql [ query, { map: map, mode: mode, limit: limit, offset: offset } ]
     { total_records: total_scores,
       records: scores }
   end
@@ -133,13 +133,13 @@ class Score < ApplicationRecord
 
     physics = if params[:physics]
                 params[:physics].downcase
-              elsif params[:factory]
+    elsif params[:factory]
                 params[:factory].downcase
-              else
-                'pql'
-              end
+    else
+                "pql"
+    end
 
-    w = params.fetch(:weapons, 'true')
+    w = params.fetch(:weapons, "true")
     weapons = ActiveRecord::Type::Boolean.new.cast(w)
     return weapons ? 2 : 3 if %w[vql classic].include? physics
 

@@ -33,7 +33,7 @@ class ScoresController < ApplicationController
   def recent_wrs
     @wrs = true
     get_recent_records WorldRecord
-    render 'recent'
+    render "recent"
   end
 
   private

@@ -1,22 +1,11 @@
+# Omakase Ruby styling for Rails
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
 require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-
-AllCops:
-  TargetRubyVersion: 3.3
-  NewCops: enable
-  Exclude:
-    - '**/tmp/**/*'
-    - '**/templates/**/*'
-    - '**/vendor/**/*'
-    - '**/node_modules/**/*'
-    - 'bin/**/*'
-    - 'config/**/*'
-    - 'db/**/*'
-
-Rails:
-  Enabled: true
 
 Style/Documentation:
   Enabled: false

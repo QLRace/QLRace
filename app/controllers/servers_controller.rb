@@ -5,6 +5,6 @@ class ServersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    @servers = Rails.cache.read('servers')
+    @servers = Rails.cache.read("servers")
   end
 end

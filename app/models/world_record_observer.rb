@@ -2,11 +2,11 @@
 
 class WorldRecordObserver < ActiveRecord::Observer
   def after_update(_record)
-    delete_page_cache 'index.html'
+    delete_page_cache "index.html"
   end
 
   def after_create(_record)
-    delete_page_cache 'index.html'
+    delete_page_cache "index.html"
   end
 
   private
