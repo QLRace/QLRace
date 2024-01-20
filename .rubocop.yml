@@ -1,11 +1,9 @@
+require:
+  - rubocop-rspec
+
 # Omakase Ruby styling for Rails
 inherit_gem:
   rubocop-rails-omakase: rubocop.yml
-
-require:
-  - rubocop-performance
-  - rubocop-rails
-  - rubocop-rspec
 
 Style/Documentation:
   Enabled: false
