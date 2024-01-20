@@ -42,11 +42,8 @@ group :development, :test do
   gem "dotenv-rails"
   gem "pry-rails"
   gem "rspec-rails"
-  gem "rubocop", require: false
-  gem "rubocop-performance", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rails-omakase", require: false
-  gem "rubocop-rspec", require: false
+  gem "standard"
+  gem "standard-rails"
 end
 
 group :development do

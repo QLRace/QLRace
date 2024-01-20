@@ -30,7 +30,7 @@ set :port, nil            # SSH port number. Unset to use port from ssh_config.
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
-  invoke :'rbenv:load'
+  invoke :"rbenv:load"
 end
 
 # Put any custom commands you need to run at setup
@@ -46,12 +46,12 @@ task :deploy do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
+    invoke :"git:clone"
+    invoke :"deploy:link_shared_paths"
+    invoke :"bundle:install"
+    invoke :"rails:db_migrate"
+    invoke :"rails:assets_precompile"
+    invoke :"deploy:cleanup"
 
     on :launch do
       in_path(fetch(:current_path)) do

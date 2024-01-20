@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "servers", to: "servers#show", as: "servers"
 
   apipie
-  namespace :api, defaults: { format: "json" } do
+  namespace :api, defaults: {format: "json"} do
     get "maps", to: "maps_api#maps"
     get "map/:map", to: "scores_api#map"
     get "player/:player_id", to: "scores_api#player"

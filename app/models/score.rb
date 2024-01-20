@@ -33,12 +33,12 @@
 class Score < ApplicationRecord
   belongs_to :player
   validates :map, :mode, :time, :match_guid, presence: true
-  validates :mode, inclusion: { in: 0..3 }
-  validates :time, numericality: { only_integer: true,
-                                   greater_than: 0 }
-  validates :player_id, uniqueness: { scope: %i[map mode],
-                                      message: 'Players may only have one record
-                                                per map for each mode.' }
+  validates :mode, inclusion: {in: 0..3}
+  validates :time, numericality: {only_integer: true,
+                                  greater_than: 0}
+  validates :player_id, uniqueness: {scope: %i[map mode],
+                                     message: 'Players may only have one record
+                                                per map for each mode.'}
 
   def rank_
     Score.where(map: map, mode: mode).where("time < ?", time).count + 1
@@ -63,14 +63,14 @@ class Score < ApplicationRecord
     rescue ArgumentError, ActiveRecord::RecordNotFound
       # player id is not an int or doesn't exist
       # return name and avg as nil, medals and records as empty arrays
-      return { name: nil, id: nil, medals: [], records: [] }
+      return {name: nil, id: nil, medals: [], records: []}
     end
 
     query = "SELECT * FROM player_scores(:p_id, :mode)"
-    scores = Score.find_by_sql [ query, { p_id: p.id, mode: mode } ]
+    scores = Score.find_by_sql [query, {p_id: p.id, mode: mode}]
 
     total = 0
-    medals = [ 0, 0, 0 ]
+    medals = [0, 0, 0]
 
     scores.each do |score|
       total += score[:rank]
@@ -79,8 +79,8 @@ class Score < ApplicationRecord
 
     avg = total / scores.size.to_f
 
-    { name: p.name, id: p.id, average: avg.round(2),
-      medals: medals, records: scores }
+    {name: p.name, id: p.id, average: avg.round(2),
+     medals: medals, records: scores}
   end
 
   def self.map_scores(params)
@@ -91,8 +91,8 @@ class Score < ApplicationRecord
     limit = params[:limit].to_i.positive? ? params[:limit].to_i : nil
 
     query = "SELECT * FROM map_scores(:map, :mode, :limit, 0)"
-    scores = Score.find_by_sql [ query, { map: map, mode: mode, limit: limit } ]
-    { total_records: total_scores, records: scores }
+    scores = Score.find_by_sql [query, {map: map, mode: mode, limit: limit}]
+    {total_records: total_scores, records: scores}
   end
 
   def self.map_scores_paginated(params)
@@ -106,9 +106,9 @@ class Score < ApplicationRecord
     offset = (page - 1) * 50
 
     query = "SELECT * FROM map_scores(:map, :mode, :limit, :offset)"
-    scores = Score.find_by_sql [ query, { map: map, mode: mode, limit: limit, offset: offset } ]
-    { total_records: total_scores,
-      records: scores }
+    scores = Score.find_by_sql [query, {map: map, mode: mode, limit: limit, offset: offset}]
+    {total_records: total_scores,
+     records: scores}
   end
 
   def self.player_score(map, mode, player_id)
@@ -132,11 +132,11 @@ class Score < ApplicationRecord
     return params[:mode].to_i if %w[0 1 2 3].include? params[:mode]
 
     physics = if params[:physics]
-                params[:physics].downcase
+      params[:physics].downcase
     elsif params[:factory]
-                params[:factory].downcase
+      params[:factory].downcase
     else
-                "pql"
+      "pql"
     end
 
     w = params.fetch(:weapons, "true")

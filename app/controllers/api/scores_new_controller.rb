@@ -41,10 +41,10 @@ class Api::ScoresNewController < Api::ApiController
   def update_score?
     @score[:tied] = Score.exists?(map: @score[:map], mode: @score[:mode], time: @score[:time])
     @score[:old_total_records] = Score.where(map: @score[:map],
-                                             mode: @score[:mode]).count
+      mode: @score[:mode]).count
 
     old_pb = Score.find_by(map: @score[:map], mode: @score[:mode],
-                           player_id: @score[:player_id])
+      player_id: @score[:player_id])
     if old_pb
       @score[:old_rank] = old_pb.rank_
       @score[:old_time] = old_pb.time
@@ -54,16 +54,16 @@ class Api::ScoresNewController < Api::ApiController
     return false unless Score.new_score(@score)
 
     @score[:rank] = Score.find_by(map: @score[:map], mode: @score[:mode],
-                                  player_id: @score[:player_id]).rank_
+      player_id: @score[:player_id]).rank_
     @score[:time_diff] = wr_time ? @score[:time] - wr_time : 0
     @score[:total_records] = Score.where(map: @score[:map],
-                                         mode: @score[:mode]).count
+      mode: @score[:mode]).count
     true
   end
 
   def map_disabled?
     disabled_maps = %w[q3w2 q3w3 q3w5 q3w7 q3wcp1 q3wcp14 q3wcp17 q3wcp18
-                       q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2]
+      q3wcp22 q3wcp23 q3wcp5 q3wcp9 q3wxs1 q3wxs2]
     disabled_maps.include? @score[:map]
   end
 end

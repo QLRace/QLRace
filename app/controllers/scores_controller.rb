@@ -11,7 +11,7 @@ class ScoresController < ApplicationController
     @total_scores = Score.count
 
     @recent_wrs = WorldRecord.order(updated_at: :desc).includes(:player)
-                             .limit(5)
+      .limit(5)
     @map_scores = WorldRecord.map_scores
   end
 

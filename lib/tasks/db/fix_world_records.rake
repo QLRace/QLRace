@@ -19,11 +19,11 @@ namespace :db do
 
           WorldRecord.create!(
             s.attributes.except("id",
-                                "checkpoints",
-                                "speed_start",
-                                "speed_end",
-                                "speed_top",
-                                "speed_average")
+              "checkpoints",
+              "speed_start",
+              "speed_end",
+              "speed_top",
+              "speed_average")
           )
         end
       end

@@ -113,7 +113,7 @@ Pagy::DEFAULT[:items] = 50
 # Pagy::DEFAULT[:params]     = {}                              # default
 # Pagy::DEFAULT[:anchor]     = '#anchor'                       # example
 # Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
-Pagy::DEFAULT[:size] = [ 1, 4, 4, 1 ]
+Pagy::DEFAULT[:size] = [1, 4, 4, 1]
 
 # Rails
 

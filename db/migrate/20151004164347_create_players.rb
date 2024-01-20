@@ -7,6 +7,6 @@ class CreatePlayers < ActiveRecord::Migration[4.2]
 
       t.timestamps null: false
     end
-    change_column :players, :id, 'bigint'
+    change_column :players, :id, "bigint"
   end
 end
