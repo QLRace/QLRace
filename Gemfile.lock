@@ -180,8 +180,6 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     mutex_m (0.2.0)
-    net-http (0.4.1)
-      uri
     net-imap (0.4.9.1)
       date
       net-protocol
@@ -366,7 +364,6 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
-    uri (0.13.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -405,7 +402,6 @@ DEPENDENCIES
   jquery-ui-rails!
   listen
   mina
-  net-http
   oj
   pagy
   pg
