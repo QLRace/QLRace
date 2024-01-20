@@ -31,11 +31,6 @@ gem "turbolinks"
 gem "uglifier"
 gem "whenever", require: false
 
-# https://github.com/ruby/net-imap/issues/16
-# net-http is required in Gemfile to fix warnings
-# Not necessary for Ruby 3.0 and later
-gem "net-http"
-
 group :development, :test do
   gem "better_errors"
   gem "byebug", platform: :mri
