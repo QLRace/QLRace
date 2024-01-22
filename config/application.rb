@@ -20,7 +20,5 @@ module Qlrace
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    config.x.qlwc.cup_key = ENV.fetch("QLRACE_CUP_KEY")
   end
 end
