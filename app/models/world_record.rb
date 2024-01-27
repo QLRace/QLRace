@@ -4,15 +4,15 @@
 #
 # Table name: world_records
 #
-#  id         :integer          not null, primary key
-#  map        :string           not null
-#  match_guid :uuid             not null
-#  mode       :integer          not null
-#  time       :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  api_id     :integer
-#  player_id  :bigint           not null
+#  id          :integer          not null, primary key
+#  map         :string           not null
+#  match_guid  :uuid             not null
+#  mode        :integer          not null
+#  time        :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  api_user_id :bigint
+#  player_id   :bigint           not null
 #
 # Indexes
 #
@@ -79,7 +79,7 @@ class WorldRecord < ApplicationRecord
     world_record.time = score[:time]
     world_record.player_id = score[:player_id]
     world_record.match_guid = score[:match_guid]
-    world_record.api_id = score[:api_id]
+    world_record.api_user_id = score[:api_user_id]
     world_record.updated_at = score[:date] if score[:date]
     world_record.save!
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::ScoresNewController < Api::ApiController
-  before_action :authenticate, :check_score
+  before_action :authenticate_api_user!, :check_score
 
   def new
     @score[:name] = @score[:player_id].to_s if @score[:name].blank?
@@ -25,7 +25,7 @@ class Api::ScoresNewController < Api::ApiController
     @score[:name] = params[:name].gsub(/\^[0-7]/, "")
     @score[:match_guid] = params[:match_guid]
     @score[:date] = params[:date] if params[:date].present?
-    @score[:api_id] = @user.id
+    @score[:api_user_id] = current_api_user.id
     if params[:checkpoints].present? && params[:checkpoints].all?(Integer)
       cps = params[:checkpoints].select(&:positive?)
       @score[:checkpoints] = cps

@@ -11,6 +11,7 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap-sass", "~> 3.4"
 gem "bootswatch-rails", "~> 3.3"
 gem "dalli"
+gem "devise"
 gem "fast_blank"
 gem "fx"
 gem "jbuilder"
@@ -27,6 +28,7 @@ gem "ruby-progressbar", require: false
 gem "sass-rails"
 gem "slim-rails"
 gem "steam-condenser", require: false
+gem "tiddle"
 gem "turbolinks"
 gem "uglifier"
 gem "whenever", require: false
