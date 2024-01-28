@@ -6,6 +6,6 @@ every 2.minutes do
 end
 
 # Purge old authentication tokens
-every 2.days, at: '8:30 am' do
+every 2.days, at: "8:30 am" do
   rake "db:purge_old_tokens"
 end

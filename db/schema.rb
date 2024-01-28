@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_222221) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_28_190955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,13 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_222221) do
     t.index ["map", "mode"], name: "index_scores_on_map_and_mode"
     t.index ["player_id", "map", "mode"], name: "index_scores_on_player_id_and_map_and_mode", unique: true
     t.index ["player_id", "mode"], name: "index_scores_on_player_id_and_mode"
-  end
-
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "api_key", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["api_key"], name: "index_users_on_api_key"
   end
 
   create_table "world_records", id: :serial, force: :cascade do |t|
