@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+require "dotenv/load"
 require "mina/rails"
 require "mina/git"
 require "mina/rbenv" # for rbenv support. (https://rbenv.org)
+
+qlrace_domain = ENV.fetch("QLRACE_DEPLOY_DOMAIN")
+qlrace_path = ENV.fetch("QLRACE_DEPLOY_PATH")
+qlrace_username = ENV.fetch("QLRACE_DEPLOY_USERNAME")
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -11,14 +16,14 @@ require "mina/rbenv" # for rbenv support. (https://rbenv.org)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, "qlrace"
-set :domain, "qlrace.com"
-set :deploy_to, "/var/www/qlrace"
+set :domain, qlrace_domain
+set :deploy_to, qlrace_path
 set :repository, "https://github.com/QLRace/QLRace.git"
 set :branch, "master"
 
 # Optional settings:
-set :user, "qlrace"       # Username in the server to SSH to.
-set :port, nil            # SSH port number. Unset to use port from ssh_config.
+set :user, qlrace_username # Username in the server to SSH to.
+set :port, nil             # SSH port number. Unset to use port from ssh_config.
 # set :forward_agent, true  # SSH forward_agent.
 
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
