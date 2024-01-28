@@ -16,7 +16,7 @@
 #  time          :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  api_id        :integer
+#  api_user_id   :bigint
 #  player_id     :bigint           not null
 #
 # Indexes
@@ -118,7 +118,7 @@ class Score < ApplicationRecord
   def self.update_score(score, new_score)
     score.time = new_score[:time]
     score.match_guid = new_score[:match_guid]
-    score.api_id = new_score[:api_id]
+    score.api_user_id = new_score[:api_user_id]
     score.updated_at = new_score[:date] if new_score[:date]
     score.checkpoints = new_score[:checkpoints].presence || []
     score.speed_start = new_score[:speed_start] if new_score[:speed_start]

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :api_users, controllers: {sessions: "api_users/sessions"},
+    defaults: {format: :json}
+
   root "scores#home"
   get "recent", to: "scores#recent", as: "recent_scores"
   get "recentwrs", to: "scores#recent_wrs", as: "recent_wrs"

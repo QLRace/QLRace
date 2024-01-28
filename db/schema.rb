@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_211740) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_222221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_api_users_on_email", unique: true
+  end
+
+  create_table "authentication_tokens", force: :cascade do |t|
+    t.string "body"
+    t.bigint "api_user_id", null: false
+    t.datetime "last_used_at"
+    t.integer "expires_in"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_user_id"], name: "index_authentication_tokens_on_api_user_id"
+    t.index ["body"], name: "index_authentication_tokens_on_body"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "name", null: false
@@ -29,12 +56,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_211740) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.uuid "match_guid", null: false
-    t.integer "api_id"
     t.integer "checkpoints", array: true
     t.float "speed_start"
     t.float "speed_end"
     t.float "speed_top"
     t.float "speed_average"
+    t.bigint "api_user_id"
     t.index ["map", "mode"], name: "index_scores_on_map_and_mode"
     t.index ["player_id", "map", "mode"], name: "index_scores_on_player_id_and_map_and_mode", unique: true
     t.index ["player_id", "mode"], name: "index_scores_on_player_id_and_mode"
@@ -55,11 +82,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_211740) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.uuid "match_guid", null: false
-    t.integer "api_id"
+    t.bigint "api_user_id"
     t.index ["map", "mode"], name: "index_world_records_on_map_and_mode", unique: true
     t.index ["player_id"], name: "index_world_records_on_player_id"
   end
 
+  add_foreign_key "authentication_tokens", "api_users"
   add_foreign_key "scores", "players", name: "scores_player_id_fk", on_delete: :cascade
   add_foreign_key "world_records", "players", name: "world_records_player_id_fk", on_delete: :cascade
   create_function :map_scores, sql_definition: <<-'SQL'
