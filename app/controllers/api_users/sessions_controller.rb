@@ -8,7 +8,7 @@ class ApiUsers::SessionsController < Devise::SessionsController
 
   def create
     user = warden.authenticate!(auth_options)
-    token = Tiddle.create_and_return_token(user, request, expires_in: 1.day)
+    token = Tiddle.create_and_return_token(user, request, expires_in: 2.days)
     render json: {authentication_token: token}
   end
 
