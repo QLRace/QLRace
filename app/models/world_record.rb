@@ -32,7 +32,7 @@ class WorldRecord < ApplicationRecord
                                 message: "One record per mode for each map."}
   validates :time, numericality: {only_integer: true,
                                   greater_than: 0}
-  after_save :delete_cache
+  after_commit :delete_cache
 
   def self.check(score)
     wr = world_record(score[:map], score[:mode])
@@ -76,8 +76,6 @@ class WorldRecord < ApplicationRecord
     WorldRecord.find_by_sql [query, {mode: mode}]
   end
 
-  private
-
   def self.update_world_record(world_record, score)
     world_record.time = score[:time]
     world_record.player_id = score[:player_id]
@@ -87,9 +85,12 @@ class WorldRecord < ApplicationRecord
     world_record.save!
   end
 
+  private
+
   def delete_cache
     page_file = Rails.public_path.join "index.html"
     FileUtils.rm_rf page_file
-    Rails.logger.info "DELETED index.html"
   end
+
+  private_class_method :update_world_record
 end
