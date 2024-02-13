@@ -22,7 +22,6 @@ gem "pagy"
 gem "pg"
 gem "puma"
 gem "rails-jquery-autocomplete"
-gem "rails-observers"
 gem "rollbar"
 gem "ruby-progressbar", require: false
 gem "sass-rails"

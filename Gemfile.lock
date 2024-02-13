@@ -252,8 +252,6 @@ GEM
       nokogiri (~> 1.14)
     rails-jquery-autocomplete (1.0.5)
       rails (>= 3.2)
-    rails-observers (0.1.5)
-      activemodel (>= 4.0)
     railties (7.1.3)
       actionpack (= 7.1.3)
       activesupport (= 7.1.3)
@@ -428,7 +426,6 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.1.3)
   rails-jquery-autocomplete
-  rails-observers
   rollbar
   rspec-rails
   ruby-progressbar
