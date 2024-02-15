@@ -18,7 +18,7 @@ table.table.table-striped.table-hover.table-xtra-condensed
           td
             a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player.name}
           td
-            span.pull-right = time_string(wr.time)
+            span.pull-right.no-word-break = time_string(wr.time)
           td
             span.pull-right = wr.updated_at
 = link_to 'More', recent_wrs_path
@@ -41,7 +41,7 @@ table.table.table-striped.table-hover.table-xtra-condensed
           - if wr
             td
               a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player_name}
-              span.pull-right = time_string(wr.time)
+              span.pull-right.no-word-break = time_string(wr.time)
           - else
             td
               span.pull-right -

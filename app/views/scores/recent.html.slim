@@ -27,15 +27,16 @@ table.table.table-striped.table-hover.table-xtra-condensed
       th.text-right Time
       th.text-right Date
   tbody
-    - @recent.each do |score|
+    - @recent.each do |record|
       tr
         td
-          a href='/map/#{score.map}?mode=#{score.mode}' #{score.map}
-        td = mode_string(score.mode)
+          a href='/map/#{record.map}?mode=#{record.mode}' #{record.map}
+        td = mode_string(record.mode)
         td
-          a href='/player/#{score.player_id}?mode=#{score.mode}' #{score.player.name}
+          a href='/player/#{record.player_id}?mode=#{record.mode}' #{record.player.name}
         - unless @wrs
-          td = score.rank_
-        td.text-right = time_string(score.time)
-        td.text-right = score.updated_at
+          td = record.rank_
+        td
+          span.pull-right.no-word-break = time_string(record.time)
+        td.text-right = record.updated_at
 == pagy_bootstrap_nav(@pagy)
