@@ -4,7 +4,6 @@
 @import 'bootstrap';
 @import 'bootswatch/darkly/bootswatch';
 
-
 $autocomplete-border: rgba(0, 0, 0, .2);
 
 @media (min-width: 1200px) {
@@ -60,6 +59,16 @@ caption {
   word-break: break-word;
 }
 
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
 .navbar-form {
   .form-control {
     background-color: $gray-dark;
@@ -69,7 +78,6 @@ caption {
     }
   }
 }
-
 
 .ui-autocomplete {
   // -moz-background-clip: padding;

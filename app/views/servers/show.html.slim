@@ -5,9 +5,9 @@ p
 
 - if @servers
   h3 Last update: #{@servers[:time]} UTC
-  .row
+  .row.display-flex
     - @servers[:servers].each do |server|
-      .col-md-4.col-sm-6
+      .col-md-4.col-sm-6.col-xs-12
         = render 'layouts/server_info', server: server
 - else
   p There was a problem getting server info.
