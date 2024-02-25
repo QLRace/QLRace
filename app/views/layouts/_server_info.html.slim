@@ -21,4 +21,5 @@
               - server[:players].each do |player|
                 tr
                   td = player[:name]
-                  td.text-right = time_string(player[:time])
+                  td
+                    span.pull-right.no-word-break = time_string(player[:time])
