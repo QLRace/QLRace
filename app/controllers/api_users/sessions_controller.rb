@@ -14,8 +14,12 @@ class ApiUsers::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    Tiddle.expire_token(current_user, request) if current_user
-    render json: {}
+    if current_api_user
+      Tiddle.expire_token(current_api_user, request)
+      render json: {message: "Token was deleted sucessfully"}
+    else
+      render json: {error: "Invalid email or token"}, status: 401
+    end
   end
 
   private
