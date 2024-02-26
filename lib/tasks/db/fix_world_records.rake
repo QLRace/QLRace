@@ -10,7 +10,7 @@ namespace :db do
       WorldRecord.delete_all
       ActiveRecord::Base.connection.reset_pk_sequence!("world_records")
       maps = Score.distinct.pluck(:map).sort
-      progress = ProgressBar.create(total: maps.length * 4)
+      progress = ProgressBar.create(total: maps.length * 4) # standard:disable Rails/SaveBang
       maps.each do |map|
         4.times do |mode|
           progress.increment
