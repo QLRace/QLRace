@@ -7,9 +7,10 @@ class ApiUsers::SessionsController < Devise::SessionsController
   respond_to :xml, only: []
 
   def create
+    token_expires_in = 1.hour
     user = warden.authenticate!(auth_options)
-    token = Tiddle.create_and_return_token(user, request, expires_in: 2.days)
-    render json: {authentication_token: token}
+    token = Tiddle.create_and_return_token(user, request, expires_in: token_expires_in)
+    render json: {authentication_token: token, expires_in: token_expires_in}
   end
 
   def destroy
