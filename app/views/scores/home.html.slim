@@ -13,7 +13,8 @@ table.table.table-striped.table-hover.table-xtra-condensed
       - @recent_wrs.each do |wr|
         tr
           td
-            a href='/map/#{wr.map}?mode=#{wr.mode}' #{wr.map}
+            span.no-word-break
+              a href='/map/#{wr.map}?mode=#{wr.mode}' #{wr.map}
           td = mode_string(wr.mode)
           td
             a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player.name}
