@@ -25,8 +25,9 @@
       tbody
         - @map[:records].each do |record|
           tr
-            td.col-xs-1 = record[:rank]
-            td.col-xs-3.word-break
+            td.col-xs-1
+              span.no-word-break = record[:rank]
+            td.col-xs-3
               a href='/player/#{record[:player_id]}?mode=#{record[:mode]}' #{record[:name]}
             td.col-xs-4
               span.pull-right.no-word-break = time_string(record[:time])

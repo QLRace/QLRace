@@ -34,7 +34,8 @@
           tr
             td.col-xs-3
               a href='/map/#{record[:map]}?mode=#{record[:mode]}' #{record[:map]}
-            td.col-xs-1 = record[:rank]
+            td.col-xs-1
+              span.no-word-break = record[:rank]
             td.col-xs-4
               span.pull-right.no-word-break = time_string(record[:time])
             td.col-xs-4.text-right = record[:date]

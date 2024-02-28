@@ -35,7 +35,8 @@ table.table.table-striped.table-hover.table-xtra-condensed
         td
           a href='/player/#{record.player_id}?mode=#{record.mode}' #{record.player.name}
         - unless @wrs
-          td = record.rank_
+          td
+            span.no-word-break = record.rank_
         td
           span.pull-right.no-word-break = time_string(record.time)
         td.text-right = record.updated_at
