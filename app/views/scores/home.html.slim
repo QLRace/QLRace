@@ -15,7 +15,8 @@ table.table.table-striped.table-hover.table-xtra-condensed
           td
             span.no-word-break
               a href='/map/#{wr.map}?mode=#{wr.mode}' #{wr.map}
-          td = mode_string(wr.mode)
+          td
+            span.no-word-break = mode_string(wr.mode)
           td
             a href='/player/#{wr.player_id}?mode=#{wr.mode}' #{wr.player.name}
           td
