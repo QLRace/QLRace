@@ -38,7 +38,8 @@ table.table.table-striped.table-hover.table-xtra-condensed
     - @map_scores.each do |map, wrs|
       tr
         td
-          a href='/map/#{map}' #{map}
+          span.no-word-break
+            a href='/map/#{map}' #{map}
         - wrs.each do |wr|
           - if wr
             td
