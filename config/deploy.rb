@@ -26,6 +26,8 @@ set :user, qlrace_username # Username in the server to SSH to.
 set :port, nil             # SSH port number. Unset to use port from ssh_config.
 # set :forward_agent, true  # SSH forward_agent.
 
+set :bundle_options, -> { '' }
+
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
@@ -41,7 +43,11 @@ end
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
-  command %(rbenv install 3.3.1 --skip-existing)
+  ruby_version = File.read('.ruby-version').strip
+  command "rbenv install #{ruby_version} --skip-existing"
+  command "#{fetch(:bundle_bin)} config set deployment 'true'"
+  command "#{fetch(:bundle_bin)} config set path '#{fetch(:bundle_path)}'"
+  command "#{fetch(:bundle_bin)} config set without '#{fetch(:bundle_withouts)}'"
 end
 
 desc "Deploys the current version to the server."
@@ -52,6 +58,7 @@ task :deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
     invoke :"git:clone"
+    command "rbenv install --skip-existing"
     invoke :"deploy:link_shared_paths"
     invoke :"bundle:install"
     invoke :"rails:db_migrate"
