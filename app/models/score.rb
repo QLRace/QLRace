@@ -41,7 +41,7 @@ class Score < ApplicationRecord
                                                 per map for each mode.'}
 
   def rank_
-    Score.where(map: map, mode: mode).where("time < ?", time).count + 1
+    Score.where(map: map, mode: mode).where(time: ...time).count + 1
   end
 
   def self.new_score(score)
