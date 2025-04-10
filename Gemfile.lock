@@ -109,10 +109,10 @@ GEM
       sassc (>= 2.0.0)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
-    brakeman (7.0.0)
+    brakeman (7.0.2)
       racc
     builder (3.3.0)
-    bullet (8.0.2)
+    bullet (8.0.3)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (12.0.0)
@@ -131,9 +131,9 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.6.1)
-    dotenv (3.1.7)
-    dotenv-rails (3.1.7)
-      dotenv (= 3.1.7)
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
@@ -274,7 +274,7 @@ GEM
     rdoc (6.13.1)
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
-    reline (0.6.0)
+    reline (0.6.1)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -298,7 +298,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.2)
-    rubocop (1.73.2)
+    rubocop (1.75.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -306,21 +306,22 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.44.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
-    rubocop-performance (1.24.0)
+    rubocop-performance (1.25.0)
       lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rails (2.30.3)
+      activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
+      rack (>= 1.1)
       rubocop (>= 1.72.1, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.26.2)
-      activesupport (>= 4.2.0)
-      rack (>= 1.1)
-      rubocop (>= 1.52.0, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -349,21 +350,21 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    standard (1.47.0)
+    standard (1.49.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
-      rubocop (~> 1.73.0)
+      rubocop (~> 1.75.2)
       standard-custom (~> 1.0.0)
-      standard-performance (~> 1.7)
+      standard-performance (~> 1.8)
     standard-custom (1.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.50)
-    standard-performance (1.7.0)
+    standard-performance (1.8.0)
       lint_roller (~> 1.1)
-      rubocop-performance (~> 1.24.0)
-    standard-rails (1.2.0)
+      rubocop-performance (~> 1.25.0)
+    standard-rails (1.3.0)
       lint_roller (~> 1.0)
-      rubocop-rails (~> 2.26.0)
+      rubocop-rails (~> 2.30.0)
     steam-condenser (1.3.11)
       multi_json (~> 1.6)
       multi_xml (~> 0.5)
@@ -478,9 +479,9 @@ CHECKSUMS
   bootsnap (1.18.4) sha256=ac4c42af397f7ee15521820198daeff545e4c360d2772c601fbdc2c07d92af55
   bootstrap-sass (3.4.1) sha256=ba4673535eb0a8334a39a258ea8d81904832f47607069d0a1735b0937645c7df
   bootswatch-rails (3.3.5) sha256=0a3ad8b89ad5a565899f21e23637399cfbfccf8e1f733de21c908a2355c2c714
-  brakeman (7.0.0) sha256=1a0122b0c70f17519a61548a53a332c0acc19e3aa10b445e15e025a4b13b8577
+  brakeman (7.0.2) sha256=b602d91bcec6c5ce4d4bc9e081e01f621c304b7a69f227d1e58784135f333786
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
-  bullet (8.0.2) sha256=4df2e360f4da39a513d56d91ad721e0201d52c793ce5cd16ec456ba4fc929a9d
+  bullet (8.0.3) sha256=60e41446500a7e59272b3c2398cded214deec3662e883009de5bf30028a0642c
   byebug (12.0.0) sha256=d4a150d291cca40b66ec9ca31f754e93fed8aa266a17335f71bb0afa7fca1a1e
   chronic (0.10.2) sha256=766f2fcce6ac3cc152249ed0f2b827770d3e517e2e87c5fba7ed74f4889d2dc3
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
@@ -492,8 +493,8 @@ CHECKSUMS
   debug_inspector (1.2.0) sha256=9bdfa02eebc3da163833e6a89b154084232f5766087e59573b70521c77ea68a2
   devise (4.9.4) sha256=920042fe5e704c548aa4eb65ebdd65980b83ffae67feb32c697206bfd975a7f8
   diff-lcs (1.6.1) sha256=12a5a83f3e37a8e2f4427268e305914d5f1879f22b4e73bb1a09f76a3dd86cd4
-  dotenv (3.1.7) sha256=c670df478675d23889e657beaca6fb423228f75ce9f052a0690c0d0daa333cf3
-  dotenv-rails (3.1.7) sha256=02c07b9601ad64046e196f48f6280c2cc660b073e08b30ad5c2f78b4872e9189
+  dotenv (3.1.8) sha256=9e1176060ced581f8e6ce4384e91361817763a76e3c625c8bddc18b35bd392c3
+  dotenv-rails (3.1.8) sha256=46c9d1226a8b58a83b5f61325aa8cffd25cea1c0fafdfbbbee1e5dfea77980c4
   drb (2.2.1) sha256=e9d472bf785f558b96b25358bae115646da0dbfd45107ad858b0bc0d935cb340
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   execjs (2.10.0) sha256=6bcb8be8f0052ff9d370b65d1c080f2406656e150452a0abdb185a133048450d
@@ -560,7 +561,7 @@ CHECKSUMS
   rb-inotify (0.11.1) sha256=a0a700441239b0ff18eb65e3866236cd78613d6b9f78fea1f9ac47a85e47be6e
   rdoc (6.13.1) sha256=62a0dac99493c94e8eb7a3fb44e55aefcb4cecb119f7991f25bddc5ed8d472f7
   regexp_parser (2.10.0) sha256=cb6f0ddde88772cd64bff1dbbf68df66d376043fe2e66a9ef77fcb1b0c548c61
-  reline (0.6.0) sha256=57620375dcbe56ec09bac7192bfb7460c716bbf0054dc94345ecaa5438e539d2
+  reline (0.6.1) sha256=1afcc9d7cb1029cdbe780d72f2f09251ce46d3780050f3ec39c3ccc6b60675fb
   responders (3.1.1) sha256=92f2a87e09028347368639cfb468f5fefa745cb0dc2377ef060db1cdd79a341a
   rollbar (3.6.2) sha256=f74de2cb146bfadfc7ae76ce3516f9b08a56e818684232b8b38552b50ee51a63
   rouge (4.5.1) sha256=2ac81c6dee7019bbc6600d4c2d641d730d65c165941400ebd924259067e690dd
@@ -569,10 +570,10 @@ CHECKSUMS
   rspec-mocks (3.13.2) sha256=2327335def0e1665325a9b617e3af9ae20272741d80ac550336309a7c59abdef
   rspec-rails (7.1.1) sha256=e15dccabed211e2fd92f21330c819adcbeb1591c1d66c580d8f2d8288557e331
   rspec-support (3.13.2) sha256=cea3a2463fd9b84b9dcc9685efd80ea701aa8f7b3decb3b3ce795ed67737dbec
-  rubocop (1.73.2) sha256=35cd1b1365ba97234323fe771abcecd09c9b77098464cd726c76aa7d9bc12b5d
+  rubocop (1.75.2) sha256=8efde647e278417e8074421b007e0d7d7c591482ef99d980528b18fea015a7c8
   rubocop-ast (1.44.0) sha256=77fdaf4aacf0c7d1ef887b075686124fb4ae5743d42ff7e73bb1c0d6b61b5d0a
-  rubocop-performance (1.24.0) sha256=e5bd39ff3e368395b9af886927cc37f5892f43db4bd6c8526594352d5b4440b5
-  rubocop-rails (2.26.2) sha256=f5561a09d6afd2f54316f3f0f6057338ca55b6c24a25ba6a938d3ed0fded84ad
+  rubocop-performance (1.25.0) sha256=6f7d03568a770054117a78d0a8e191cefeffb703b382871ca7743831b1a52ec1
+  rubocop-rails (2.30.3) sha256=fc5a6506daa916d15e282cc806943afa64a020bf592b93a94025d89a2a78a715
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   sass-rails (6.0.0) sha256=e0b6448ea1c7929fd5929fc7a8eb2d78045e44cc82fc0765a249d3fa1c5810d3
   sassc (2.4.0) sha256=4c60a2b0a3b36685c83b80d5789401c2f678c1652e3288315a1551d811d9f83e
@@ -583,10 +584,10 @@ CHECKSUMS
   slim-rails (3.7.0) sha256=637dd3b07281bc6ee7e3395b153b26f04370dfac517058c334225818fffa1c96
   sprockets (4.2.1) sha256=951b13dd2f2fcae840a7184722689a803e0ff9d2702d902bd844b196da773f97
   sprockets-rails (3.5.2) sha256=a9e88e6ce9f8c912d349aa5401509165ec42326baf9e942a85de4b76dbc4119e
-  standard (1.47.0) sha256=b0da6b71d8dec53e760c7216b723e3507ebdcd6962f7ce7c37c016a36c7cc190
+  standard (1.49.0) sha256=590cd11a2021350812483cb53fc185bd8a92ca215839145d71fdd693750bb470
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b
-  standard-performance (1.7.0) sha256=c46a9aef3348c0cfc03053ed9a1c1f73b967f7e4edcdf30dac0101b143897314
-  standard-rails (1.2.0) sha256=e8d5be6f7380dad8297d047359a8670d3da17d49f379b13f2697de0d9d1ff5f0
+  standard-performance (1.8.0) sha256=ed17b7d0e061b2a19a91dd434bef629439e2f32310f22f26acb451addc92b788
+  standard-rails (1.3.0) sha256=782e3a523492ffb8251dd914d7287eeb9ec4a7761aa6accc63a9ecff4d5ed35f
   steam-condenser (1.3.11) sha256=9377bb0d937c8113ab241494d0fcf812100cb01bb17f8375e314179e17cbdf9e
   stringio (3.1.6) sha256=292c495d1657adfcdf0a32eecf12a60e6691317a500c3112ad3b2e31068274f5
   temple (0.10.3) sha256=df3145fe6577af1e25387eb7f7122d32ed51bdb6f2e7bb0f4fbf07b66151913b
@@ -609,7 +610,7 @@ CHECKSUMS
   zeitwerk (2.7.2) sha256=842e067cb11eb923d747249badfb5fcdc9652d6f20a1f06453317920fdcd4673
 
 RUBY VERSION
-   ruby 3.3.7p123
+   ruby 3.3.8p144
 
 BUNDLED WITH
    2.6.7
