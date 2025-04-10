@@ -18,7 +18,7 @@ class ScoresController < ApplicationController
   def map
     return unless Score.exists?(map: params[:map].downcase)
 
-    @map = Score.map_scores_paginated params
+    @map = Score.map_scores_paginated(params)
     @pagy = Pagy.new(count: @map[:total_records], page: params[:page])
   end
 
@@ -27,13 +27,13 @@ class ScoresController < ApplicationController
   end
 
   def recent
-    get_recent_records Score
+    get_recent_records(Score)
   end
 
   def recent_wrs
     @wrs = true
-    get_recent_records WorldRecord
-    render "recent"
+    get_recent_records(WorldRecord)
+    render("recent")
   end
 
   private

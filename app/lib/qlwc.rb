@@ -28,21 +28,34 @@
 # End: May 22th at 18:00 UTC
 
 class Qlwc
-  MAPS = %w[qlwc21_round0 qlwc21_round1 qlwc21_round2
-    qlwc21_round3 qlwc21_round4].freeze
-  START_DATES = [Time.utc(2021, 4, 17, 19), Time.utc(2021, 4, 24, 19),
-    Time.utc(2021, 5, 1, 19), Time.utc(2021, 5, 8, 19),
-    Time.utc(2021, 5, 15, 19)].freeze
-  END_DATES = [Time.utc(2021, 4, 24, 18), Time.utc(2021, 5, 1, 18),
-    Time.utc(2021, 5, 8, 18), Time.utc(2021, 5, 15, 18),
-    Time.utc(2021, 5, 22, 18)].freeze
+  MAPS = [
+    "qlwc21_round0",
+    "qlwc21_round1",
+    "qlwc21_round2",
+    "qlwc21_round3",
+    "qlwc21_round4",
+  ].freeze
+  START_DATES = [
+    Time.utc(2021, 4, 17, 19),
+    Time.utc(2021, 4, 24, 19),
+    Time.utc(2021, 5, 1, 19),
+    Time.utc(2021, 5, 8, 19),
+    Time.utc(2021, 5, 15, 19),
+  ].freeze
+  END_DATES = [
+    Time.utc(2021, 4, 24, 18),
+    Time.utc(2021, 5, 1, 18),
+    Time.utc(2021, 5, 8, 18),
+    Time.utc(2021, 5, 15, 18),
+    Time.utc(2021, 5, 22, 18),
+  ].freeze
 
   def initialize(date)
     @date = date
   end
 
   def current_map
-    return nil if @date < START_DATES[0] || @date >= END_DATES[4]
+    return if @date < START_DATES[0] || @date >= END_DATES[4]
 
     MAPS.each_with_index do |map, round|
       return map if @date >= START_DATES[round] && @date < END_DATES[round]

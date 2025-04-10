@@ -26,7 +26,7 @@ class Player < ApplicationRecord
   def self.update_player_name(id, name)
     player = Player.find_or_initialize_by(id: id)
     name = name.gsub(/\^[0-9]/, "") # remove colour codes from names
-    return unless player.name != name
+    return if player.name == name
 
     player.name = name.presence || id
     player.save!

@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
     @pagy, @players = pagy(
       Player.includes(:scores, :world_records)
       .search(params[:search])
-      .order(:name)
+      .order(:name),
     )
   end
 
@@ -19,6 +19,6 @@ class PlayersController < ApplicationController
   def most_wrs
     @mode = params.fetch(:mode, -1).to_i
     @mode = -1 unless @mode.between?(0, 3)
-    @players = WorldRecord.most_world_records @mode
+    @players = WorldRecord.most_world_records(@mode)
   end
 end

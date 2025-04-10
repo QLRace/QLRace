@@ -27,11 +27,15 @@
 class WorldRecord < ApplicationRecord
   belongs_to :player
   validates :map, :mode, :time, :match_guid, presence: true
-  validates :mode, inclusion: {in: 0..3}
-  validates :mode, uniqueness: {scope: :map,
-                                message: "One record per mode for each map."}
-  validates :time, numericality: {only_integer: true,
-                                  greater_than: 0}
+  validates :mode, inclusion: { in: 0..3 }
+  validates :mode, uniqueness: {
+    scope: :map,
+    message: "One record per mode for each map.",
+  }
+  validates :time, numericality: {
+    only_integer: true,
+    greater_than: 0,
+  }
   after_commit :delete_cache
 
   def self.check(score)
@@ -47,7 +51,7 @@ class WorldRecord < ApplicationRecord
     ON wr.player_id = p.id
     ORDER BY wr.map, wr.mode;
     SQL
-    wrs = WorldRecord.find_by_sql [query]
+    wrs = WorldRecord.find_by_sql([query])
     map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
     wrs.each do |wr|
       map_scores[wr.map][wr.mode] = wr
@@ -73,7 +77,7 @@ class WorldRecord < ApplicationRecord
     GROUP BY p.name, wr.player_id
     ORDER BY num_wrs DESC
     SQL
-    WorldRecord.find_by_sql [query, {mode: mode}]
+    WorldRecord.find_by_sql([query, { mode: mode }])
   end
 
   def self.update_world_record(world_record, score)
@@ -88,8 +92,8 @@ class WorldRecord < ApplicationRecord
   private
 
   def delete_cache
-    page_file = Rails.public_path.join "index.html"
-    FileUtils.rm_rf page_file
+    page_file = Rails.public_path.join("index.html")
+    FileUtils.rm_rf(page_file)
   end
 
   private_class_method :update_world_record

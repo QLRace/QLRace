@@ -18,12 +18,14 @@ namespace :db do
           next if s.nil?
 
           WorldRecord.create!(
-            s.attributes.except("id",
+            s.attributes.except(
+              "id",
               "checkpoints",
               "speed_start",
               "speed_end",
               "speed_top",
-              "speed_average")
+              "speed_average",
+            ),
           )
         end
       end

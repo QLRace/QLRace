@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :api_users, controllers: {sessions: "api_users/sessions"},
-    defaults: {format: :json}
+  devise_for :api_users,
+    controllers: { sessions: "api_users/sessions" },
+    defaults: { format: :json }
 
   root "scores#home"
   get "recent", to: "scores#recent", as: "recent_scores"
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   get "servers", to: "servers#show", as: "servers"
 
   apipie
-  namespace :api, defaults: {format: "json"} do
+  namespace :api, defaults: { format: "json" } do
     get "maps", to: "maps_api#maps"
     get "map/:map", to: "scores_api#map"
     get "player/:player_id", to: "scores_api#player"

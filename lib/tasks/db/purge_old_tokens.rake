@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   task purge_old_tokens: :environment do
     ApiUser.find_each do |user|

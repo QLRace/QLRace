@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: api_users
@@ -21,7 +23,9 @@
 class ApiUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :trackable, :validatable,
+  devise :database_authenticatable,
+    :trackable,
+    :validatable,
     :token_authenticatable
 
   has_many :authentication_tokens, dependent: :destroy
