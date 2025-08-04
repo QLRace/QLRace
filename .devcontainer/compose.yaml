@@ -22,13 +22,13 @@ services:
     - postgres
 
   redis:
-    image: redis:7.2
+    image: redis:8
     restart: unless-stopped
     volumes:
     - redis-data:/data
 
   postgres:
-    image: postgres:16.1
+    image: postgres:17.5
     restart: unless-stopped
     networks:
     - default
