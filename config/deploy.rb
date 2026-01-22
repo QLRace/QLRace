@@ -20,6 +20,7 @@ set :domain, qlrace_domain
 set :deploy_to, qlrace_path
 set :repository, "https://github.com/QLRace/QLRace.git"
 set :branch, "master"
+set :keep_releases, 8
 
 # Optional settings:
 set :user, qlrace_username # Username in the server to SSH to.
