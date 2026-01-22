@@ -10,6 +10,7 @@ gem "apipie-rails"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap-sass", "~> 3.4"
 gem "bootswatch-rails", "~> 3.3"
+gem "connection_pool", "< 3"
 gem "devise"
 gem "fast_blank"
 gem "fx"
