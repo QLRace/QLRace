@@ -44,12 +44,12 @@ class WorldRecord < ApplicationRecord
   end
 
   def self.map_scores
-    query = <<-SQL.squish
-    SELECT wr.map, wr.mode, wr.time, p.id AS player_id, p.name AS player_name
-    FROM world_records wr
-    INNER JOIN players p
-    ON wr.player_id = p.id
-    ORDER BY wr.map, wr.mode;
+    query = <<~SQL.squish
+      SELECT wr.map, wr.mode, wr.time, p.id AS player_id, p.name AS player_name
+      FROM world_records wr
+      INNER JOIN players p
+      ON wr.player_id = p.id
+      ORDER BY wr.map, wr.mode;
     SQL
     wrs = WorldRecord.find_by_sql([query])
     map_scores = Hash.new { |hash, key| hash[key] = Array.new(4) }
@@ -67,15 +67,15 @@ class WorldRecord < ApplicationRecord
     mode = mode.to_i
     mode = nil if mode == -1
 
-    query = <<-SQL.squish
-    SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
-        (SELECT COUNT(*)
-         FROM scores
-         WHERE scores.player_id = wr.player_id AND (:mode is null OR mode = :mode)) AS num_records
-    FROM world_records wr, players p
-    WHERE wr.player_id = p.id AND (:mode is null OR mode = :mode)
-    GROUP BY p.name, wr.player_id
-    ORDER BY num_wrs DESC
+    query = <<~SQL.squish
+      SELECT wr.player_id, p.name, COUNT(wr.player_id) AS num_wrs,
+          (SELECT COUNT(*)
+           FROM scores
+           WHERE scores.player_id = wr.player_id AND (:mode is null OR mode = :mode)) AS num_records
+      FROM world_records wr, players p
+      WHERE wr.player_id = p.id AND (:mode is null OR mode = :mode)
+      GROUP BY p.name, wr.player_id
+      ORDER BY num_wrs DESC
     SQL
     WorldRecord.find_by_sql([query, { mode: mode }])
   end
